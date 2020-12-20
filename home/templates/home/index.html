@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      {% load static %}
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Auricle - The Multi-Purpose Responsive HTML5 Template</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- site icons -->
+      <link rel="icon" href="{% static 'home/images/fevicon/fevicon.png' %}" type="image/png" />
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="{% static 'home/bootstrap.min.css' %}" />
+      <!-- site css -->
+      <link rel="stylesheet" href="{% static 'home/style.css' %}" />
+      <!-- responsive css -->
+      <link rel="stylesheet" href="{% static 'home/responsive.css' %}" />
+      <!-- colors css -->
+      <link rel="stylesheet" href="{% static 'home/colors.css' %}" />
+      <!-- wow animation css -->
+      <link rel="stylesheet" href="{% static 'home/animate.css' %}" />
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+   </head>
+   <body id="default_theme" class="services">
+      <!-- header -->
+      <header class="header header_style1">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-9 col-lg-10">
+                  <div class="logo"><a href=""><img src="{% static 'home/images/logo.png' %}" alt="#" style="width:60%;height:60%;"/></a></div>
+                  <div class="main_menu float-right">
+                     <div class="menu">
+                        <ul class="clearfix">
+                           <li><a href=""></a></li>
+                           <li><a href=""></a></li>
+                           <li><a href=""></a></li>
+                           <li><a href=""></a></li>
+                           <li class="active"><a href="{% url 'SinhVien:SinhVien' %}">Danh sách sinh viên</a></li>
+                           <li><a href=""></a></li>
+                           <li><a href=""></a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-3 col-lg-2">
+                  <div class="right_bt"><a class="bt_main" href="">Đánh giá</a> </div>
+               </div>
+            </div>
+         </div>
+      </header>
+      <!-- <section id="banner_parallax" class="inner_page_banner slide_banner1">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="full">
+                     <div class="slide_cont">
+                        <h2>Pricing</h2>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section> -->
+      <!-- end header -->
+      <!-- section -->
+      <section class="layout_padding">
+         <div class="container">
+            <div class="row">
+               <div class="full">
+                  <div class="row">
+                     <div class="col-sm-12">
+                        <div class="full text_align_center">
+                           <div class="heading_main center_head_border heading_style_1">
+                              <h2>HK202 DANG KY MON HOC HK2 (2020 - 2021)</h2>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-sm-12">
+                  <div class="full" style="margin-top:10px;">
+                     <div class="row">
+                        <div class="col-sm-12 col-md-4">
+                           <div class="table_price text_align_center">
+                              <div class="table_price_head">
+                                 <h5>CO2013</h5>
+                              </div>
+                              <div class="table_price_cont">
+                                 <div class="table_price_per">
+                                    <p>
+                                       <small>HỆ CƠ SỞ DỮ LIỆU</small>
+                                    </p>
+                                 </div>
+                                 <!-- <div class="table_price_cont_bottm">
+                                    <ul>
+                                       <li>100 MB Disk Space</li>
+                                       <li>2 Subdomains</li>
+                                       <li>5 Email Accounts</li>
+                                       <li>Customer Support 24/7</li>
+                                    </ul>
+                                 </div> -->
+                              </div>
+                              <div class="table_price_bottm"> <a class="bt_main" href="">CHỌN</a> </div>
+                           </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                           <div class="active_price table_price text_align_center">
+                              <div class="table_price_head">
+                                 <h5>CO3003</h5>
+                              </div>
+                              <div class="table_price_cont">
+                                 <div class="table_price_per">
+                                    <p>
+                                       <small>Mạng Máy Tính</small>
+                                    </p>
+                                 </div>
+                                 <!-- <div class="table_price_cont_bottm">
+                                    <ul>
+                                       <li>100 MB Disk Space</li>
+                                       <li>2 Subdomains</li>
+                                       <li>5 Email Accounts</li>
+                                       <li>Customer Support 24/7</li>
+                                    </ul>
+                                 </div> -->
+                              </div>
+                              <div class="table_price_bottm"> <a class="reverse_bt bt_main" href="">CHỌN</a> </div>
+                           </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                           <div class="table_price text_align_center">
+                              <div class="table_price_head">
+                                 <h5>CO3005</h5>
+                              </div>
+                              <div class="table_price_cont">
+                                 <div class="table_price_per">
+                                    <p>
+                                       <small>Ng/lý ngôn ngữ lập trình</small>
+                                    </p>
+                                 </div>
+                                 <!-- <div class="table_price_cont_bottm">
+                                    <ul>
+                                       <li>100 MB Disk Space</li>
+                                       <li>2 Subdomains</li>
+                                       <li>5 Email Accounts</li>
+                                       <li>Customer Support 24/7</li>
+                                    </ul>
+                                 </div> -->
+                              </div>
+                              <div class="table_price_bottm"> <a class="bt_main" href="">CHỌN</a> </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- end section -->
+      <!-- section -->
+      <section class="contact_section">
+         <div class="container-fluid">
+            <div class="row">
+               <!-- <div class="col-xs-12 col-sm-12 col-md-6" style="padding:0;">
+                  <div class="full">
+                     <div id="map"></div>
+                  </div>
+               </div> -->
+               <div class="col-xs-12 col-sm-12 col-md-6" style="padding:0;">
+                  <div class="full">
+                     <div class="contact_form white_heading_border">
+                        <div class="contact_form_inner">
+                           <div class="full_heading white_fonts heading_main heading_style_1">
+                              <h2>Đánh <span>giá</span></h2>
+                           </div>
+                           <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                           <div class="form_contact">
+                              <!-- form -->
+                              <form action="{% url 'home:saveEvaluateForm' %}" method="POST">
+                                 {% csrf_token %}
+                                 <fieldset>
+                                    <div class="field">
+                                       <!-- <input type="text" name="name" placeholder="Mã môn" required="">{{ ef.codeSubject }}</input> -->
+                                    </div>
+                                    <div class="field">
+                                       <!-- <input type="text" name="name" placeholder="Nhóm lớp" required="" /> -->
+                                    </div>
+                                    <!-- <div class="field">
+                                       <input type="email" name="email" placeholder="Email" required="" />
+                                    </div> -->
+                                    <div class="field">
+                                       <!-- <textarea name="messager" placeholder="Nội dung" required=""></textarea> -->
+                                    </div>
+
+                                       
+                                       <ul class="field">
+                                          <li>{{ ef.codeSubject }}</li>
+                                          <li>{{ ef.groupClass }}</li>
+                                          <li>{{ ef.evaluate }}</li>
+                                      </ul>
+                                       <input type="submit" class="field_bt">
+
+                                 </fieldset>
+                              </form>
+                              <!-- end form -->
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- end section -->
+      <!-- footer -->
+      <!-- <footer class="footer_style_2">
+         <div class="footer_top">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 margin_bottom_30">
+                     <div class="full width_9" style="margin-bottom:25px;"> <a href=""><img class="img-responsive" width="250" src="{% static 'home/images/logo.png' %}" alt="#"></a> </div>
+                     <div class="full width_9">
+                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                     </div>
+                     <div class="full width_9">
+                        <p>the vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati..</p>
+                     </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 margin_bottom_30">
+                     <div class="full">
+                        <div class="footer_blog_2 width_9">
+                           <h3>Twitter Feed</h3>
+                           <p><i class="fa fa-twitter"></i> Creative_Talent - 26 mins
+                              Te invitamos a seguir la cta. de WEntrepreneur_ ¡Atrévete! #Emprendimiento #PyMES #Economía #Bussines #Negocios https://t.co/Y7tZMmxGHn
+                           </p>
+                           <p><i class="fa fa-twitter"></i> Creative_Talent - 26 mins
+                              Te invitamos a seguir la cta. de WEntrepreneur_ ¡Atrévete! #Emprendimiento #PyMES #Economía #Bussines #Negocios https://t.co/Y7tZMmxGHn
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-2 margin_bottom_30">
+                     <div class="full">
+                        <div class="footer_blog_2">
+                           <h3>Social</h3>
+                        </div>
+                     </div>
+                     <div class="full">
+                        <ul class="footer-links">
+                           <li><a href="#"><i class="fa fa-facebook"></i> 256 Likes</a></li>
+                           <li><a href="#"><i class="fa fa-github"></i> 57+ Projects</a></li>
+                           <li><a href="#"><i class="fa fa-twitter"></i> 1,258 Followers</a></li>
+                           <li><a href="#"><i class="fa fa-pinterest"></i> 2538+ Pins</a></li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 margin_bottom_30">
+                     <div class="full">
+                        <div class="footer_blog_2 width_9">
+                           <h3>Blog</h3>
+                        </div>
+                        <div class="blog_post_footer">
+                           <div class="blog_post_img"> <img width="80" height="80" src="{% static 'home/images/scr1.png' %}" alt="#"> </div>
+                           <div class="blog_post_cont">
+                              <p class="date">July 22, 2015</p>
+                              <p class="post_head">Round and round like a carousel</p>
+                           </div>
+                        </div>
+                        <div class="blog_post_footer">
+                           <div class="blog_post_img"> <img width="80" height="80" src="{% static 'home/images/scr2.png' %}" alt="#"> </div>
+                           <div class="blog_post_cont">
+                              <p class="date">July 22, 2015</p>
+                              <p class="post_head">Round and round like a carousel</p>
+                           </div>
+                        </div>
+                        <div class="blog_post_footer">
+                           <div class="blog_post_img"> <img width="80" height="80" src="{% static 'home/images/scr3.png' %}" alt="#"> </div>
+                           <div class="blog_post_cont">
+                              <p class="date">July 22, 2015</p>
+                              <p class="post_head">Round and round like a carousel</p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div> -->
+         <!-- footer bottom -->
+         <div class="footer_bottom">
+            <p>Dessigned and developed by <strong>Group 9 - L06</strong></p>
+         </div>
+      </footer>
+      <!-- end footer -->
+      <!--=========== js section ===========-->
+      <!-- jQuery (necessary for Bootstrap's JavaScript) -->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <!-- wow animation -->
+      <script src="js/wow.js"></script>
+      <!-- custom js -->
+      <script src="js/custom.js"></script>
+      <!-- google map js -->
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script>
+      <!-- end google map js -->
+   </body>
+</html>
