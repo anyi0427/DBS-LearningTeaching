@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Learning - Teaching System</title>
+      <title>Login</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -51,9 +51,9 @@
                      </div>
                   </div>
                </div>
-               <div class="col-md-3 col-lg-2">
-                  <div class="right_bt"><a class="bt_main" href="{%url 'login:loginUser'%}">Đăng nhập</a> </div>
-               </div>
+               {% comment %} <div class="col-md-3 col-lg-2">
+                  <div class="right_bt"><a class="bt_main" href="">Đăng nhập</a> </div>
+               </div> {% endcomment %}
             </div>
          </div>
       </header>      
@@ -65,14 +65,21 @@
                      <div class="col-sm-12">
                         <div class="full text_align_center">
                            <div class="heading_main center_head_border heading_style_1">
-                              <h2>HỆ THỐNG QUẢN LÝ ĐĂNG KÝ MÔN HỌC</h2>
+                              <h2>ĐĂNG NHẬP</h2>
+                              <form action = "{%url 'login:loginUser'%}"  method="post">
+                                 {%csrf_token%}
+                                 {{lF.as_p}}
+                                 <input type="submit">
+                              </form>
                            </div>
                         </div>
                      </div>
                   </div>
                </div>
             </div>
-            <div class="row">
+            >
+            
+            {% comment %} <div class="row">
                <div class="col-sm-12">
                   <div class="full" style="margin-top:10px;">
                      <div class="row">
@@ -124,7 +131,7 @@
                      </div>
                   </div>
                </div>
-            </div>
+            </div> {% endcomment %}
          </div>
       </section>
       <!-- end section -->

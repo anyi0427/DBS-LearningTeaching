@@ -3,5 +3,6 @@ from django.http import HttpResponse
 import MySQLdb
 
 # Create your views here.
-def Form(request):    
+def homepage(request):    
     return render(request, 'home/index.html')
+
