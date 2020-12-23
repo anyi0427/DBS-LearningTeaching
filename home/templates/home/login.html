@@ -66,7 +66,7 @@
                         <div class="full text_align_center">
                            <div class="heading_main center_head_border heading_style_1">
                               <h2>ĐĂNG NHẬP</h2>
-                              <form action = "{%url 'login:loginUser'%}"  method="post">
+                              <form action = "{%url 'home:loginUser'%}"  method="post">
                                  {%csrf_token%}
                                  {{lF.as_p}}
                                  <input type="submit">
