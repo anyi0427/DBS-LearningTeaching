@@ -1,5 +1,5 @@
 from django.http.response import HttpResponseNotAllowed
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 app_name = 'home'
@@ -10,5 +10,6 @@ urlpatterns = [
    path('total/', views.total, name = "total"),
    path('', views.logoutUser, name = "logout"),
    path('dkmh/', views.dkmh, name = "dkmh"),
-   path('dk/<str:mamh>/',views.dangky, name='dangky')
+   path('dk/<str:mamh>/',views.dangky, name='dangky'),
+   path('dkerror/', views.dkerror, name='dangkyloi')
 ]

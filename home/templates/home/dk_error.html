@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Đăng ký môn học</title>
+  <title>Lỗi</title>
     {% load static %}
     <!-- basic -->
     <meta charset="utf-8">
@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Đăng ký môn học</title>
+    <title>Lỗi</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -67,44 +67,8 @@
                  <div class="col-sm-12">
                     <div class="full text_align_center">
                        <div class="heading_main center_head_border heading_style_1">
-                          <h2>Môn học <a>{{ courses.ten_mon_hoc}}</a></h2>
-                          {% if user.is_authenticated %}
-                              {% for group in request.user.groups.all %}
-                                 {% if group.name == 'sinhvien'%}
-                                    {% for sv in lsinhvien%}
-                                        
-                                       {% if sv.Username == user.username%}
-                                          {{sv.ho}} {{sv.ten}} |   
-                                          Tổng số tín đã đăng ký:
-                                          {% for dk in dangky %}
-                                             {% if dk.MSSV == sv.MSSV%}
-                                                 {{dk.Tong_tin_chi}}
-                                             {% endif%}
-                                          {% endfor %}                  
-                                       {% endif %}
-                                    {% endfor %}
-                                 {% endif %}
-                              {% endfor %}   
-                           {% endif %} 
-                        <form action = "{%url 'home:dangky' courses.ma_mon_hoc%}"  method="post">
-                            {%csrf_token%}
-                            <div class="container">
-                            <table class="table table-striped">
-                                <h3>Học kỳ: {{courses.hoc_ky}}</h3>
-                                <h3>Mã môn học: {{courses.ma_mon_hoc}}</h3>
-                                <h3>Số tín chỉ: {{courses.so_tin_chi}}</h3>
-                                <h3>Mã lớp học: 
-                                    <select name='malop'>
-                                        {% for x in classes%}
-                                            <option value="{{ x.idlop}}"> {{ x.ma_lop_hoc}}</option>
-                                        {% endfor%}
-                                    </select>                                 
-                                </h3>
-                                <input type = "submit" value="Đăng ký">
-                            </table>	
-                            </div>
-                        </form>
-                                                        
+                          <h2>Bạn không thể đăng ký lớp học này!</a></h2>
+                          <a class="bt_main" href="{% url 'home:dkmh' %}">Quay lại</a></h3>
                        </div>
                     </div>
                  </div>
