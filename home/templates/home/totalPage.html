@@ -88,7 +88,13 @@
                                     </p>
                                  </div>
                               </div>
-                              <div class="table_price_bottm"> <a class="bt_main" href="">CHỌN</a> </div>
+                              {% if user.is_authenticated %}
+                              {% for group in request.user.groups.all %}
+                                 {% if group.name == 'sinhvien' or group.name == 'pdt' %}
+                                    <div class="table_price_bottm"> <a class="bt_main" href="{% url 'home:dkmh' %}">CHỌN</a> </div>
+                                 {% endif %}
+                              {% endfor %}   
+                              {% endif %} 
                            </div>
                         </div>
                         <div class="col-sm-12 col-md-4">
