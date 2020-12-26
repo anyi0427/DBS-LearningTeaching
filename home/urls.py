@@ -21,4 +21,9 @@ urlpatterns = [
    path('newlophoc/<str:khoa>/', views.newLophoc, name = "newLophoc"),
    path('qlgiaotrinh/<str:gv>/', views.qlgiaotrinh, name = "qlgiaotrinh"),
    path('updategiaotrinh/<str:gv>/<str:monhoc>/', views.updategiaotrinh, name = "updategiaotrinh"),
+   path('tracuupdt/', views.tracuupdt, name = "tracuupdt"),
+   path('tracuu_monhoc_khoa/', views.tracuu_monhoc_khoa, name = "tracuu_monhoc_khoa"),
+   path('tracuu_lophoc_khoa/', views.tracuu_lophoc_khoa, name = "tracuu_lophoc_khoa"),
+   path('tracuu_lophoc_sinhvien/', views.tracuu_lophoc_sinhvien, name = "tracuu_lophoc_sinhvien"),
+   path('tracuu_lophoc_giangvien/', views.tracuu_lophoc_giangvien, name = "tracuu_lophoc_giangvien"),
 ]

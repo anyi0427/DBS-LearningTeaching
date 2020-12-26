@@ -516,3 +516,148 @@ def updategiaotrinh(request,gv,monhoc):
     }
     
     return render(request,'home/updategiaotrinh.html',context)
+
+@login_required
+@allowed_users(['pdt'])
+def tracuupdt(request):
+    db = MySQLdb.connect(user='root', db='courses_enrollment', passwd='', host='localhost')
+    cursor = db.cursor()
+    cursor.execute('SELECT * FROM khoa')
+    columns = [col[0] for col in cursor.description]
+    dskhoa = [dict(zip(columns, row)) for row in cursor.fetchall()]
+    
+    context = {
+        'dskhoa':dskhoa,
+    }
+    return render(request,'home/tracuuthongtinpdt.html',context)
+
+@login_required
+@allowed_users(['pdt','khoa'])
+def tracuu_monhoc_khoa(request):
+    db = MySQLdb.connect(user='root', db='courses_enrollment', passwd='', host='localhost')
+    dsmonhoc=[]
+    if request.method=="POST":
+        makhoa=request.POST.get('makhoa','')
+        hk=request.POST.get('hk','')
+        
+        cursor = db.cursor()
+        cursor.execute('SELECT * FROM  lop left join chi_dinh c on idlop=id_lop natural left join mon_hoc natural left join nhan_vien natural left join nguoi_dung left join giao_trinh g on g.ISBN=c.ISBN where ma_khoa=\''+str(makhoa)+'\' and hoc_ky='+hk+' group by lop.ma_mon_hoc')
+        columns = [col[0] for col in cursor.description]
+        dsmonhoc = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+        cursor = db.cursor()
+        cursor.execute('select ma_khoa,count(*) tong_mon from (select ma_khoa, m.ma_mon_hoc from mon_hoc m join lop on m.ma_mon_hoc=lop.ma_mon_hoc where ma_khoa=\''+str(makhoa)+'\' and hoc_ky='+hk+' group by m.ma_mon_hoc)dsm')
+        columns = [col[0] for col in cursor.description]
+        tk = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
+
+        cursor = db.cursor()
+        cursor.execute('select mon_hoc.ma_mon_hoc,count(MSSV)tong from dang_ky join lop on idlop=id_lop natural join mon_hoc where ma_khoa=\''+str(makhoa)+'\' group by lop.ma_mon_hoc')
+        columns = [col[0] for col in cursor.description]
+        tongdk = [dict(zip(columns, row)) for row in cursor.fetchall()]
+    context = {
+        'makhoa':makhoa,
+        'hk':hk,
+        'dsmonhoc':dsmonhoc,
+        'tk':tk,
+        'tongdk':tongdk,
+    }
+    return render(request,'home/tracuu_monhoc_khoa.html',context)
+
+@login_required
+@allowed_users(['pdt','khoa'])
+def tracuu_lophoc_khoa(request):
+    db = MySQLdb.connect(user='root', db='courses_enrollment', passwd='', host='localhost')
+    dslophoc=[]
+    if request.method=="POST":
+        makhoa=request.POST.get('khoa','')
+        hk=request.POST.get('hk','')
+        
+        cursor = db.cursor()
+        cursor.execute('SELECT * FROM  lop natural join mon_hoc left join ghi_diem on idlop=id_lop natural left join nhan_vien natural left join nguoi_dung where ma_khoa=\''+str(makhoa)+'\' and hoc_ky='+hk)
+        columns = [col[0] for col in cursor.description]
+        dslophoc = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+        cursor = db.cursor()
+        cursor.execute('SELECT ma_khoa,count(*)tong_lop FROM  lop natural join mon_hoc left join ghi_diem on idlop=id_lop where ma_khoa=\''+str(makhoa)+'\' and hoc_ky='+hk)        
+        columns = [col[0] for col in cursor.description]
+        tk = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
+
+        cursor = db.cursor()
+        cursor.execute('SELECT idlop,count(*)tong FROM  dang_ky join lop on idlop = id_lop natural join mon_hoc where ma_khoa=\''+str(makhoa)+'\' group by id_lop')
+        columns = [col[0] for col in cursor.description]
+        tongdk = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+    context = {
+        'makhoa':makhoa,
+        'hk':hk,
+        'dslophoc':dslophoc,
+        'tk':tk,
+        'tongdk':tongdk,
+    }
+    return render(request,'home/tracuu_lophoc_khoa.html',context)
+
+@login_required
+@allowed_users(['pdt','sinhvien'])
+def tracuu_lophoc_sinhvien(request):
+    db = MySQLdb.connect(user='root', db='courses_enrollment', passwd='', host='localhost')
+    dslophoc=[]
+    if request.method=="POST":
+        mssv=request.POST.get('mssv','')
+        hk=request.POST.get('hk','')
+        
+        cursor = db.cursor()
+        cursor.execute('SELECT * FROM dang_ky join lop on idlop=id_lop natural join mon_hoc left join ghi_diem on idlop=ghi_diem.id_lop natural left join nhan_vien natural left join nguoi_dung where dang_ky.mssv=\''+str(mssv)+'\' and hoc_ky='+hk)
+        columns = [col[0] for col in cursor.description]
+        dslophoc = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+        cursor = db.cursor()
+        cursor.execute('SELECT ma_khoa,count(*)tong_lop FROM  lop natural join mon_hoc left join dang_ky on idlop=id_lop where mssv=\''+str(mssv)+'\' and hoc_ky='+hk)        
+        columns = [col[0] for col in cursor.description]
+        tk = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
+
+        cursor = db.cursor()
+        cursor.execute('SELECT idlop,count(*)tong FROM  dang_ky join lop on idlop = id_lop natural join mon_hoc where mssv=\''+str(mssv)+'\' group by id_lop')
+        columns = [col[0] for col in cursor.description]
+        tongdk = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+    context = {
+        'mssv':mssv,
+        'hk':hk,
+        'dslophoc':dslophoc,
+        'tk':tk,
+        'tongdk':tongdk,
+    }
+    return render(request,'home/tracuu_lophoc_sinhvien.html',context)
+
+@login_required
+@allowed_users(['pdt','giangvien'])
+def tracuu_lophoc_giangvien(request):
+    db = MySQLdb.connect(user='root', db='courses_enrollment', passwd='', host='localhost')
+    dslophoc=[]
+    if request.method=="POST":
+        msnv=request.POST.get('msgv','')
+        hk=request.POST.get('hk','')
+        
+        cursor = db.cursor()
+        cursor.execute('SELECT * FROM ghi_diem join lop on idlop=id_lop natural join mon_hoc natural left join nhan_vien natural left join nguoi_dung where ghi_diem.msnv=\''+str(msnv)+'\' and hoc_ky='+hk)
+        columns = [col[0] for col in cursor.description]
+        dslophoc = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+        cursor = db.cursor()
+        cursor.execute('SELECT count(*)tong_lop FROM ghi_diem join lop on idlop=id_lop natural join mon_hoc natural left join nhan_vien natural left join nguoi_dung where ghi_diem.msnv=\''+str(msnv)+'\' and hoc_ky='+hk)
+        columns = [col[0] for col in cursor.description]
+        tk = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
+
+        cursor = db.cursor()
+        cursor.execute('SELECT id_lop,count(*)tong FROM dang_ky group by id_lop')
+        columns = [col[0] for col in cursor.description]
+        tongdk = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+    context = {
+        'msnv':msnv,
+        'hk':hk,
+        'dslophoc':dslophoc,
+        'tk':tk,
+        'tongdk':tongdk,
+    }
+    return render(request,'home/tracuu_lophoc_giangvien.html',context)
