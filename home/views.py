@@ -239,9 +239,29 @@ def updateMonhoc(request,khoa,monhoc):
             with connection.cursor() as c:
                 c.execute('UPDATE mon_hoc SET so_tin_chi= '+str(so_tin_chi)+' where ma_mon_hoc=\''+str(monhoc["ma_mon_hoc"])+'\'')
         
+        cursor4 = db.cursor()
+        cursor4.execute( 'SELECT * from chi_dinh join lop on id_lop=idlop where hoc_ky='+ current_term )
+        columns = [col[0] for col in cursor4.description]
+        chidinh = [dict(zip(columns, row)) for row in cursor4.fetchall()]
+        
         cursor3 = db.cursor()
         cursor3.execute( 'SELECT idlop FROM lop l join mon_hoc m on l.ma_mon_hoc=m.ma_mon_hoc where ma_khoa= \''+ str(khoa) + '\' and hoc_ky='+current_term +' and l.ma_mon_hoc=\''+str(monhoc["ma_mon_hoc"])+'\'')
         loppt = cursor3.fetchall()
+
+        for c in chidinh:
+            for y in loppt:
+                for x in y:
+                    if c["MSNV"]==gvpt and c["id_lop"]==x:
+                        return redirect('/qlmonhoc/'+str(khoa)+'/')
+        for c in chidinh:
+            for y in loppt:
+                for x in y:
+                    if c["id_lop"]==x:
+                        for j in loppt:
+                            for i in j:
+                                with connection.cursor() as c:
+                                    c.execute('UPDATE chi_dinh set MSNV=\''+str(gvpt)+'\' where id_lop='+str(i))
+                        return redirect('/qlmonhoc/'+str(khoa)+'/')
         for y in loppt:
             for x in y:
                 with connection.cursor() as c:
@@ -411,3 +431,88 @@ def newLophoc(request,khoa):
         'gv':gv,
     }
     return render(request,'home/newlophoc.html',context)
+
+
+@login_required
+@allowed_users(['giangvien'])
+def qlgiaotrinh(request,gv):
+    db = MySQLdb.connect(user='root', db='courses_enrollment', passwd='', host='localhost')
+    
+    cursor = db.cursor()
+    cursor.execute( 'SELECT * FROM nhan_vien natural join nguoi_dung natural join giang_vien where nguoi_dung.username =\''+ str(gv) + '\'')
+    columns = [col[0] for col in cursor.description]
+    giangvien = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
+
+
+    cursor = db.cursor()
+    cursor.execute( 'SELECT * FROM chi_dinh c join lop l on c.id_lop=l.idlop join mon_hoc m on m.ma_mon_hoc=l.ma_mon_hoc join nhan_vien n on n.MSNV=c.MSNV left join giao_trinh gt on gt.ISBN= c.ISBN where c.MSNV =\''+ giangvien["MSNV"] + '\' and hoc_ky='+current_term+' group by l.ma_mon_hoc ')
+    columns = [col[0] for col in cursor.description]
+    giaotrinh = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+
+    context={
+        'giangvien':giangvien,
+        'giaotrinh':giaotrinh,
+    }
+    return render(request,'home/qlgiaotrinh.html',context)
+
+@login_required
+@allowed_users(['giangvien'])
+def updategiaotrinh(request,gv,monhoc):
+    db = MySQLdb.connect(user='root', db='courses_enrollment', passwd='', host='localhost')
+    
+    cursor = db.cursor()
+    cursor.execute( 'SELECT * FROM giao_trinh natural join nguoi_dung natural join giang_vien where giang_vien.MSNV =\''+ str(gv) + '\'')
+    columns = [col[0] for col in cursor.description]
+    giangvien = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
+    
+    cursor = db.cursor()
+    cursor.execute( 'SELECT * FROM mon_hoc where ma_mon_hoc=\''+str(monhoc)+'\'')
+    columns = [col[0] for col in cursor.description]
+    dmonhoc = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
+
+    cursor = db.cursor()
+    cursor.execute( 'SELECT * FROM giao_trinh')
+    columns = [col[0] for col in cursor.description]
+    giaotrinh = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+    if request.method == 'POST':
+        gt=request.POST.get('ttgiaotrinh','')
+        cursor4 = db.cursor()
+        cursor4.execute( 'SELECT * from chi_dinh join lop on id_lop=idlop where hoc_ky='+ current_term +' and ma_mon_hoc =\''+str(monhoc)+'\'')
+        columns = [col[0] for col in cursor4.description]
+        chidinh = [dict(zip(columns, row)) for row in cursor4.fetchall()]
+        for c in chidinh:
+            if c["ISBN"]==gt:
+                return redirect('/qlgiangday/')
+        for c in chidinh:
+            print('////////////',c,c["idlop"],c["nam_xuat_ban"])
+            with connection.cursor() as cu:
+                # c.execute('UPDATE chi_dinh set MSNV=\''+str(giangvien["MSNV"])+'\' where id_lop='+str(c["idlop"]))
+                cu.execute('UPDATE chi_dinh set ISBN=\''+ gt +'\' WHERE id_lop= '+str(c["idlop"]))
+                # c.execute('UPDATE chi_dinh set nam_xuat_ban=\''+str(c["nam_xuat_ban"])+'\' and  ISBN=\''+str(c["ISBN"])+'\' where id_lop='+str(c["idlop"]))
+        return redirect('/qlgiangday/')
+        # for c in chidinh:
+            #     for y in loppt:
+            #         for x in y:
+            #             if c["id_lop"]==x:
+            #                 for j in loppt:
+            #                     for i in j:
+            #                         with connection.cursor() as c:
+            #                             c.execute('UPDATE chi_dinh set MSNV=\''+str(gvpt)+'\' where id_lop='+str(i))
+            #                 return redirect('/qlmonhoc/'+str(khoa)+'/')
+            # for y in loppt:
+            #     for x in y:
+            #         with connection.cursor() as c:
+            #             c.execute('INSERT INTO chi_dinh (MSNV,id_lop) value(\''+str(gvpt)+'\','+str(x)+')')
+            # return redirect('/qlmonhoc/'+str(khoa)+'/')
+
+
+    context={
+        'term':current_term,
+        'giangvien':giangvien,
+        'monhoc':dmonhoc,
+        'giaotrinh':giaotrinh,
+    }
+    
+    return render(request,'home/updategiaotrinh.html',context)

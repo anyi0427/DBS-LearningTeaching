@@ -18,5 +18,7 @@ urlpatterns = [
    path('qllophoc/<str:khoa>/', views.qllophoc, name = "qllophoc"),
    path('updatelophoc/<str:khoa>/<str:lop>/', views.updateLophoc, name = "updateLophoc"),
    path('deletelophoc/<str:khoa>/<str:lop>/', views.deleteLophoc, name = "deleteLophoc"),
-    path('newlophoc/<str:khoa>/', views.newLophoc, name = "newLophoc"),
+   path('newlophoc/<str:khoa>/', views.newLophoc, name = "newLophoc"),
+   path('qlgiaotrinh/<str:gv>/', views.qlgiaotrinh, name = "qlgiaotrinh"),
+   path('updategiaotrinh/<str:gv>/<str:monhoc>/', views.updategiaotrinh, name = "updategiaotrinh"),
 ]
