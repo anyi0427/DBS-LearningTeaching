@@ -94,11 +94,11 @@
                                 <h3>Mã môn học: {{courses.ma_mon_hoc}}</h3>
                                 <h3>Số tín chỉ: {{courses.so_tin_chi}}</h3>
                                 <h3>Mã lớp học: 
-                                    <select name='malop'>
+                                    <div><select name='malop'>
                                         {% for x in classes%}
                                             <option value="{{ x.idlop}}"> {{ x.ma_lop_hoc}}</option>
                                         {% endfor%}
-                                    </select>                                 
+                                    </select></div>                                 
                                 </h3>
                                 <input type = "submit" value="Đăng ký">
                             </table>	

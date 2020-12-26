@@ -42,8 +42,8 @@
                         <ul class="clearfix">
                            <li><a href=""></a></li>
                            <li><a href=""></a></li>
-                           <li><a href=""></a>{{ user.username }}</li>
                            <li><a href=""></a></li>
+                           <li><a href=""></a>{{ user.username }}</li>
                            {% comment %} <li class="active"><a href="{% url 'SinhVien:SinhVien' %}">Danh sách sinh viên</a></li> {% endcomment %}
                            <li><a href=""></a></li>
                            <li><a href=""></a></li>
@@ -52,7 +52,7 @@
                   </div>
                </div>
                <div class="col-md-3 col-lg-2">
-                  <div class="right_bt"><a class="bt_main" href="{% url 'home:logout' %}">Đăng xuất</a> </div>
+                  <div class="right_bt"><a class="bt_main" href="{% url 'home:total' %}">Trang chủ</a> </div>
                </div>
             </div>
          </div>
@@ -65,7 +65,7 @@
                      <div class="col-sm-12">
                         <div class="full text_align_center">
                            <div class="heading_main center_head_border heading_style_1">
-                              <h2>HỆ THỐNG QUẢN LÝ ĐĂNG KÝ MÔN HỌC</h2>
+                              <h2>QUẢN LÝ GIẢNG DẠY</h2>
                            </div>
                         </div>
                      </div>
@@ -84,17 +84,21 @@
                               <div class="table_price_cont">
                                  <div class="table_price_per">
                                     <p>
-                                       <small>ĐĂNG KÝ MÔN HỌC TRỰC TUYẾN</small>
+                                       <small>QUẢN LÝ MÔN HỌC</small>
                                     </p>
                                  </div>
                               </div>
-                              {% if user.is_authenticated %}
-                              {% for group in request.user.groups.all %}
-                                 {% if group.name == 'sinhvien' or group.name == 'pdt' %}
-                                    <div class="table_price_bottm"> <a class="bt_main" href="{% url 'home:dkmh' %}">CHỌN</a> </div>
-                                 {% endif %}
-                              {% endfor %}   
-                              {% endif %} 
+                            {% if user.is_authenticated %}
+                            {% for group in request.user.groups.all %}
+                                {% if group.name == 'khoa' %}
+                                    {% for x in dskhoa%}
+                                        {% if x.Username == user.username %}
+                                            <div class="table_price_bottm"> <a class="bt_main" href="{% url 'home:qlmonhoc' x.ma_khoa %}">CHỌN</a> </div>
+                                        {% endif%}
+                                    {% endfor%}
+                                {% endif %}
+                            {% endfor %}   
+                            {% endif %}     
                            </div>
                         </div>
                         <div class="col-sm-12 col-md-4">
@@ -105,13 +109,17 @@
                               <div class="table_price_cont">
                                  <div class="table_price_per">
                                     <p>
-                                       <small>TRA CỨU THÔNG TIN</small>
+                                       <small>QUẢN LÝ LỚP HỌC</small>
                                     </p>
                                  </div>
                               </div>
-                              
-                              <div class="table_price_bottm"> <a class="reverse_bt bt_main" href="">CHỌN</a> </div>
-                           </div>
+                            {% if user.is_authenticated %}
+                            {% for group in request.user.groups.all %}
+                                {% if group.name == 'giangvien' or group.name == 'pdt' or  group.name == 'khoa' %}
+                                <div class="table_price_bottm"> <a class="bt_main" href="{% url 'home:qlgiangday' %}">CHỌN</a> </div>
+                                {% endif %}
+                            {% endfor %}   
+                            {% endif %}                           </div>
                         </div>
                         <div class="col-sm-12 col-md-4">
                            <div class="table_price text_align_center">
@@ -121,7 +129,7 @@
                               <div class="table_price_cont">
                                  <div class="table_price_per">
                                     <p>
-                                       <small>QUẢN LÝ VIỆC GIẢNG DẠY</small>
+                                       <small>QUẢN LÝ GIÁO TRÌNH</small>
                                     </p>
                                  </div>                                 
                               </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 25, 2020 at 10:01 AM
+-- Generation Time: Dec 26, 2020 at 04:26 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -122,10 +122,10 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$216000$ccO6jZwnu95z$4soWjfZX7wQVP/734bK0HV3bZ95gs6HK+IKUWP7iAoI=', '2020-12-25 02:25:15.818463', 1, 'nhom9', '', '', 'nhom9@gmail.com', 1, 1, '2020-12-24 08:47:20.486152'),
-(2, 'pbkdf2_sha256$216000$7nEM04SriwBd$KCj6l2leelbBmUo4Sfnk6nWP8AaHZF5NgFNAS9HFGvQ=', '2020-12-25 08:38:53.562063', 0, 'sinhvien00', '', '', '', 0, 1, '2020-12-24 08:48:51.000000'),
-(3, 'pbkdf2_sha256$216000$78NXSnL8CTPS$GcgeDfqFqD3weC1AVleBYp5LoICEwosjIgb+Bgw9Uo0=', '2020-12-25 03:20:06.519770', 0, 'giangvien1', '', '', '', 0, 1, '2020-12-24 08:49:19.000000'),
-(4, 'pbkdf2_sha256$216000$8wUts6G2aPvz$fRATEqmk4KJfn0SHbzZhOLMxNqNzgDMQy+I7W+jXX3U=', NULL, 0, 'khoa1', '', '', '', 0, 1, '2020-12-24 08:49:33.000000'),
+(1, 'pbkdf2_sha256$216000$ccO6jZwnu95z$4soWjfZX7wQVP/734bK0HV3bZ95gs6HK+IKUWP7iAoI=', '2020-12-25 09:37:12.440959', 1, 'nhom9', '', '', 'nhom9@gmail.com', 1, 1, '2020-12-24 08:47:20.486152'),
+(2, 'pbkdf2_sha256$216000$7nEM04SriwBd$KCj6l2leelbBmUo4Sfnk6nWP8AaHZF5NgFNAS9HFGvQ=', '2020-12-25 09:03:59.339123', 0, 'sinhvien00', '', '', '', 0, 1, '2020-12-24 08:48:51.000000'),
+(3, 'pbkdf2_sha256$216000$78NXSnL8CTPS$GcgeDfqFqD3weC1AVleBYp5LoICEwosjIgb+Bgw9Uo0=', '2020-12-25 09:37:55.489906', 0, 'giangvien1', '', '', '', 0, 1, '2020-12-24 08:49:19.000000'),
+(4, 'pbkdf2_sha256$216000$8wUts6G2aPvz$fRATEqmk4KJfn0SHbzZhOLMxNqNzgDMQy+I7W+jXX3U=', '2020-12-26 00:09:45.545973', 0, 'khoa1', '', '', '', 0, 1, '2020-12-24 08:49:33.000000'),
 (5, 'pbkdf2_sha256$216000$oZ8UNoHDe1JY$VKBKQJghAiFwk5nMs6occh4lQn1/HYsm6cnQ8xEnVtY=', NULL, 0, 'daotao1', '', '', '', 0, 1, '2020-12-24 08:49:46.000000');
 
 -- --------------------------------------------------------
@@ -194,9 +194,21 @@ CREATE TABLE `bien_soan` (
 CREATE TABLE `chi_dinh` (
   `MSNV` char(16) NOT NULL,
   `id_lop` int(11) NOT NULL,
-  `ISBN` varchar(45) NOT NULL,
-  `nam_xuat_ban` date NOT NULL
+  `ISBN` varchar(45) DEFAULT NULL,
+  `nam_xuat_ban` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `chi_dinh`
+--
+
+INSERT INTO `chi_dinh` (`MSNV`, `id_lop`, `ISBN`, `nam_xuat_ban`) VALUES
+('G00000', 4, NULL, NULL),
+('G00000', 5, NULL, NULL),
+('G00000', 6, NULL, NULL),
+('G00001', 10, NULL, NULL),
+('G00001', 11, NULL, NULL),
+('G00001', 12, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -336,7 +348,7 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('bhozygt1dvg5p5cwvr8oiifo35xj68na', '.eJxVjMsOwiAUBf-FtSEIFyQu3fsN5L4qVUOT0q6M_65NutDtmZnzMgXXpZa161xGMWfjzeF3I-SHtg3IHdttsjy1ZR7JbordabfXSfR52d2_g4q9fusTEKNT5ZiHowA6LxmDy5RAIg0EgYJAxoTOiQbQgJQoZmFlEB_N-wMKQDkE:1ksicf:ehuqXpiyZDIggQg0x8TCB4wRlTsE6VcXANXtFo9uqLc', '2021-01-08 08:38:53.570910');
+('01johw57pvshtkkj1ga1itayre7w2txn', '.eJxVjDkOwjAUBe_iGlnesAklPWeI_mYcQLYUJxXi7hApBbRvZt5LjbAuZVy7zOPE6qyCOvxuCPSQugG-Q701Ta0u84R6U_ROu742ludld_8OCvTyrUGAnE8sHp01AWIAG2LkGI6Q4iAoDN6RyzZ7i-5EYsR4G13GIREb9f4A9Pw4Qg:1ksx9V:XBromgu9gFJL1c_ogmBf6xrwXD9WQbikDzMoN-RRNbA', '2021-01-09 00:09:45.551938');
 
 -- --------------------------------------------------------
 
@@ -362,6 +374,18 @@ CREATE TABLE `giang_vien` (
   `MSNV_quan_ly` char(16) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `giang_vien`
+--
+
+INSERT INTO `giang_vien` (`MSNV`, `MSNV_quan_ly`) VALUES
+('G00000', 'K00001'),
+('G00001', 'K00001'),
+('G00002', 'K00001'),
+('G00003', 'K00001'),
+('G00004', 'K00001'),
+('G00005', 'K00001');
+
 -- --------------------------------------------------------
 
 --
@@ -374,6 +398,14 @@ CREATE TABLE `giao_trinh` (
   `ten_giao_trinh` varchar(45) DEFAULT NULL,
   `tenNXB` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `giao_trinh`
+--
+
+INSERT INTO `giao_trinh` (`ISBN`, `nam_xuat_ban`, `ten_giao_trinh`, `tenNXB`) VALUES
+('ANDS1232', '2006-12-01', 'Nhap mon dien toan', 'ABC'),
+('ANDS3534', '2006-02-12', 'Nhap mon lap trinh: C++', 'ABC');
 
 -- --------------------------------------------------------
 
@@ -391,10 +423,10 @@ CREATE TABLE `khoa` (
 --
 
 INSERT INTO `khoa` (`ma_khoa`, `ten_khoa`) VALUES
-('003', 'Khoa học ứng dụng'),
-('001', 'Khoa học va Kỹ thuật Máy tính'),
-('004', 'Quán lý công nghiệp'),
-('002', 'Điện điện tử');
+('002', 'Dien Dien tu'),
+('003', 'Khoa hoc Ung dung'),
+('001', 'Khoa hoc va Ky thuat May tinh'),
+('004', 'Quan ly cong nghiep');
 
 -- --------------------------------------------------------
 
@@ -445,9 +477,13 @@ CREATE TABLE `mon_hoc` (
 --
 
 INSERT INTO `mon_hoc` (`ma_mon_hoc`, `ten_mon_hoc`, `so_tin_chi`, `ma_khoa`) VALUES
-('CO2001', 'Nhap mon dien toan', 2, '001'),
-('CO2002', 'Ky thuat lap trinh', 2, '001'),
-('CO2013', 'He co so du lieu', 3, '001');
+('CO2001', 'Nhap mon dien toan ', 2, '001'),
+('CO2002', 'Ky thuat lap trinh', 3, '001'),
+('CO2013', 'He co so du lieu', 3, '001'),
+('DD2013', 'Mach dien tu', 3, '002'),
+('IM2011', 'Quan ly du an cho ky su', 1, '004'),
+('IM2013', 'Quan tri kinh doanh cho ky su', 1, '004'),
+('MT1001', 'Giai tich 1', 3, '003');
 
 -- --------------------------------------------------------
 
@@ -473,22 +509,22 @@ CREATE TABLE `nguoi_dung` (
 INSERT INTO `nguoi_dung` (`Username`, `password`, `Ho`, `Ten`, `gioi_tinh`, `CMND`, `Email`, `ngay_sinh`) VALUES
 ('daotao1', '1234', 'Phan Hồng', 'Hải', 'Nam', '123456789', 'namphan@hcmut.edu.vn', '0000-00-00'),
 ('daotao2', '1234', 'Nguyễn ', 'Hạnh', 'Nu', '222645444', 'hanhnguyen@hcmut.edu.vn', '0000-00-00'),
-('giangvien0', '1234', 'Trần Nguyên', 'Trường', 'Nam', '222333444', 'truongtran@hcmut.edu.vn', '1888-02-03'),
-('giangvien1', '1234', 'Nguyễn Hồng', 'Thao', 'Nu', '345765344', 'thaonguyen@hcmut.edu.vn', '1993-11-12'),
+('giangvien0', '1234', 'Tran Nguyen', 'Truong', 'Nam', '222333444', 'truongtran@hcmut.edu.vn', '1888-02-03'),
+('giangvien1', '1234', 'Nguyen Hong', 'Thao', 'Nu', '345765344', 'thaonguyen@hcmut.edu.vn', '1993-11-12'),
 ('giangvien10', '1234', 'Phan Tiến ', 'Khang', 'Nam', '634897789', 'khangphan@hcmut.edu.vn', '1987-06-28'),
 ('giangvien11', '1234', 'Đỗ ', 'Xuân Trường', 'Nam', '132856744', 'truongdo@hcmut.edu.vn', '1992-02-28'),
-('giangvien2', '1234', 'Huỳnh Nhật', 'Anh', 'Nu', '556377494', 'anhhuynh@hcmut.edu.vn', '1979-03-04'),
-('giangvien3', '1234', 'Lương Hà', 'Anh', 'Nu', '562334987', 'anhluong@hcmut.edu.vn', '1989-02-25'),
-('giangvien4', '1234', 'Phan Đăng', 'Dương', 'Nam', '644876789', 'duongphan1@hcmut.edu.vn', '1984-01-08'),
-('giangvien5', '1234', 'Nguyễn Thành ', 'Đạt', 'Nam', '153387984', 'datnguyen@hcmut.edu.vn', '1985-07-12'),
+('giangvien2', '1234', 'Luong Ha', 'Anh', 'Nu', '556377494', 'anhhuynh@hcmut.edu.vn', '1979-03-04'),
+('giangvien3', '1234', 'Luong Ha', 'Anh', 'Nu', '562334987', 'anhluong@hcmut.edu.vn', '1989-02-25'),
+('giangvien4', '1234', 'Phan Dang', 'Duong', 'Nam', '644876789', 'duongphan1@hcmut.edu.vn', '1984-01-08'),
+('giangvien5', '1234', 'Nguyen Thanh', 'Dat', 'Nam', '153387984', 'datnguyen@hcmut.edu.vn', '1985-07-12'),
 ('giangvien6', '1234', 'Trần Trung', 'Trực', 'Nam', '667788991', 'tructran@hcmut.edu.vn', '1994-03-06'),
 ('giangvien7', '1234', 'Nguyễn An', 'Nhiên', 'Nam', '534567567', 'nhiennguyen@hcmut.edu.vn', '1993-12-06'),
 ('giangvien8', '1234', 'Huỳnh Tường', 'Nguyên', 'Nam', '123645494', 'nguyenhuynh@hcmut.edu.vn', '1980-05-07'),
 ('giangvien9', '1234', 'Trịnh Minh', 'Hải', 'Nam', '864224553', 'haitrinhg@hcmut.edu.vn', '1988-05-28'),
-('qlkhoa1', '1234', 'Trần Nguyên', 'Trường', 'Nam', '222929444', 'truongtran1@hcmut.edu.vn', '0000-00-00'),
-('qlkhoa2', '1234', 'Nguyễn Anh', 'Khoa', 'Nam', '222324344', 'khoanguyen@hcmut.edu.vn', '0000-00-00'),
-('qlkhoa3', '1234', 'Huỳnh Minh', 'Hương', 'Nu', '234348494', 'huonghuynh@hcmut.edu.vn', '0000-00-00'),
-('qlkhoa4', '1234', 'Lương Nguyệt', 'Minh', 'Nu', '266378987', 'minhluong@hcmut.edu.vn', '0000-00-00'),
+('khoa1', '1234', 'Trần Nguyên', 'Trường', 'Nam', '222929444', 'truongtran1@hcmut.edu.vn', '0000-00-00'),
+('khoa2', '1234', 'Nguyễn Anh', 'Khoa', 'Nam', '222324344', 'khoanguyen@hcmut.edu.vn', '0000-00-00'),
+('khoa3', '1234', 'Huỳnh Minh', 'Hương', 'Nu', '234348494', 'huonghuynh@hcmut.edu.vn', '0000-00-00'),
+('khoa4', '1234', 'Lương Nguyệt', 'Minh', 'Nu', '266378987', 'minhluong@hcmut.edu.vn', '0000-00-00'),
 ('sinhvien00', '1234', 'Tran Nguyen', 'Trung', 'Nam', '666333444', 'trungtran@hcmut.edu.vn', '1998-10-03'),
 ('sinhvien01', '1234', 'Nguyen Hong', 'Tham', 'Nu', '664335344', 'thamnguyen@hcmut.edu.vn', '2000-11-12'),
 ('sinhvien02', '1234', 'Huynh Nhat', 'Dieu', 'Nu', '556222043', 'dieuhuynh@hcmut.edu.vn', '1999-03-14'),
@@ -512,6 +548,24 @@ CREATE TABLE `nhan_vien` (
   `Username` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `nhan_vien`
+--
+
+INSERT INTO `nhan_vien` (`MSNV`, `Username`) VALUES
+('D00001', 'daotao1'),
+('D00002', 'daotao2'),
+('G00000', 'giangvien0'),
+('G00001', 'giangvien1'),
+('G00002', 'giangvien2'),
+('G00003', 'giangvien3'),
+('G00004', 'giangvien4'),
+('G00005', 'giangvien5'),
+('K00001', 'khoa1'),
+('K00002', 'khoa2'),
+('K00003', 'khoa3'),
+('K00004', 'khoa4');
+
 -- --------------------------------------------------------
 
 --
@@ -522,6 +576,14 @@ CREATE TABLE `nha_xuat_ban` (
   `tenNXB` varchar(16) NOT NULL,
   `dia_chi` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `nha_xuat_ban`
+--
+
+INSERT INTO `nha_xuat_ban` (`tenNXB`, `dia_chi`) VALUES
+('ABC', 'TP Ho Chi Minh'),
+('DEF', 'Ha Noi');
 
 -- --------------------------------------------------------
 
@@ -534,6 +596,16 @@ CREATE TABLE `ns_khoa_quan_ly` (
   `ngay_bat_dau` date DEFAULT NULL,
   `ma_khoa` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `ns_khoa_quan_ly`
+--
+
+INSERT INTO `ns_khoa_quan_ly` (`MSNV`, `ngay_bat_dau`, `ma_khoa`) VALUES
+('K00001', '2018-01-10', '001'),
+('K00002', '2018-01-10', '002'),
+('K00003', '2018-01-10', '003'),
+('K00004', '2018-01-10', '004');
 
 -- --------------------------------------------------------
 
@@ -707,7 +779,7 @@ ALTER TABLE `bien_soan`
 -- Indexes for table `chi_dinh`
 --
 ALTER TABLE `chi_dinh`
-  ADD PRIMARY KEY (`MSNV`,`nam_xuat_ban`,`ISBN`,`id_lop`),
+  ADD PRIMARY KEY (`MSNV`,`id_lop`),
   ADD KEY `lopchidinh` (`id_lop`),
   ADD KEY `sachchidinh` (`ISBN`,`nam_xuat_ban`);
 

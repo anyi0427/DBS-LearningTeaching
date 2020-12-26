@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Danh sách sinh viên</title>
+  <title>Quản lý môn học</title>
     {% load static %}
     <!-- basic -->
     <meta charset="utf-8">
@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Đăng ký môn học</title>
+    <title>Quản lý môn học</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -62,67 +62,37 @@
 
     <div class="container">
         <div class="row">
-           <div class="full">
-              <div class="row">
-                 <div class="col-sm-12">
-                    <div class="full text_align_center">
-                       <div class="heading_main center_head_border heading_style_1">
-                          <h2>ĐĂNG KÝ MÔN HỌC HỌC KỲ {{ current_term}}</h2>
-                          {% if user.is_authenticated %}
-                              {% for group in request.user.groups.all %}
-                                 {% if group.name == 'sinhvien'%}
-                                    {% for sv in lsinhvien%}
-                                       {% if sv.Username == user.username%}
-                                          {{sv.ho}} {{sv.ten}} |   
-                                          Tổng số tín đã đăng ký:
-                                          {% for dk in dangky %}
-                                             {% if dk.MSSV == sv.MSSV%}
-                                                 {{dk.Tong_tin_chi}}
-                                             {% endif%}
-                                          {% endfor %}                  
-                                       {% endif %}
-                                    {% endfor %}
-                                 {% endif %}
-                              {% endfor %}   
-                           {% endif %} 
-                       </div>
+            <div class="full">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="full text_align_center">
+                            <div class="heading_main center_head_border heading_style_1">
+                                <h2>QUẢN LÝ MÔN HỌC</h2>
+                                <p>Khoa: {{khoa.ten_khoa}}</p>
+                            </div>
+                        </div>
                     </div>
-                 </div>
-              </div>
-           </div>
+                </div>
+            </div>
         </div>
 <div class="container">
 <table class="table table-striped">
     <thead>
-         <tr>
-		   <th>Học kỳ</th>
-		   <th>Mã môn học</th>
-         <th>Tên môn học</th>
-         <th>Số tín chỉ</th>
-         </tr>
+        <tr>
+            <th>Mã môn học</th>
+            <th>Tên môn học</th>
+            <th>Số tín chỉ</th>
+        </tr>
     </thead>
-
     <tbody>
-   <form action = "{%url 'home:loginUser'%}"  method="post">
-      {%csrf_token%}
-      {{lF.as_p}}
-      <input type="submit">
-   </form>
-	{% for c in classes %}  
-      <tr>
-        <td>{{c.hoc_ky}}</td>
-        <td>{{c.ma_mon_hoc}}</td>
-        <td>{{c.ten_mon_hoc}}</td>
-        <td>{{c.so_tin_chi}}</td>
-        {% for sv in lsinhvien%}
-            {% if sv.Username == user.username%}
-               <th><a class='bt-main' href="{% url 'home:dangky' c.ma_mon_hoc %}">Đăng ký</a></th>
-            {% endif %}
-         {% endfor %}
-        
-      </tr>
-      
-	{% endfor %} 
+        {% for c in monhoc %}
+        <tr>
+            <td>{{c.ma_mon_hoc}}</td>
+            <td>{{c.ten_mon_hoc}}</td>
+            <td>{{c.so_tin_chi}}</td>
+            <th><a class='bt-main' href="{% url 'home:updateMonhoc' c.ma_khoa c.ma_mon_hoc %}">Chỉnh sửa</a></th>
+        </tr>
+        {% endfor %}
 	</tbody>
 </table>	
 </div>

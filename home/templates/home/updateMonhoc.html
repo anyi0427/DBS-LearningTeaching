@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Learning - Teaching System</title>
+      <title>Chỉnh sửa Môn học</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -42,7 +42,7 @@
                         <ul class="clearfix">
                            <li><a href=""></a></li>
                            <li><a href=""></a></li>
-                           <li><a href=""></a>{{ user.username }}</li>
+                           <li><a href=""></a></li>
                            <li><a href=""></a></li>
                            {% comment %} <li class="active"><a href="{% url 'SinhVien:SinhVien' %}">Danh sách sinh viên</a></li> {% endcomment %}
                            <li><a href=""></a></li>
@@ -52,7 +52,7 @@
                   </div>
                </div>
                <div class="col-md-3 col-lg-2">
-                  <div class="right_bt"><a class="bt_main" href="{% url 'home:logout' %}">Đăng xuất</a> </div>
+                  <div class="right_bt"><a class="bt_main" href="{% url 'home:total' %}">Trang chủ</a> </div>
                </div>
             </div>
          </div>
@@ -65,14 +65,46 @@
                      <div class="col-sm-12">
                         <div class="full text_align_center">
                            <div class="heading_main center_head_border heading_style_1">
-                              <h2>HỆ THỐNG QUẢN LÝ ĐĂNG KÝ MÔN HỌC</h2>
-                           </div>
+                                <h2>CHỈNH SỬA MÔN HỌC</h2>
+                                <h3>Cập nhật thông tin môn học</h3>
+                                <form action = "{% url 'home:updateMonhoc' monhoc.ma_khoa monhoc.ma_mon_hoc%}"  method="POST">
+                                    {%csrf_token%}
+                                    <table class="table table-striped">
+                                        <tbody>
+                                            <th>
+                                                <th>Mã môn học {{monhoc.ma_mon_hoc}}</th>
+                                                <th>
+                                                    <label for="ten_mon_hoc">Tên môn học </label>
+                                                    <textarea id="ten_mon_hoc" name="ten_mon_hoc" rows="1" cols="50">{{monhoc.ten_mon_hoc}}</textarea></th>
+                                                <th>Số tín chỉ <input type="text" name='so_tin_chi' value={{monhoc.so_tin_chi}}></th>
+                                            </th>
+                                        </tbody>
+                                    </table>	
+                                    <h3>Cập nhật giáo viên phụ trách</h3>
+                                        <div> <select name='gvphutrach'>
+                                            <table class="table table-striped">
+                                                <tbody>
+                                                    <th>
+                                                        {% for x in gv%}
+                                                            <option value="{{ x.MSNV}}">{{x.Ho }} {{x.Ten}}</option>
+                                                        {% endfor%}
+                                                    </th>
+                                                    <th>  </th>
+                                                </tbody>
+                                            </table>
+                                            
+                                        </select></div> 
+                                    <input class='bt-main' type="submit" value='Hoàn tất'>
+                                </form>
+                            </div>
                         </div>
                      </div>
                   </div>
                </div>
             </div>
-            <div class="row">
+            >
+            
+            {% comment %} <div class="row">
                <div class="col-sm-12">
                   <div class="full" style="margin-top:10px;">
                      <div class="row">
@@ -88,13 +120,7 @@
                                     </p>
                                  </div>
                               </div>
-                              {% if user.is_authenticated %}
-                              {% for group in request.user.groups.all %}
-                                 {% if group.name == 'sinhvien' or group.name == 'pdt' %}
-                                    <div class="table_price_bottm"> <a class="bt_main" href="{% url 'home:dkmh' %}">CHỌN</a> </div>
-                                 {% endif %}
-                              {% endfor %}   
-                              {% endif %} 
+                              <div class="table_price_bottm"> <a class="bt_main" href="">CHỌN</a> </div>
                            </div>
                         </div>
                         <div class="col-sm-12 col-md-4">
@@ -109,7 +135,6 @@
                                     </p>
                                  </div>
                               </div>
-                              
                               <div class="table_price_bottm"> <a class="reverse_bt bt_main" href="">CHỌN</a> </div>
                            </div>
                         </div>
@@ -125,19 +150,13 @@
                                     </p>
                                  </div>                                 
                               </div>
-                              {% if user.is_authenticated %}
-                              {% for group in request.user.groups.all %}
-                                 {% if group.name == 'giangvien' or group.name == 'pdt' or  group.name == 'khoa' %}
-                                    <div class="table_price_bottm"> <a class="bt_main" href="{% url 'home:qlgiangday' %}">CHỌN</a> </div>
-                                 {% endif %}
-                              {% endfor %}   
-                              {% endif %}
+                              <div class="table_price_bottm"> <a class="bt_main" href="">CHỌN</a> </div>
                            </div>
                         </div>
                      </div>
                   </div>
                </div>
-            </div>
+            </div> {% endcomment %}
          </div>
       </section>
       <!-- end section -->
