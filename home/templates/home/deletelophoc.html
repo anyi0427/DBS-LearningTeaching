@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Danh sách sinh viên</title>
+  <title>Xóa lớp học</title>
     {% load static %}
     <!-- basic -->
     <meta charset="utf-8">
@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Đăng ký môn học</title>
+    <title>Lỗi</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -67,34 +67,25 @@
                  <div class="col-sm-12">
                     <div class="full text_align_center">
                        <div class="heading_main center_head_border heading_style_1">
-                          <h2>ĐĂNG KÝ MÔN HỌC HỌC KỲ {{ current_term}}</h2>
-                          {% if user.is_authenticated %}
-                              {% for group in request.user.groups.all %}
-                                 {% if group.name == 'sinhvien'%}
-                                    {% for sv in lsinhvien%}
-                                       {% if sv.Username == user.username%}
-                                          {{sv.ho}} {{sv.ten}} |   
-                                          Tổng số tín đã đăng ký:
-                                          {% for dk in dangky %}
-                                             {% if dk.MSSV == sv.MSSV%}
-                                                 {{dk.Tong_tin_chi}}
-                                             {% endif%}
-                                          {% endfor %}                  
-                                       {% endif %}
-                                    {% endfor %}
-                                 {% endif %}
-                              {% endfor %}   
-                           {% endif %} 
+                           <h2>Bạn có chắc muốn xóa lớp học này không?</a></h2>
+                           <a class="bt_main" href="{% url 'home:qllophoc' ma_khoa %}">Quay lại</a></h3>
+                           <form action="{% url 'home:deleteLophoc' lop.ma_khoa lop.idlop %}" method="POST">
+                              {%csrf_token%}
+                              <input type = "submit" value="Xóa">
+                           </form>
                        </div>
                     </div>
                  </div>
               </div>
            </div>
         </div>
-<div class="container">
+
+
+{% comment %} <div class="container">
 <table class="table table-striped">
     <thead>
          <tr>
+         <th>Mã lớp học</th>
 		   <th>Học kỳ</th>
 		   <th>Mã môn học</th>
          <th>Tên môn học</th>
@@ -105,22 +96,19 @@
     <tbody>
 	{% for c in classes %}  
       <tr>
+        <td>{{c.ma_lop_hoc}}</td>
         <td>{{c.hoc_ky}}</td>
         <td>{{c.ma_mon_hoc}}</td>
         <td>{{c.ten_mon_hoc}}</td>
         <td>{{c.so_tin_chi}}</td>
-        {% for sv in lsinhvien%}
-            {% if sv.Username == user.username%}
-               <th><a class='bt-main' href="{% url 'home:dangky' c.ma_mon_hoc %}">Đăng ký</a></th>
-            {% endif %}
-         {% endfor %}
+        <th><button data-item="{{lsinhvien}}" data-action="add"class="bt_main"> <i></i> Đăng ký</button></th>
         
       </tr>
       
 	{% endfor %} 
 	</tbody>
 </table>	
-</div>
+</div> {% endcomment %}
 
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>

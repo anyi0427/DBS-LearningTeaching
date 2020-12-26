@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Learning - Teaching System</title>
+      <title>Chỉnh sửa Lớp học</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -43,7 +43,7 @@
                            <li><a href=""></a></li>
                            <li><a href=""></a></li>
                            <li><a href=""></a></li>
-                           <li><a href=""></a>{{ user.username }}</li>
+                           <li><a href=""></a></li>
                            {% comment %} <li class="active"><a href="{% url 'SinhVien:SinhVien' %}">Danh sách sinh viên</a></li> {% endcomment %}
                            <li><a href=""></a></li>
                            <li><a href=""></a></li>
@@ -65,14 +65,35 @@
                      <div class="col-sm-12">
                         <div class="full text_align_center">
                            <div class="heading_main center_head_border heading_style_1">
-                              <h2>QUẢN LÝ GIẢNG DẠY</h2>
-                           </div>
+                                <h2>CHỈNH SỬA LỚP HỌC </h2>
+                                <h4>{{lop.ma_lop_hoc}} - {{lop.ten_mon_hoc}} - {{lop.hoc_ky}}</h4>
+                                <form action = ""  method="POST">
+                                    {%csrf_token%}
+                                    <h3>Cập nhật giáo viên phụ trách</h3>
+                                        <div> <select name='gvphutrach'>
+                                            <table class="table table-striped">
+                                                <tbody>
+                                                    <th>
+                                                        {% for x in gv%}
+                                                            <option value="{{ x.MSNV}}">{{x.Ho }} {{x.Ten}}</option>
+                                                        {% endfor%}
+                                                    </th>
+                                                    <th>  </th>
+                                                </tbody>
+                                            </table>
+                                            
+                                        </select></div> 
+                                    <input class='bt-main' type="submit" value='Hoàn tất'>
+                                </form>
+                            </div>
                         </div>
                      </div>
                   </div>
                </div>
             </div>
-            <div class="row">
+            >
+            
+            {% comment %} <div class="row">
                <div class="col-sm-12">
                   <div class="full" style="margin-top:10px;">
                      <div class="row">
@@ -84,21 +105,11 @@
                               <div class="table_price_cont">
                                  <div class="table_price_per">
                                     <p>
-                                       <small>QUẢN LÝ MÔN HỌC</small>
+                                       <small>ĐĂNG KÝ MÔN HỌC TRỰC TUYẾN</small>
                                     </p>
                                  </div>
                               </div>
-                            {% if user.is_authenticated %}
-                            {% for group in request.user.groups.all %}
-                                {% if group.name == 'khoa' %}
-                                    {% for x in dskhoa%}
-                                        {% if x.Username == user.username %}
-                                            <div class="table_price_bottm"> <a class="bt_main" href="{% url 'home:qlmonhoc' x.ma_khoa %}">CHỌN</a> </div>
-                                        {% endif%}
-                                    {% endfor%}
-                                {% endif %}
-                            {% endfor %}   
-                            {% endif %}     
+                              <div class="table_price_bottm"> <a class="bt_main" href="">CHỌN</a> </div>
                            </div>
                         </div>
                         <div class="col-sm-12 col-md-4">
@@ -109,25 +120,12 @@
                               <div class="table_price_cont">
                                  <div class="table_price_per">
                                     <p>
-                                       <small>QUẢN LÝ LỚP HỌC</small>
+                                       <small>TRA CỨU THÔNG TIN</small>
                                     </p>
                                  </div>
                               </div>
-                                {% if user.is_authenticated %}
-                                {% for group in request.user.groups.all %}
-                                    {% if group.name == 'khoa'%}
-                                        {% for x in dskhoa%}
-                                            {% if x.Username == user.username %}
-                                                <div class="table_price_bottm"> <a class="bt_main" href="{% url 'home:qllophoc' x.ma_khoa %}">CHỌN</a> </div>
-                                            {% endif%}
-                                        {% endfor%}
-                                    {% endif %}
-                                    {% if group.name == 'pdt'%}
-                                        <div class="table_price_bottm"> <a class="bt_main" href="{% url 'home:qllophoc' '000' %}">CHỌN</a> </div>
-                                    {% endif %}
-                                {% endfor %}   
-                                {% endif %}                           
-                            </div>
+                              <div class="table_price_bottm"> <a class="reverse_bt bt_main" href="">CHỌN</a> </div>
+                           </div>
                         </div>
                         <div class="col-sm-12 col-md-4">
                            <div class="table_price text_align_center">
@@ -137,23 +135,17 @@
                               <div class="table_price_cont">
                                  <div class="table_price_per">
                                     <p>
-                                       <small>QUẢN LÝ GIÁO TRÌNH</small>
+                                       <small>QUẢN LÝ VIỆC GIẢNG DẠY</small>
                                     </p>
                                  </div>                                 
                               </div>
-                              {% if user.is_authenticated %}
-                              {% for group in request.user.groups.all %}
-                                 {% if group.name == 'giangvien' or group.name == 'pdt' or  group.name == 'khoa' %}
-                                    <div class="table_price_bottm"> <a class="bt_main" href="{% url 'home:qlgiangday' %}">CHỌN</a> </div>
-                                 {% endif %}
-                              {% endfor %}   
-                              {% endif %}
+                              <div class="table_price_bottm"> <a class="bt_main" href="">CHỌN</a> </div>
                            </div>
                         </div>
                      </div>
                   </div>
                </div>
-            </div>
+            </div> {% endcomment %}
          </div>
       </section>
       <!-- end section -->

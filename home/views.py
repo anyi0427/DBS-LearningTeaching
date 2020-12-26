@@ -112,6 +112,16 @@ def dangky(request, mamh):
         for x in sv: s = x
         for x in s: ss = x
 
+        cursor6 = db.cursor()
+        op = 'SELECT * FROM trang_thai_hoc_tap'   
+        cursor6.execute(op)
+        columns = [col[0] for col in cursor6.description]
+        trangthai = [dict(zip(columns, row)) for row in cursor6.fetchall()]
+
+        for x in trangthai:
+            if x["MSSV"] == ss and x["hoc_ky"] == int(current_term):
+                tt = x["trang_thai"]
+
         tong_tin_chi = 0
         
         for y in dangky:
@@ -134,7 +144,8 @@ def dangky(request, mamh):
         for x in siso: 
             for y in x: xsiso = y
         if xsiso == None: xsiso = 0
-        if xsiso < 60 and tong_tin_chi + courses["so_tin_chi"] <= 18 and not dadangky:
+
+        if xsiso < 60 and tong_tin_chi + courses["so_tin_chi"] <= 18 and not dadangky and tt =='Dang hoc':
             with connection.cursor() as c:
                 c.execute('INSERT INTO dang_ky value('+str(ss)+',' +str(idlop) + ')')
             return redirect('/dkmh/')
@@ -169,7 +180,7 @@ def qlgiangday(request):
     return render(request,'home/quanlygiangday.html',context)
 
 @login_required
-@allowed_users(['giangvien','pdt','khoa'])
+@allowed_users(['pdt','khoa'])
 def qlmonhoc(request,khoa):
     db = MySQLdb.connect(user='root', db='courses_enrollment', passwd='', host='localhost')
     
@@ -224,7 +235,7 @@ def updateMonhoc(request,khoa,monhoc):
         if ten_mon_hoc != monhoc["ten_mon_hoc"]:
             with connection.cursor() as c:
                 c.execute('UPDATE mon_hoc SET ten_mon_hoc= \''+str(ten_mon_hoc)+'\' where ma_mon_hoc=\''+str(monhoc["ma_mon_hoc"])+'\'')
-        if so_tin_chi != monhoc["so_tin_chi"] and so_tin_chi <= 3 and so_tin_chi >=0:
+        if so_tin_chi != monhoc["so_tin_chi"] and int(so_tin_chi) <= 3 and int(so_tin_chi) >=0:
             with connection.cursor() as c:
                 c.execute('UPDATE mon_hoc SET so_tin_chi= '+str(so_tin_chi)+' where ma_mon_hoc=\''+str(monhoc["ma_mon_hoc"])+'\'')
         
@@ -244,3 +255,159 @@ def updateMonhoc(request,khoa,monhoc):
     }
     return render(request,'home/updateMonhoc.html',context)
 
+@login_required
+@allowed_users(['pdt','khoa'])
+def qllophoc(request,khoa):
+    db = MySQLdb.connect(user='root', db='courses_enrollment', passwd='', host='localhost')
+    dskhoa=[]
+    if khoa!='000':
+        cursor = db.cursor()
+        cursor.execute( 'SELECT * FROM khoa where ma_khoa =\''+ str(khoa) + '\'')
+        columns = [col[0] for col in cursor.description]
+        dskhoa = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
+
+        cursor1 = db.cursor()
+        cursor1.execute( 'SELECT * FROM mon_hoc join lop on lop.ma_mon_hoc=mon_hoc.ma_mon_hoc where ma_khoa =\''+ str(khoa) + '\' and hoc_ky='+current_term)
+        columns = [col[0] for col in cursor1.description]
+        lophoc = [dict(zip(columns, row)) for row in cursor1.fetchall()]
+    
+        cursor2 = db.cursor()
+        cursor2.execute( 'SELECT g.MSNV, MSNV_quan_ly, ma_khoa, Ho,Ten from giang_vien g join ns_khoa_quan_ly ns on MSNV_quan_ly=ns.MSNV join nhan_vien nv on g.MSNV=nv.MSNV join nguoi_dung nd on nd.Username=nv.Username  where ma_khoa=\''+ str(khoa) + '\'' )
+        columns = [col[0] for col in cursor2.description]
+        gv = [dict(zip(columns, row)) for row in cursor2.fetchall()]
+
+        
+    else:
+        cursor1 = db.cursor()
+        cursor1.execute( 'SELECT * FROM mon_hoc join lop on lop.ma_mon_hoc=mon_hoc.ma_mon_hoc  and hoc_ky='+current_term+' order by lop.ma_mon_hoc')
+        columns = [col[0] for col in cursor1.description]
+        lophoc = [dict(zip(columns, row)) for row in cursor1.fetchall()]
+
+        cursor2 = db.cursor()
+        cursor2.execute( 'SELECT g.MSNV, MSNV_quan_ly, ma_khoa, Ho,Ten from giang_vien g join ns_khoa_quan_ly ns on MSNV_quan_ly=ns.MSNV join nhan_vien nv on g.MSNV=nv.MSNV join nguoi_dung nd on nd.Username=nv.Username' )
+        columns = [col[0] for col in cursor2.description]
+        gv = [dict(zip(columns, row)) for row in cursor2.fetchall()]
+
+    cursor3 = db.cursor()
+    cursor3.execute( 'SELECT idlop,count(MSSV)siso FROM lop join dang_ky on idlop=id_lop group by idlop order by lop.ma_mon_hoc' )
+    columns = [col[0] for col in cursor3.description]
+    siso = [dict(zip(columns, row)) for row in cursor3.fetchall()]
+    
+
+    context={
+        "term":current_term,
+        "khoa":dskhoa,
+        "lophoc":lophoc,
+        'gv':gv,
+        'siso':siso,
+    }
+    return render(request,'home/qllophoc.html',context)
+
+@login_required
+@allowed_users(['khoa','pdt'])
+def updateLophoc(request,khoa,lop):
+    db = MySQLdb.connect(user='root', db='courses_enrollment', passwd='', host='localhost')
+    
+    cursor = db.cursor()
+    cursor.execute( 'SELECT * FROM khoa where ma_khoa =\''+ str(khoa) + '\'')
+    columns = [col[0] for col in cursor.description]
+    dskhoa = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
+
+    cursor1 = db.cursor()
+    cursor1.execute( 'SELECT * FROM lop join mon_hoc on lop.ma_mon_hoc=mon_hoc.ma_mon_hoc where ma_khoa =\''+ str(khoa) + '\' and idlop=\''+str(lop)+'\'')
+    columns = [col[0] for col in cursor1.description]
+    dslop = [dict(zip(columns, row)) for row in cursor1.fetchall()][0]
+
+    cursor2 = db.cursor()
+    cursor2.execute( 'SELECT g.MSNV, MSNV_quan_ly, ma_khoa, Ho,Ten from giang_vien g join ns_khoa_quan_ly ns on MSNV_quan_ly=ns.MSNV join nhan_vien nv on g.MSNV=nv.MSNV join nguoi_dung nd on nd.Username=nv.Username  where ma_khoa=\''+ str(khoa) + '\'' )
+    columns = [col[0] for col in cursor2.description]
+    gv = [dict(zip(columns, row)) for row in cursor2.fetchall()]
+
+    if request.method == 'POST':
+        gvpt = request.POST.get('gvphutrach','')
+        with connection.cursor() as c:
+            c.execute('INSERT INTO ghi_diem (MSNV,id_lop) value(\''+str(gvpt)+'\','+str(lop)+')')
+        return redirect('/qllophoc/'+str(khoa)+'/')
+    context={
+        "khoa":dskhoa,
+        "lop":dslop,
+        'gv':gv,
+    }
+    return render(request,'home/updatelophoc.html',context)
+
+@login_required
+@allowed_users(['khoa','pdt'])
+def deleteLophoc(request,khoa,lop):
+    db = MySQLdb.connect(user='root', db='courses_enrollment', passwd='', host='localhost')
+    
+    cursor = db.cursor()
+    cursor.execute( 'SELECT * FROM khoa where ma_khoa =\''+ str(khoa) + '\'')
+    columns = [col[0] for col in cursor.description]
+    dskhoa = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
+
+    cursor1 = db.cursor()
+    cursor1.execute( 'SELECT * FROM lop join mon_hoc on lop.ma_mon_hoc=mon_hoc.ma_mon_hoc where ma_khoa =\''+ str(khoa) + '\' and idlop=\''+str(lop)+'\'')
+    columns = [col[0] for col in cursor1.description]
+    dslop = [dict(zip(columns, row)) for row in cursor1.fetchall()][0]
+
+    cursor2 = db.cursor()
+    cursor2.execute( 'SELECT g.MSNV, MSNV_quan_ly, ma_khoa, Ho,Ten from giang_vien g join ns_khoa_quan_ly ns on MSNV_quan_ly=ns.MSNV join nhan_vien nv on g.MSNV=nv.MSNV join nguoi_dung nd on nd.Username=nv.Username  where ma_khoa=\''+ str(khoa) + '\'' )
+    columns = [col[0] for col in cursor2.description]
+    gv = [dict(zip(columns, row)) for row in cursor2.fetchall()]
+
+    if request.method == 'POST':
+        with connection.cursor() as c:
+            c.execute('DELETE FROM lop where idlop= \''+str(lop)+'\'')
+        return redirect('/qllophoc/'+str(khoa)+'/')
+    context={
+        "ma_khoa":khoa,
+        "khoa":dskhoa,
+        "lop":dslop,
+        'gv':gv,
+    }
+    return render(request,'home/deletelophoc.html',context)
+
+@login_required
+@allowed_users(['khoa'])
+def newLophoc(request,khoa):
+    db = MySQLdb.connect(user='root', db='courses_enrollment', passwd='', host='localhost')
+    
+    cursor = db.cursor()
+    cursor.execute( 'SELECT * FROM khoa where ma_khoa =\''+ str(khoa) + '\'')
+    columns = [col[0] for col in cursor.description]
+    dskhoa = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
+
+    cursor2 = db.cursor()
+    cursor2.execute( 'SELECT g.MSNV, MSNV_quan_ly, ma_khoa, Ho,Ten from giang_vien g join ns_khoa_quan_ly ns on MSNV_quan_ly=ns.MSNV join nhan_vien nv on g.MSNV=nv.MSNV join nguoi_dung nd on nd.Username=nv.Username  where ma_khoa=\''+ str(khoa) + '\'' )
+    columns = [col[0] for col in cursor2.description]
+    gv = [dict(zip(columns, row)) for row in cursor2.fetchall()]
+
+    cursor3 = db.cursor()
+    cursor3.execute( 'SELECT * FROM mon_hoc where ma_khoa =\''+ str(khoa) + '\' ')
+    columns = [col[0] for col in cursor3.description]
+    monhoc = [dict(zip(columns, row)) for row in cursor3.fetchall()]
+
+
+    if request.method == 'POST':
+        ma_lop=request.POST.get('ma_lop_hoc','')
+        ma_mh=request.POST.get('ma_mh','')
+        
+        cursor4 = db.cursor()
+        cursor4.execute( 'SELECT * FROM lop natural join mon_hoc where ma_khoa =\''+ str(khoa) + '\' and hoc_ky='+current_term)
+        columns = [col[0] for col in cursor4.description]
+        dslop = [dict(zip(columns, row)) for row in cursor4.fetchall()]
+
+        for x in dslop:
+            if x["ma_lop_hoc"] == ma_lop and x["ma_mon_hoc"]==ma_mh and x["hoc_ky"]==int(current_term):
+                return redirect('/qllophoc/'+str(khoa)+'/')
+        else:
+            with connection.cursor() as c:
+                c.execute('INSERT INTO lop (ma_lop_hoc,ma_mon_hoc,hoc_ky) value(\''+str(ma_lop)+'\',\''+ma_mh+'\','+current_term+')')
+        return redirect('/qllophoc/'+str(khoa)+'/')
+    context={
+        "ma_khoa":khoa,
+        "khoa":dskhoa,
+        "monhoc":monhoc,
+        'gv':gv,
+    }
+    return render(request,'home/newlophoc.html',context)
