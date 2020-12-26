@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2020 at 04:26 AM
+-- Generation Time: Dec 26, 2020 at 07:18 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -123,10 +123,10 @@ CREATE TABLE `auth_user` (
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
 (1, 'pbkdf2_sha256$216000$ccO6jZwnu95z$4soWjfZX7wQVP/734bK0HV3bZ95gs6HK+IKUWP7iAoI=', '2020-12-25 09:37:12.440959', 1, 'nhom9', '', '', 'nhom9@gmail.com', 1, 1, '2020-12-24 08:47:20.486152'),
-(2, 'pbkdf2_sha256$216000$7nEM04SriwBd$KCj6l2leelbBmUo4Sfnk6nWP8AaHZF5NgFNAS9HFGvQ=', '2020-12-25 09:03:59.339123', 0, 'sinhvien00', '', '', '', 0, 1, '2020-12-24 08:48:51.000000'),
+(2, 'pbkdf2_sha256$216000$7nEM04SriwBd$KCj6l2leelbBmUo4Sfnk6nWP8AaHZF5NgFNAS9HFGvQ=', '2020-12-26 04:23:24.772968', 0, 'sinhvien00', '', '', '', 0, 1, '2020-12-24 08:48:51.000000'),
 (3, 'pbkdf2_sha256$216000$78NXSnL8CTPS$GcgeDfqFqD3weC1AVleBYp5LoICEwosjIgb+Bgw9Uo0=', '2020-12-25 09:37:55.489906', 0, 'giangvien1', '', '', '', 0, 1, '2020-12-24 08:49:19.000000'),
-(4, 'pbkdf2_sha256$216000$8wUts6G2aPvz$fRATEqmk4KJfn0SHbzZhOLMxNqNzgDMQy+I7W+jXX3U=', '2020-12-26 00:09:45.545973', 0, 'khoa1', '', '', '', 0, 1, '2020-12-24 08:49:33.000000'),
-(5, 'pbkdf2_sha256$216000$oZ8UNoHDe1JY$VKBKQJghAiFwk5nMs6occh4lQn1/HYsm6cnQ8xEnVtY=', NULL, 0, 'daotao1', '', '', '', 0, 1, '2020-12-24 08:49:46.000000');
+(4, 'pbkdf2_sha256$216000$8wUts6G2aPvz$fRATEqmk4KJfn0SHbzZhOLMxNqNzgDMQy+I7W+jXX3U=', '2020-12-26 04:29:44.329885', 0, 'khoa1', '', '', '', 0, 1, '2020-12-24 08:49:33.000000'),
+(5, 'pbkdf2_sha256$216000$oZ8UNoHDe1JY$VKBKQJghAiFwk5nMs6occh4lQn1/HYsm6cnQ8xEnVtY=', '2020-12-26 06:16:28.788813', 0, 'daotao1', '', '', '', 0, 1, '2020-12-24 08:49:46.000000');
 
 -- --------------------------------------------------------
 
@@ -206,9 +206,12 @@ INSERT INTO `chi_dinh` (`MSNV`, `id_lop`, `ISBN`, `nam_xuat_ban`) VALUES
 ('G00000', 4, NULL, NULL),
 ('G00000', 5, NULL, NULL),
 ('G00000', 6, NULL, NULL),
-('G00001', 10, NULL, NULL),
+('G00000', 11, NULL, NULL),
+('G00000', 12, NULL, NULL),
 ('G00001', 11, NULL, NULL),
-('G00001', 12, NULL, NULL);
+('G00001', 12, NULL, NULL),
+('G00003', 11, NULL, NULL),
+('G00003', 12, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -226,10 +229,6 @@ CREATE TABLE `dang_ky` (
 --
 
 INSERT INTO `dang_ky` (`MSSV`, `id_lop`) VALUES
-(1610001, 5),
-(1610001, 8),
-(1610001, 11),
-(1810001, 1),
 (1810001, 4);
 
 -- --------------------------------------------------------
@@ -348,7 +347,7 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('01johw57pvshtkkj1ga1itayre7w2txn', '.eJxVjDkOwjAUBe_iGlnesAklPWeI_mYcQLYUJxXi7hApBbRvZt5LjbAuZVy7zOPE6qyCOvxuCPSQugG-Q701Ta0u84R6U_ROu742ludld_8OCvTyrUGAnE8sHp01AWIAG2LkGI6Q4iAoDN6RyzZ7i-5EYsR4G13GIREb9f4A9Pw4Qg:1ksx9V:XBromgu9gFJL1c_ogmBf6xrwXD9WQbikDzMoN-RRNbA', '2021-01-09 00:09:45.551938');
+('3rgkwe3v9u83g4td9qopq2psuk85y75z', '.eJxVjEEOwiAQRe_C2hAoMxVcuu8ZyHQYpGpoUtqV8e7apAvd_vfef6lI21ri1mSJU1IXher0u43ED6k7SHeqt1nzXNdlGvWu6IM2PcxJntfD_Tso1Mq35k6EOUOgbBgyY-CUnQlgLFjyPtnQceazMx4hWaQePfgekSAbEafeHwXhOAs:1kt2sO:es9uJHyrnamRObzfQneMcUEIzuDogyk167GpeHWH3fU', '2021-01-09 06:16:28.799443');
 
 -- --------------------------------------------------------
 
@@ -357,11 +356,19 @@ INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALU
 --
 
 CREATE TABLE `ghi_diem` (
-  `MSSV` int(11) NOT NULL,
+  `MSSV` int(11) DEFAULT NULL,
   `MSNV` char(16) NOT NULL,
   `id_lop` int(11) NOT NULL,
   `diem_so` decimal(4,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `ghi_diem`
+--
+
+INSERT INTO `ghi_diem` (`MSSV`, `MSNV`, `id_lop`, `diem_so`) VALUES
+(NULL, 'G00000', 11, NULL),
+(NULL, 'G00001', 7, NULL);
 
 -- --------------------------------------------------------
 
@@ -446,8 +453,7 @@ CREATE TABLE `lop` (
 --
 
 INSERT INTO `lop` (`idlop`, `ma_lop_hoc`, `hoc_ky`, `ma_mon_hoc`) VALUES
-(1, 'L01', 191, 'CO2013'),
-(10, 'L01', 201, 'CO2001'),
+(15, 'L01', 201, 'CO2001'),
 (7, 'L01', 201, 'CO2002'),
 (4, 'L01', 201, 'CO2013'),
 (2, 'L02', 191, 'CO2013'),
@@ -690,6 +696,15 @@ CREATE TABLE `trang_thai_hoc_tap` (
   `trang_thai` enum('Dang hoc','Tam dung','Da thoi họ') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `trang_thai_hoc_tap`
+--
+
+INSERT INTO `trang_thai_hoc_tap` (`MSSV`, `hoc_ky`, `trang_thai`) VALUES
+(1610001, 201, 'Tam dung'),
+(1710001, 201, 'Dang hoc'),
+(1810001, 201, 'Dang hoc');
+
 -- --------------------------------------------------------
 
 --
@@ -822,8 +837,8 @@ ALTER TABLE `django_session`
 -- Indexes for table `ghi_diem`
 --
 ALTER TABLE `ghi_diem`
-  ADD PRIMARY KEY (`MSSV`,`MSNV`,`id_lop`),
-  ADD KEY `diemgv` (`MSNV`),
+  ADD PRIMARY KEY (`MSNV`,`id_lop`),
+  ADD KEY `diemsv` (`MSSV`),
   ADD KEY `diemlop` (`id_lop`);
 
 --
@@ -1005,7 +1020,7 @@ ALTER TABLE `django_migrations`
 -- AUTO_INCREMENT for table `lop`
 --
 ALTER TABLE `lop`
-  MODIFY `idlop` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idlop` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
