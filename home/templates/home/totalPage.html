@@ -40,13 +40,13 @@
                   <div class="main_menu float-right">
                      <div class="menu">
                         <ul class="clearfix">
-                           <li><a href=""></a></li>
-                           <li><a href=""></a></li>
-                           <li><a href=""></a></li>
-                           <li><a href=""></a></li>
+                           <!-- <li><a href=""></a></li>
+                           <li><a href=""></a></li> -->
+                           <li><a href="">Xin chào, {{ user.username }}!  </a></li>
+                           <!-- <li><a href=""></a></li>
                            {% comment %} <li class="active"><a href="{% url 'SinhVien:SinhVien' %}">Danh sách sinh viên</a></li> {% endcomment %}
                            <li><a href=""></a></li>
-                           <li><a href=""></a></li>
+                           <li><a href=""></a></li> -->
                         </ul>
                      </div>
                   </div>
@@ -88,7 +88,13 @@
                                     </p>
                                  </div>
                               </div>
-                              <div class="table_price_bottm"> <a class="bt_main" href="">CHỌN</a> </div>
+                              {% if user.is_authenticated %}
+                              {% for group in request.user.groups.all %}
+                                 {% if group.name == 'sinhvien' or group.name == 'pdt' %}
+                                    <div class="table_price_bottm"> <a class="bt_main" href="{% url 'home:dkmh' %}">CHỌN</a> </div>
+                                 {% endif %}
+                              {% endfor %}   
+                              {% endif %} 
                            </div>
                         </div>
                         <div class="col-sm-12 col-md-4">
@@ -103,7 +109,27 @@
                                     </p>
                                  </div>
                               </div>
-                              <div class="table_price_bottm"> <a class="reverse_bt bt_main" href="">CHỌN</a> </div>
+                              {% if user.is_authenticated %}
+                              {% for group in request.user.groups.all %}
+                                 {% if group.name == 'pdt' %}
+                                    <div class="table_price_bottm"> <a class="reverse_bt bt_main" href="{% url 'home:tracuupdt'%}">CHỌN</a> </div>
+                                 {% endif %}
+                              {% endfor %}   
+                              {% endif %} 
+                              {% if user.is_authenticated %}
+                              {% for group in request.user.groups.all %}
+                                 {% if group.name == 'khoa' %}
+                                    <div class="table_price_bottm"> <a class="reverse_bt bt_main" href="{% url 'home:tracuukhoa' user.username%}">CHỌN</a> </div>
+                                 {% endif %}
+                              {% endfor %}   
+                              {% endif %} 
+                              {% if user.is_authenticated %}
+                              {% for group in request.user.groups.all %}
+                                 {% if group.name == 'giangvien' %}
+                                    <div class="table_price_bottm"> <a class="reverse_bt bt_main" href="{% url 'home:tracuugiangvien' user.username%}">CHỌN</a> </div>
+                                 {% endif %}
+                              {% endfor %}   
+                              {% endif %} 
                            </div>
                         </div>
                         <div class="col-sm-12 col-md-4">
@@ -118,7 +144,13 @@
                                     </p>
                                  </div>                                 
                               </div>
-                              <div class="table_price_bottm"> <a class="bt_main" href="">CHỌN</a> </div>
+                              {% if user.is_authenticated %}
+                              {% for group in request.user.groups.all %}
+                                 {% if group.name == 'giangvien' or group.name == 'pdt' or  group.name == 'khoa' %}
+                                    <div class="table_price_bottm"> <a class="bt_main" href="{% url 'home:qlgiangday' %}">CHỌN</a> </div>
+                                 {% endif %}
+                              {% endfor %}   
+                              {% endif %}
                            </div>
                         </div>
                      </div>
@@ -148,13 +180,13 @@
 
       <!--=========== js section ===========-->
       <!-- jQuery (necessary for Bootstrap's JavaScript) -->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.min.js"></script>
+      <script src="{% static 'home/js/jquery.min.js' %}"></script>
+      <script src="{% static 'home/js/popper.min.js' %}"></script>
+      <script src="{% static 'home/js/bootstrap.min.js' %}"></script>
       <!-- wow animation -->
-      <script src="js/wow.js"></script>
+      <script src="{% static 'home/js/wow.js' %}"></script>
       <!-- custom js -->
-      <script src="js/custom.js"></script>
+      <script src="{% static 'home/js/custom.js' %}"></script>
       <!-- google map js -->
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script>
       <!-- end google map js -->

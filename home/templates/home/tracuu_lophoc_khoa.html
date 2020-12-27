@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Tra cứu lớp học </title>
+    {% load static %}
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Tra cứu môn học</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icons -->
+    <link rel="icon" href="{% static 'home/images/fevicon/fevicon.png' %}" type="image/png" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="{% static 'home/bootstrap.min.css' %}" />
+    <!-- site css -->
+    <link rel="stylesheet" href="{% static 'home/style.css' %}" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="{% static 'home/responsive.css' %}" />
+    <!-- colors css -->
+    <link rel="stylesheet" href="{% static 'home/colors.css' %}" />
+    <!-- wow animation css -->
+    <link rel="stylesheet" href="{% static 'home/animate.css' %}" />
+  
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+</head>
+<body>
+
+    <header class="header header_style1">
+        <div class="container">
+           <div class="row">
+              <div class="col-md-9 col-lg-10">
+                 <div class="logo"><a href=""><img src="{% static 'home/images/logo.png' %}" alt="#" style="width:60%;height:60%;"/></a></div>
+                 <div class="main_menu float-right">
+                    <div class="menu">
+                       <ul class="clearfix">
+                          <li><a href=""></a></li>
+                          <li><a href=""></a></li>
+                          <li><a href=""></a></li>
+                          <li><a href=""></a></li>
+                          <li class="active"><a href="{% url 'home:total' %}"></a></li>
+                          <li><a href=""></a></li>
+                          <li><a href=""></a></li>
+                       </ul>
+                    </div>
+                 </div>
+              </div>
+              <div class="col-md-3 col-lg-2">
+                 <div class="right_bt"><a class="bt_main" href="{% url 'home:total' %}">Trang chủ</a> </div>
+              </div>
+           </div>
+        </div>
+     </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="full">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="full text_align_center">
+                            <div class="heading_main center_head_border heading_style_1">
+                                <h2>Tra cứu lớp học HK {{hk}}</h2>
+                                <p>{{tk.ma_khoa}}|Tổng số lớp học được mở: {{tk.tong_lop}}</p>
+                                <div class="col-md-3 col-lg-2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<div class="container">
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Mã lớp học</th>
+            <th>Mã môn học</th>
+            <th>Tên môn học</th>
+            <th>Giáo viên phụ trách</th>
+            <th>Tổng sinh viên đăng ký</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in dslophoc %}
+        <tr>
+            <td>{{c.ma_lop_hoc}}</td>
+            <td>{{c.ma_mon_hoc}}</td>
+            <td>{{c.ten_mon_hoc}}</td>
+            <td>{{c.Ho}} {{c.Ten}}</td>
+            <td>{% for dk in tongdk %}
+                {% if dk.idlop == c.idlop%}
+                    {{dk.tong}}
+                {% endif%}
+            {% endfor %}</td>
+        </tr>
+        {% endfor %}
+	</tbody>
+</table>	
+</div>
+
+    <script src="{% static 'home/js/jquery.min.js' %}"></script>
+    <script src="{% static 'home/js/popper.min.js' %}"></script>
+    <script src="{% static 'home/js/bootstrap.min.js' %}"></script>
+    <!-- wow animation -->
+    <script src="{% static 'home/js/wow.js' %}"></script>
+    <!-- custom js -->
+    <script src="{% static 'home/js/custom.js' %}"></script>
+
+<footer>
+    <div class="footer_bottom">
+        <p>Dessigned and developed by <strong>Group 9 - L06</strong></p>
+    </div>
+</footer>
+</body>
+
+</html>

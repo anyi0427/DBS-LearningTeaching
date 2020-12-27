@@ -8,11 +8,11 @@
         1. import fonts
 -------------------------------------------------------------------*/
 
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,600,700,900);
-@import url('https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
-@import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
-@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,700i);
-@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700');
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro&amp:300,400,400i,600,700,900;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese);
+@import url(https://fonts.googleapis.com/css?family=Raleway&amp:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans&amp:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese);
+@import url(https://fonts.googleapis.com/css?family=Roboto&amp:300,400,400i,500,500i,700,700i;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese);
+@import url(https://fonts.googleapis.com/css?family=Quicksand&amp:300,400,500,700;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese);
 
 /*------------------------------------------------------------------
         2. import files
@@ -47,7 +47,7 @@ html,
 body {
     color: #898989;
     font-size: 15px;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
     line-height: normal;
     font-weight: 400;
     overflow-x: hidden !important;
@@ -74,7 +74,7 @@ h3,
 h4,
 h5,
 h6 {
-    letter-spacing: 0;
+    letter-spacing: 0px;
     font-weight: normal;
     position: relative;
     padding: 0;
@@ -347,7 +347,7 @@ blockquote {
 h2 {
     font-size: 54px;
     font-weight: 500;
-    letter-spacing: -2px;
+    letter-spacing: -1px;
     position: relative;
     margin-bottom: 25px;
     line-height: 50px;
@@ -408,7 +408,7 @@ input,
 select,
 textarea,
 option {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 a#submit {
@@ -2003,4 +2003,138 @@ ul.pagination li.page-item.active .page-link {
     width: 25%;
 }
 
+/*Submit button django form*/
+
+.my-button .django-submit {
+    --c: #1E72BC;
+    color: var(--c);
+    font-size: 10px;
+    border: 0.3em solid var(--c);
+    border-radius: 0.5em;
+    width: 12em;
+    height: 3em;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: sans-serif;
+    letter-spacing: 0.1em;
+    text-align: center;
+    line-height: 3em;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: 0.5s;
+    margin: 1em;
+}
+:root {
+    --input-padding-x: 1.5rem;
+    --input-padding-y: 0.75rem;
+  }
+  
+  .login,
+  .image {
+    min-height: 100vh;
+  }
+  
+  .bg-image {
+    background-image: url('');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .login-heading {
+    font-weight: 300;
+  }
+  
+  .btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+    border-radius: 2rem;
+  }
+  
+  .form-label-group {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  
+  .form-label-group>input,
+  .form-label-group>label {
+    padding: var(--input-padding-y) var(--input-padding-x);
+    height: auto;
+    border-radius: 2rem;
+  }
+  
+  .form-label-group>label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    margin-bottom: 0;
+    /* Override default `<label>` margin */
+    line-height: 1.5;
+    color: #495057;
+    cursor: text;
+    /* Match the input under the label */
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    transition: all .1s ease-in-out;
+  }
+  
+  .form-label-group input::-webkit-input-placeholder {
+    color: transparent;
+  }
+  
+  .form-label-group input:-ms-input-placeholder {
+    color: transparent;
+  }
+  
+  .form-label-group input::-ms-input-placeholder {
+    color: transparent;
+  }
+  
+  .form-label-group input::-moz-placeholder {
+    color: transparent;
+  }
+  
+  .form-label-group input::placeholder {
+    color: transparent;
+  }
+  
+  .form-label-group input:not(:placeholder-shown) {
+    padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+    padding-bottom: calc(var(--input-padding-y) / 3);
+  }
+  
+  .form-label-group input:not(:placeholder-shown)~label {
+    padding-top: calc(var(--input-padding-y) / 3);
+    padding-bottom: calc(var(--input-padding-y) / 3);
+    font-size: 12px;
+    color: #777;
+  }
+  
+  /* Fallback for Edge
+  -------------------------------------------------- */
+  
+  @supports (-ms-ime-align: auto) {
+    .form-label-group>label {
+      display: none;
+    }
+    .form-label-group input::-ms-input-placeholder {
+      color: #777;
+    }
+  }
+  
+  /* Fallback for IE
+  -------------------------------------------------- */
+  
+  @media all and (-ms-high-contrast: none),
+  (-ms-high-contrast: active) {
+    .form-label-group>label {
+      display: none;
+    }
+    .form-label-group input:-ms-input-placeholder {
+      color: #777;
+    }
+  }
 

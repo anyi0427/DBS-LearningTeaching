@@ -16,15 +16,15 @@
       <!-- site icons -->
       <link rel="icon" href="{% static 'home/images/fevicon/fevicon.png' %}" type="image/png" />
       <!-- bootstrap css -->
-      <link rel="stylesheet" href="{% static 'home/bootstrap.min.css' %}" />
+      <link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css' %}" />
       <!-- site css -->
-      <link rel="stylesheet" href="{% static 'home/style.css' %}" />
+      <link rel="stylesheet" href="{% static 'home/css/style.css' %}" />
       <!-- responsive css -->
-      <link rel="stylesheet" href="{% static 'home/responsive.css' %}" />
+      <link rel="stylesheet" href="{% static 'home/css/responsive.css' %}" />
       <!-- colors css -->
-      <link rel="stylesheet" href="{% static 'home/colors.css' %}" />
+      <link rel="stylesheet" href="{% static 'home/css/colors.css' %}" />
       <!-- wow animation css -->
-      <link rel="stylesheet" href="{% static 'home/animate.css' %}" />
+      <link rel="stylesheet" href="{% static 'home/css/animate.css' %}" />
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -39,7 +39,7 @@
                   <div class="logo"><a href=""><img src="{% static 'home/images/logo.png' %}" alt="#" style="width:60%;height:60%;"/></a></div>
                   <div class="main_menu float-right">
                      <div class="menu">
-                        <ul class="clearfix">
+                        <!-- <ul class="clearfix">
                            <li><a href=""></a></li>
                            <li><a href=""></a></li>
                            <li><a href=""></a></li>
@@ -47,13 +47,13 @@
                            {% comment %} <li class="active"><a href="{% url 'SinhVien:SinhVien' %}">Danh sách sinh viên</a></li> {% endcomment %}
                            <li><a href=""></a></li>
                            <li><a href=""></a></li>
-                        </ul>
+                        </ul> -->
                      </div>
                   </div>
                </div>
-               {% comment %} <div class="col-md-3 col-lg-2">
-                  <div class="right_bt"><a class="bt_main" href="">Đăng nhập</a> </div>
-               </div> {% endcomment %}
+               <div class="col-md-3 col-lg-2">
+                  <div class="right_bt"><a class="bt_main" href="{% url 'home:homepage' %}">Trang chủ</a> </div>
+               </div>
             </div>
          </div>
       </header>      
@@ -65,11 +65,44 @@
                      <div class="col-sm-12">
                         <div class="full text_align_center">
                            <div class="heading_main center_head_border heading_style_1">
-                              <h2>ĐĂNG NHẬP</h2>
+                              <!-- <h2>ĐĂNG NHẬP</h2> -->
                               <form action = "{%url 'home:loginUser'%}"  method="post">
-                                 {%csrf_token%}
-                                 {{lF.as_p}}
-                                 <input type="submit">
+                                 
+                                 <div class="row no-gutter">
+                                    <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+                                    <div class="col-md-8 col-lg-6">
+                                       <div class="login d-flex align-items-center py-5">
+                                          <div class="container">
+                                             <div class="row">
+                                                <div class="col-md-9 col-lg-8 mx-auto">
+                                                   <h3 class="login-heading mb-4"><strong>Đăng nhập</strong></h3>
+                              
+                                                   <div class="form-label-group">
+                                                      <!-- <input type="email" id="inputEmail" class="form-control" placeholder="Tên đăng nhập" required>
+                                                      <label for="inputEmail">shihi</label> -->
+                                                      {%csrf_token%} {{lF.username}}
+                                                   </div>
+                                 
+                                                   <div class="form-label-group">
+                                                      <!-- <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                                      <label for="inputPassword">Mật khẩu</label> -->
+                                                      {%csrf_token%} {{lF.password}}
+                                                   </div>
+                                 
+                                                   <div class="custom-control custom-checkbox mb-3">
+                                                      <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                      <label class="custom-control-label" for="customCheck1">Ghi nhớ đăng nhập</label>
+                                                   </div>
+                                                   <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Đăng nhập</button>
+                                                   <div class="text-center">
+                                                      <a class="small" href="#">Quên mật khẩu?</a></div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+
                               </form>
                            </div>
                         </div>
@@ -155,13 +188,13 @@
 
       <!--=========== js section ===========-->
       <!-- jQuery (necessary for Bootstrap's JavaScript) -->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.min.js"></script>
+      <script src="{% static 'home/js/jquery.min.js' %}"></script>
+      <script src="{% static 'home/js/popper.min.js' %}"></script>
+      <script src="{% static 'home/js/bootstrap.min.js' %}"></script>
       <!-- wow animation -->
-      <script src="js/wow.js"></script>
+      <script src="{% static 'home/js/wow.js' %}"></script>
       <!-- custom js -->
-      <script src="js/custom.js"></script>
+      <script src="{% static 'home/js/custom.js' %}"></script>
       <!-- google map js -->
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script>
       <!-- end google map js -->

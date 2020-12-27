@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      {% load static %}
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Chỉnh sửa Môn học</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- site icons -->
+      <link rel="icon" href="{% static 'home/images/fevicon/fevicon.png' %}" type="image/png" />
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="{% static 'home/bootstrap.min.css' %}" />
+      <!-- site css -->
+      <link rel="stylesheet" href="{% static 'home/style.css' %}" />
+      <!-- responsive css -->
+      <link rel="stylesheet" href="{% static 'home/responsive.css' %}" />
+      <!-- colors css -->
+      <link rel="stylesheet" href="{% static 'home/colors.css' %}" />
+      <!-- wow animation css -->
+      <link rel="stylesheet" href="{% static 'home/animate.css' %}" />
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+   </head>
+   <body id="default_theme" class="services">
+      <!-- header -->
+      <header class="header header_style1">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-9 col-lg-10">
+                  <div class="logo"><a href=""><img src="{% static 'home/images/logo.png' %}" alt="#" style="width:60%;height:60%;"/></a></div>
+                  <div class="main_menu float-right">
+                     <div class="menu">
+                        <ul class="clearfix">
+                           <li><a href=""></a></li>
+                           <li><a href=""></a></li>
+                           <li><a href=""></a></li>
+                           <li><a href=""></a></li>
+                           {% comment %} <li class="active"><a href="{% url 'SinhVien:SinhVien' %}">Danh sách sinh viên</a></li> {% endcomment %}
+                           <li><a href=""></a></li>
+                           <li><a href=""></a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-3 col-lg-2">
+                  <div class="right_bt"><a class="bt_main" href="{% url 'home:total' %}">Trang chủ</a> </div>
+               </div>
+            </div>
+         </div>
+      </header>      
+      <section class="layout_padding">
+         <div class="container">
+            <div class="row">
+               <div class="full">
+                  <div class="row">
+                     <div class="col-sm-12">
+                        <div class="full text_align_center">
+                           <div class="heading_main center_head_border heading_style_1">
+                                <h2>CHỈNH SỬA MÔN HỌC</h2>
+                                <h3>Cập nhật thông tin môn học</h3>
+                                <form action = "{% url 'home:updateMonhoc' monhoc.ma_khoa monhoc.ma_mon_hoc%}"  method="POST">
+                                    {%csrf_token%}
+                                    <table class="table table-striped">
+                                        <tbody>
+                                            <th>
+                                                <th>Mã môn học {{monhoc.ma_mon_hoc}}</th>
+                                                <th>
+                                                    <label for="ten_mon_hoc">Tên môn học </label>
+                                                    <textarea id="ten_mon_hoc" name="ten_mon_hoc" rows="1" cols="50">{{monhoc.ten_mon_hoc}}</textarea></th>
+                                                <th>Số tín chỉ <input type="text" name='so_tin_chi' value={{monhoc.so_tin_chi}}></th>
+                                            </th>
+                                        </tbody>
+                                    </table>	
+                                    <h3>Cập nhật giáo viên phụ trách</h3>
+                                        <div> <select name='gvphutrach'>
+                                            <table class="table table-striped">
+                                                <tbody>
+                                                    <th>
+                                                        {% for x in gv%}
+                                                            <option value="{{ x.MSNV}}">{{x.Ho }} {{x.Ten}}</option>
+                                                        {% endfor%}
+                                                    </th>
+                                                    <th>  </th>
+                                                </tbody>
+                                            </table>
+                                            
+                                        </select></div> 
+                                    <input class='bt-main' type="submit" value='Hoàn tất'>
+                                </form>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            >
+            
+            {% comment %} <div class="row">
+               <div class="col-sm-12">
+                  <div class="full" style="margin-top:10px;">
+                     <div class="row">
+                        <div class="col-sm-12 col-md-4">
+                           <div class="table_price text_align_center">
+                              <div class="table_price_head">
+                                 <h5>1</h5>
+                              </div>
+                              <div class="table_price_cont">
+                                 <div class="table_price_per">
+                                    <p>
+                                       <small>ĐĂNG KÝ MÔN HỌC TRỰC TUYẾN</small>
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="table_price_bottm"> <a class="bt_main" href="">CHỌN</a> </div>
+                           </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                           <div class="active_price table_price text_align_center">
+                              <div class="table_price_head">
+                                 <h5>2</h5>
+                              </div>
+                              <div class="table_price_cont">
+                                 <div class="table_price_per">
+                                    <p>
+                                       <small>TRA CỨU THÔNG TIN</small>
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="table_price_bottm"> <a class="reverse_bt bt_main" href="">CHỌN</a> </div>
+                           </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                           <div class="table_price text_align_center">
+                              <div class="table_price_head">
+                                 <h5>3</h5>
+                              </div>
+                              <div class="table_price_cont">
+                                 <div class="table_price_per">
+                                    <p>
+                                       <small>QUẢN LÝ VIỆC GIẢNG DẠY</small>
+                                    </p>
+                                 </div>                                 
+                              </div>
+                              <div class="table_price_bottm"> <a class="bt_main" href="">CHỌN</a> </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div> {% endcomment %}
+         </div>
+      </section>
+      <!-- end section -->
+      <!-- section -->
+      <section class="contact_section">
+         <div class="container-fluid">
+            <div class="row">
+              
+            </div>
+         </div>
+      </section>
+      <!-- end section -->
+      
+         
+      <!--footer bottom -->
+         <div class="footer_bottom">
+            <p>Dessigned and developed by <strong>Group 9 - L06</strong></p>
+         </div>
+      </footer>
+      <!-- end footer -->
+
+      <!--=========== js section ===========-->
+      <!-- jQuery (necessary for Bootstrap's JavaScript) -->
+      <script src="{% static 'home/js/jquery.min.js' %}"></script>
+      <script src="{% static 'home/js/popper.min.js' %}"></script>
+      <script src="{% static 'home/js/bootstrap.min.js' %}"></script>
+      <!-- wow animation -->
+      <script src="{% static 'home/js/wow.js' %}"></script>
+      
+      <!-- custom js -->
+      <script src="{% static 'home/js/custom.js' %}"></script>
+      <!-- google map js -->
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script>
+      <!-- end google map js -->
+   </body>
+</html>

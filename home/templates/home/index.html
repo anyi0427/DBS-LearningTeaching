@@ -16,15 +16,15 @@
       <!-- site icons -->
       <link rel="icon" href="{% static 'home/images/fevicon/fevicon.png' %}" type="image/png" />
       <!-- bootstrap css -->
-      <link rel="stylesheet" href="{% static 'home/bootstrap.min.css' %}" />
+      <link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css' %}" />
       <!-- site css -->
-      <link rel="stylesheet" href="{% static 'home/style.css' %}" />
+      <link rel="stylesheet" href="{% static 'home/css/style.css' %}" />
       <!-- responsive css -->
-      <link rel="stylesheet" href="{% static 'home/responsive.css' %}" />
+      <link rel="stylesheet" href="{% static 'home/css/responsive.css' %}" />
       <!-- colors css -->
-      <link rel="stylesheet" href="{% static 'home/colors.css' %}" />
+      <link rel="stylesheet" href="{% static 'home/css/colors.css' %}" />
       <!-- wow animation css -->
-      <link rel="stylesheet" href="{% static 'home/animate.css' %}" />
+      <link rel="stylesheet" href="{% static 'home/css/animate.css' %}" />
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -40,13 +40,13 @@
                   <div class="main_menu float-right">
                      <div class="menu">
                         <ul class="clearfix">
-                           <li><a href=""></a></li>
+                           <!-- <li><a href=""></a></li>
                            <li><a href=""></a></li>
                            <li><a href=""></a></li>
                            <li><a href=""></a></li>
                            {% comment %} <li class="active"><a href="{% url 'SinhVien:SinhVien' %}">Danh sách sinh viên</a></li> {% endcomment %}
                            <li><a href=""></a></li>
-                           <li><a href=""></a></li>
+                           <li><a href=""></a></li> -->
                         </ul>
                      </div>
                   </div>
@@ -145,16 +145,16 @@
          </div>
       </footer>
       <!-- end footer -->
-
+      {% load static %}
       <!--=========== js section ===========-->
       <!-- jQuery (necessary for Bootstrap's JavaScript) -->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.min.js"></script>
+      <script src="{% static 'home/js/jquery.min.js' %}"></script>
+      <script src="{% static 'home/js/popper.min.js' %}"></script>
+      <script src="{% static 'home/js/bootstrap.min.js' %}"></script>
       <!-- wow animation -->
-      <script src="js/wow.js"></script>
+      <script src="{% static 'home/js/wow.js' %}"></script>
       <!-- custom js -->
-      <script src="js/custom.js"></script>
+      <script src="{% static 'home/js/custom.js' %}"></script>
       <!-- google map js -->
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script>
       <!-- end google map js -->
