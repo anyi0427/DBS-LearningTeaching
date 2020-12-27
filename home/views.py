@@ -829,8 +829,9 @@ def tracuu_monhoc_giangvien(request):
         cursor = db.cursor()
         cursor.execute('SELECT count(*)tong FROM chi_dinh join lop on idlop=id_lop natural join mon_hoc left join giao_trinh g on chi_dinh.ISBN=g.ISBN where chi_dinh.msnv=\''+str(msnv)+'\' and hoc_ky='+hk +' group by lop.ma_mon_hoc')
         columns = [col[0] for col in cursor.description]
-        tk = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
-
+        tk = [dict(zip(columns, row)) for row in cursor.fetchall()]
+        if tk:
+            tk=tk[0]
         # cursor = db.cursor()
         # cursor.execute('SELECT id_lop,count(*)tong FROM dang_ky group by id_lop')
         # columns = [col[0] for col in cursor.description]
