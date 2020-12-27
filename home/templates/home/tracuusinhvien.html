@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Tra cứu thông tin</title>
+    {% load static %}
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Tra cứu thông tin</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icons -->
+    <link rel="icon" href="{% static 'home/images/fevicon/fevicon.png' %}" type="image/png" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="{% static 'home/bootstrap.min.css' %}" />
+    <!-- site css -->
+    <link rel="stylesheet" href="{% static 'home/style.css' %}" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="{% static 'home/responsive.css' %}" />
+    <!-- colors css -->
+    <link rel="stylesheet" href="{% static 'home/colors.css' %}" />
+    <!-- wow animation css -->
+    <link rel="stylesheet" href="{% static 'home/animate.css' %}" />
+  
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+</head>
+<body>
+
+    <header class="header header_style1">
+        <div class="container">
+           <div class="row">
+              <div class="col-md-9 col-lg-10">
+                 <div class="logo"><a href=""><img src="{% static 'home/images/logo.png' %}" alt="#" style="width:60%;height:60%;"/></a></div>
+                 <div class="main_menu float-right">
+                    <div class="menu">
+                       <ul class="clearfix">
+                          <li><a href=""></a></li>
+                          <li><a href=""></a></li>
+                          <li><a href=""></a></li>
+                          <li><a href=""></a></li>
+                          <li class="active"><a href="{% url 'home:total' %}"></a></li>
+                          <li><a href=""></a></li>
+                          <li><a href=""></a></li>
+                       </ul>
+                    </div>
+                 </div>
+              </div>
+              <div class="col-md-3 col-lg-2">
+                 <div class="right_bt"><a class="bt_main" href="{% url 'home:total' %}">Trang chủ</a> </div>
+              </div>
+           </div>
+        </div>
+     </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="full">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="full text_align_center">
+                            <div class="heading_main center_head_border heading_style_1">
+                                <h2>TRA CỨU THÔNG TIN SINH VIÊN {{sv.Ho}} {{sv.Ten}}</h2>
+                                <div class="col-md-3 col-lg-2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<div class="container">
+<table class="table table-striped">
+    <tbody>
+        <th>
+            <form action = "{% url 'home:tracuu_monhoc_khoa'%}"  method="POST">
+                {%csrf_token%}
+                <div>Danh sách các môn học:  
+                <input name='makhoa' value='{{sv.ma_khoa}}' readonly>
+                <p>Học kỳ:</p>
+                <input type="text" name='hk' value="{{term}}" readonly></div>
+                </div> 
+                <input class='bt-main' type="submit" value='Tra cứu'>
+            </form>
+        </th>
+        <th>
+            <form action = "{% url 'home:tracuu_lophoc_khoa'%}"  method="POST">
+                {%csrf_token%}
+                <div>Danh sách các lớp học:  
+                <input name='khoa' value='{{sv.ma_khoa}}' readonly>
+                <p>Học kỳ:</p>
+                <input type="text" name='hk' value="{{term}}" readonly></div> 
+                <input class='bt-main' type="submit" value='Tra cứu'>
+            </form>
+        </th>
+        <th>
+            <form action = "{% url 'home:tracuu_monhoc_sinhvien'%}"  method="POST">
+                {%csrf_token%}
+                <div>Danh sách môn học đã đăng ký: 
+                <input name='mssv' value='{{sv.MSSV}}' readonly> 
+                <p>Chọn học kỳ :</p>
+                <input type="text" name='hk'></div> 
+                <input class='bt-main' type="submit" value='Tra cứu'>
+            </form>
+        </th>
+        <th>
+            <form action = "{% url 'home:tracuu_lophoc_sinhvien'%}"  method="POST">
+                {%csrf_token%}
+                <div>Danh sách lớp học đã đăng ký:  
+                <input name='mssv' value='{{sv.MSSV}}' readonly>
+                <p>Chọn học kỳ :</p>
+                <input type="text" name='hk'></div> 
+                <input class='bt-main' type="submit" value='Tra cứu'>
+            </form>
+        </th>
+	</tbody>
+</table>	
+</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- wow animation -->
+    <script src="js/wow.js"></script>
+    <!-- custom js -->
+    <script src="js/custom.js"></script>
+
+<footer>
+    <div class="footer_bottom">
+        <p>Dessigned and developed by <strong>Group 9 - L06</strong></p>
+    </div>
+</footer>
+</body>
+
+</html>

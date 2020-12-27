@@ -130,6 +130,13 @@
                                  {% endif %}
                               {% endfor %}   
                               {% endif %} 
+                              {% if user.is_authenticated %}
+                              {% for group in request.user.groups.all %}
+                                 {% if group.name == 'sinhvien' %}
+                                    <div class="table_price_bottm"> <a class="reverse_bt bt_main" href="{% url 'home:tracuusinhvien' user.username%}">CHỌN</a> </div>
+                                 {% endif %}
+                              {% endfor %}   
+                              {% endif %} 
                            </div>
                         </div>
                         <div class="col-sm-12 col-md-4">

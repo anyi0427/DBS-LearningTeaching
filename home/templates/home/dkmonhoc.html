@@ -96,11 +96,18 @@
                                 <h3 style="text-transform: uppercase;font-family: ROBOTO;">Mã môn học: {{courses.ma_mon_hoc}}</h3>
                                 <h3 style="text-transform: uppercase;font-family: ROBOTO;">Số tín chỉ: {{courses.so_tin_chi}}</h3>
                                 <h3 style="text-transform: uppercase;font-family: ROBOTO;">Mã lớp học:</h3>
-                                    <div class="form-group"><select name='malop'>
+                                    <!-- <div class="form-group"><select name='malop'>
                                         {% for x in classes%}
                                             <option class="dropdown" value="{{ x.idlop }}"> {{ x.ma_lop_hoc }}</option>
                                         {% endfor%}
-                                    </select></div>
+                                    </select></div> -->
+                                    <div class="custom-select" style="width:200px;">
+                                       <select>
+                                          {% for x in classes%}
+                                            <option value="{{ x.idlop }}"> {{ x.ma_lop_hoc }}</option>
+                                          {% endfor%}
+                                       </select>
+                                     </div>
                             </div>                              
 
 
