@@ -2142,6 +2142,7 @@ ul.pagination li.page-item.active .page-link {
     color: red;
     opacity: 1; /* Firefox */
   }
+  
 
   /*the container must be positioned relative:*/
 .custom-select {
