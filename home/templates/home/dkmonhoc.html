@@ -91,19 +91,24 @@
                             {%csrf_token%}
                             <div class="container">
                             <table class="table table-striped">
-                                <h3>Học kỳ: {{courses.hoc_ky}}</h3>
-                                <h3>Mã môn học: {{courses.ma_mon_hoc}}</h3>
-                                <h3>Số tín chỉ: {{courses.so_tin_chi}}</h3>
-                                <h3>Mã lớp học: 
-                                    <div><select name='malop'>
+                                <br><br><br>
+                                <h3 style="text-transform: uppercase;font-family: ROBOTO;">Học kỳ: {{courses.hoc_ky}}</h3>
+                                <h3 style="text-transform: uppercase;font-family: ROBOTO;">Mã môn học: {{courses.ma_mon_hoc}}</h3>
+                                <h3 style="text-transform: uppercase;font-family: ROBOTO;">Số tín chỉ: {{courses.so_tin_chi}}</h3>
+                                <h3 style="text-transform: uppercase;font-family: ROBOTO;">Mã lớp học: 
+                                    <div class="form-group"><select name='malop' class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         {% for x in classes%}
-                                            <option value="{{ x.idlop}}"> {{ x.ma_lop_hoc}}</option>
+                                            <option class="dropdown-item" value="{{ x.idlop }}"> {{ x.ma_lop_hoc }}</option>
                                         {% endfor%}
-                                    </select></div>                                 
+                                    </select></div>  
+                                    </div>                               
                                 </h3>
-                                <input type = "submit" value="Đăng ký">
+
+
+                                
                             </table>	
                             </div>
+                            <button type="submit" class="btn btn-primary" value="Đăng ký">Đăng ký </button> 
                         </form>
                                                         
                        </div>
