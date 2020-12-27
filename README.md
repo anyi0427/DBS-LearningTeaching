@@ -1,3 +1,2 @@
 # LearningTeaching
-
-Video demo: https://youtu.be/C_YkdTm-ClY
+#Nhóm 9 L06
