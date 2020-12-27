@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2020 at 02:01 PM
+-- Generation Time: Dec 27, 2020 at 05:44 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -122,12 +122,17 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$216000$ccO6jZwnu95z$4soWjfZX7wQVP/734bK0HV3bZ95gs6HK+IKUWP7iAoI=', '2020-12-26 08:51:55.020803', 1, 'nhom9', '', '', 'nhom9@gmail.com', 1, 1, '2020-12-24 08:47:20.486152'),
-(2, 'pbkdf2_sha256$216000$7nEM04SriwBd$KCj6l2leelbBmUo4Sfnk6nWP8AaHZF5NgFNAS9HFGvQ=', '2020-12-26 04:23:24.772968', 0, 'sinhvien00', '', '', '', 0, 1, '2020-12-24 08:48:51.000000'),
+(1, 'pbkdf2_sha256$216000$ccO6jZwnu95z$4soWjfZX7wQVP/734bK0HV3bZ95gs6HK+IKUWP7iAoI=', '2020-12-26 16:22:19.243317', 1, 'nhom9', '', '', 'nhom9@gmail.com', 1, 1, '2020-12-24 08:47:20.486152'),
+(2, 'pbkdf2_sha256$216000$7nEM04SriwBd$KCj6l2leelbBmUo4Sfnk6nWP8AaHZF5NgFNAS9HFGvQ=', '2020-12-27 04:31:22.181999', 0, 'sinhvien00', '', '', '', 0, 1, '2020-12-24 08:48:51.000000'),
 (3, 'pbkdf2_sha256$216000$78NXSnL8CTPS$GcgeDfqFqD3weC1AVleBYp5LoICEwosjIgb+Bgw9Uo0=', '2020-12-25 09:37:55.489906', 0, 'giangvien1', '', '', '', 0, 1, '2020-12-24 08:49:19.000000'),
-(4, 'pbkdf2_sha256$216000$8wUts6G2aPvz$fRATEqmk4KJfn0SHbzZhOLMxNqNzgDMQy+I7W+jXX3U=', '2020-12-26 09:23:55.348688', 0, 'khoa1', '', '', '', 0, 1, '2020-12-24 08:49:33.000000'),
-(5, 'pbkdf2_sha256$216000$oZ8UNoHDe1JY$VKBKQJghAiFwk5nMs6occh4lQn1/HYsm6cnQ8xEnVtY=', '2020-12-26 06:16:28.788813', 0, 'daotao1', '', '', '', 0, 1, '2020-12-24 08:49:46.000000'),
-(6, 'pbkdf2_sha256$216000$Hcig1IcFdedk$rlRdNTmkDxIJjQftuZOz9u3PLm/X4CH5L2t5GcbGlZE=', '2020-12-26 09:24:01.138299', 0, 'giangvien0', '', '', '', 0, 1, '2020-12-26 08:52:24.000000');
+(4, 'pbkdf2_sha256$216000$8wUts6G2aPvz$fRATEqmk4KJfn0SHbzZhOLMxNqNzgDMQy+I7W+jXX3U=', '2020-12-27 04:06:22.357833', 0, 'khoa1', '', '', '', 0, 1, '2020-12-24 08:49:33.000000'),
+(5, 'pbkdf2_sha256$216000$oZ8UNoHDe1JY$VKBKQJghAiFwk5nMs6occh4lQn1/HYsm6cnQ8xEnVtY=', '2020-12-27 03:24:05.265283', 0, 'daotao1', '', '', '', 0, 1, '2020-12-24 08:49:46.000000'),
+(6, 'pbkdf2_sha256$216000$Hcig1IcFdedk$rlRdNTmkDxIJjQftuZOz9u3PLm/X4CH5L2t5GcbGlZE=', '2020-12-27 04:30:29.118592', 0, 'giangvien0', '', '', '', 0, 1, '2020-12-26 08:52:24.000000'),
+(7, 'pbkdf2_sha256$216000$8I06mcGjYiFN$hmeQbGjOmDh52rIzYtMaokeu9ebSWF3/fjOWF31BW1w=', '2020-12-26 16:24:42.979434', 0, 'sinhvien01', '', '', '', 0, 1, '2020-12-26 16:22:46.000000'),
+(8, 'pbkdf2_sha256$216000$T2sAtNxQrUBw$GBQE/D3W0ePvPzBODm/pEIOzL9K1mwkDvVufI5LIosU=', '2020-12-26 16:25:29.497213', 0, 'sinhvien02', '', '', '', 0, 1, '2020-12-26 16:23:03.000000'),
+(9, 'pbkdf2_sha256$216000$tKh0Gc82BZ8g$pP20gMPJC8/oOAFSFgHxG0CTmcVRTdNHkxQiYWQohGo=', NULL, 0, 'sinhvien04', '', '', '', 0, 1, '2020-12-26 16:23:21.000000'),
+(10, 'pbkdf2_sha256$216000$VblsFRZMYZI9$Q9e0ASiVytEjZq/5qVdNv5FA1Zt3ZPPp+fb3e1MIzC4=', NULL, 0, 'giangvien2', '', '', '', 0, 1, '2020-12-26 16:23:40.000000'),
+(11, 'pbkdf2_sha256$216000$13j1Sca6yFZi$Si9DbbnaINaLEWwpQREcqS+nWBlTdOniHpiLLDd2AHo=', NULL, 0, 'khoa2', '', '', '', 0, 1, '2020-12-26 16:24:00.000000');
 
 -- --------------------------------------------------------
 
@@ -150,7 +155,12 @@ INSERT INTO `auth_user_groups` (`id`, `user_id`, `group_id`) VALUES
 (2, 3, 2),
 (3, 4, 3),
 (4, 5, 4),
-(5, 6, 2);
+(5, 6, 2),
+(6, 7, 1),
+(7, 8, 1),
+(8, 9, 1),
+(9, 10, 2),
+(10, 11, 3);
 
 -- --------------------------------------------------------
 
@@ -205,12 +215,15 @@ CREATE TABLE `chi_dinh` (
 --
 
 INSERT INTO `chi_dinh` (`MSNV`, `id_lop`, `ISBN`, `nam_xuat_ban`) VALUES
-('G00000', 4, NULL, NULL),
-('G00000', 5, NULL, NULL),
-('G00000', 6, NULL, NULL),
-('G00000', 11, NULL, NULL),
-('G00000', 12, NULL, NULL),
-('G00000', 15, NULL, NULL);
+('G00000', 7, NULL, NULL),
+('G00000', 8, NULL, NULL),
+('G00000', 9, NULL, NULL),
+('G00000', 11, 'ANDS1232', NULL),
+('G00000', 12, 'ANDS1232', NULL),
+('G00000', 15, 'ANDS1232', NULL),
+('G00000', 4, 'KSKS6632', NULL),
+('G00000', 5, 'KSKS6632', NULL),
+('G00000', 6, 'KSKS6632', NULL);
 
 -- --------------------------------------------------------
 
@@ -228,7 +241,14 @@ CREATE TABLE `dang_ky` (
 --
 
 INSERT INTO `dang_ky` (`MSSV`, `id_lop`) VALUES
-(1810001, 4);
+(1610001, 5),
+(1610001, 11),
+(1710001, 5),
+(1710001, 9),
+(1710001, 12),
+(1810001, 4),
+(1810001, 7),
+(1810001, 12);
 
 -- --------------------------------------------------------
 
@@ -265,7 +285,17 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`,
 (11, '2020-12-24 08:49:46.437183', '5', 'daotao1', 1, '[{\"added\": {}}]', 4, 1),
 (12, '2020-12-24 08:49:50.939431', '5', 'daotao1', 2, '[{\"changed\": {\"fields\": [\"Groups\"]}}]', 4, 1),
 (13, '2020-12-26 08:52:25.219830', '6', 'giangvien0', 1, '[{\"added\": {}}]', 4, 1),
-(14, '2020-12-26 08:52:30.459662', '6', 'giangvien0', 2, '[{\"changed\": {\"fields\": [\"Groups\"]}}]', 4, 1);
+(14, '2020-12-26 08:52:30.459662', '6', 'giangvien0', 2, '[{\"changed\": {\"fields\": [\"Groups\"]}}]', 4, 1),
+(15, '2020-12-26 16:22:46.436207', '7', 'sinhvien01', 1, '[{\"added\": {}}]', 4, 1),
+(16, '2020-12-26 16:22:54.012803', '7', 'sinhvien01', 2, '[{\"changed\": {\"fields\": [\"Groups\"]}}]', 4, 1),
+(17, '2020-12-26 16:23:04.070713', '8', 'sinhvien02', 1, '[{\"added\": {}}]', 4, 1),
+(18, '2020-12-26 16:23:09.672416', '8', 'sinhvien02', 2, '[{\"changed\": {\"fields\": [\"Groups\"]}}]', 4, 1),
+(19, '2020-12-26 16:23:21.352449', '9', 'sinhvien04', 1, '[{\"added\": {}}]', 4, 1),
+(20, '2020-12-26 16:23:26.513503', '9', 'sinhvien04', 2, '[{\"changed\": {\"fields\": [\"Groups\"]}}]', 4, 1),
+(21, '2020-12-26 16:23:40.909443', '10', 'giangvien2', 1, '[{\"added\": {}}]', 4, 1),
+(22, '2020-12-26 16:23:46.813526', '10', 'giangvien2', 2, '[{\"changed\": {\"fields\": [\"Groups\"]}}]', 4, 1),
+(23, '2020-12-26 16:24:00.574212', '11', 'khoa2', 1, '[{\"added\": {}}]', 4, 1),
+(24, '2020-12-26 16:24:06.166440', '11', 'khoa2', 2, '[{\"changed\": {\"fields\": [\"Groups\"]}}]', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -348,7 +378,7 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('ll9ck84lw4ig44mtyea8gk9jth8yki54', '.eJxVjDsOgzAQBe_iOrLWfGyTMj1nsHZ5JpBEtoShinL3gESRtG9m3lsF3tYpbCUuYYa6Kqsuv5vw8IzpAHhwumc95LQus-hD0Sctus-Ir9vp_h1MXKa9rkgA9rUdUY3knOdIzpIYU0sr8BAQ2oo7IyZ6ImLuXNMMZIDdEvX5AvO8ODI:1kt5nt:dTFMSPjVl2V0qXRASezPEA5b9up6Cw3RsO6FQI09Wqg', '2021-01-09 09:24:01.149098');
+('apm2rppb76nkhuezyarg63xk4p5781ts', '.eJxVjMsOwiAUBf-FtSEIFyQu3fsN5L4qVUOT0q6M_65NutDtmZnzMgXXpZa161xGMWfjzeF3I-SHtg3IHdttsjy1ZR7JbordabfXSfR52d2_g4q9fusTEKNT5ZiHowA6LxmDy5RAIg0EgYJAxoTOiQbQgJQoZmFlEB_N-wMKQDkE:1ktNiE:9jue2cAAi57o5gckA9ofPtrIL8LQaIRbtszIQYLUw-E', '2021-01-10 04:31:22.194911');
 
 -- --------------------------------------------------------
 
@@ -369,7 +399,10 @@ CREATE TABLE `ghi_diem` (
 
 INSERT INTO `ghi_diem` (`MSSV`, `MSNV`, `id_lop`, `diem_so`) VALUES
 (NULL, 'G00000', 11, NULL),
-(NULL, 'G00001', 7, NULL);
+(NULL, 'G00001', 7, NULL),
+(NULL, 'G00002', 8, NULL),
+(NULL, 'G00004', 11, NULL),
+(NULL, 'G00005', 6, NULL);
 
 -- --------------------------------------------------------
 
@@ -713,7 +746,7 @@ CREATE TABLE `trang_thai_hoc_tap` (
 --
 
 INSERT INTO `trang_thai_hoc_tap` (`MSSV`, `hoc_ky`, `trang_thai`) VALUES
-(1610001, 201, 'Tam dung'),
+(1610001, 201, 'Dang hoc'),
 (1710001, 201, 'Dang hoc'),
 (1810001, 201, 'Dang hoc');
 
@@ -996,13 +1029,13 @@ ALTER TABLE `auth_permission`
 -- AUTO_INCREMENT for table `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `auth_user_groups`
 --
 ALTER TABLE `auth_user_groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `auth_user_user_permissions`
@@ -1014,7 +1047,7 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
