@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Tra cứu lớp học </title>
+  <title>Tra cứu thông tin</title>
     {% load static %}
     <!-- basic -->
     <meta charset="utf-8">
@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Tra cứu môn học</title>
+    <title>Tra cứu thông tin</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -67,8 +67,7 @@
                     <div class="col-sm-12">
                         <div class="full text_align_center">
                             <div class="heading_main center_head_border heading_style_1">
-                                <h2>Tra cứu lớp học HK {{hk}}</h2>
-                                <p>{{mssv}}|Tổng số lớp học đăng ký: {{tk.tong_lop}} | Tổng số tín chỉ đăng ký: {{tongtc.tong}}</p>
+                                <h2>TRA CỨU THÔNG TIN SINH VIÊN {{sv.Ho}} {{sv.Ten}}</h2>
                                 <div class="col-md-3 col-lg-2">
                                 </div>
                             </div>
@@ -79,29 +78,48 @@
         </div>
 <div class="container">
 <table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Mã lớp học</th>
-            <th>Mã môn học</th>
-            <th>Tên môn học</th>
-            <th>Giáo viên phụ trách</th>
-            <th>Tổng sinh viên đăng ký</th>
-        </tr>
-    </thead>
     <tbody>
-        {% for c in dslophoc %}
-        <tr>
-            <td>{{c.ma_lop_hoc}}</td>
-            <td>{{c.ma_mon_hoc}}</td>
-            <td>{{c.ten_mon_hoc}}</td>
-            <td>{{c.Ho}} {{c.Ten}}</td>
-            <td>{% for dk in tongdk %}
-                {% if dk.idlop == c.idlop%}
-                    {{dk.tong}}
-                {% endif%}
-            {% endfor %}</td>
-        </tr>
-        {% endfor %}
+        <th>
+            <form action = "{% url 'home:tracuu_monhoc_khoa'%}"  method="POST">
+                {%csrf_token%}
+                <div>Danh sách các môn học:  
+                <input name='makhoa' value='{{sv.ma_khoa}}' readonly>
+                <p>Học kỳ:</p>
+                <input type="text" name='hk' value="{{term}}" readonly></div>
+                </div> 
+                <input class='bt-main' type="submit" value='Tra cứu'>
+            </form>
+        </th>
+        <th>
+            <form action = "{% url 'home:tracuu_lophoc_khoa'%}"  method="POST">
+                {%csrf_token%}
+                <div>Danh sách các lớp học:  
+                <input name='khoa' value='{{sv.ma_khoa}}' readonly>
+                <p>Học kỳ:</p>
+                <input type="text" name='hk' value="{{term}}" readonly></div> 
+                <input class='bt-main' type="submit" value='Tra cứu'>
+            </form>
+        </th>
+        <th>
+            <form action = "{% url 'home:tracuu_monhoc_sinhvien'%}"  method="POST">
+                {%csrf_token%}
+                <div>Danh sách môn học đã đăng ký: 
+                <input name='mssv' value='{{sv.MSSV}}' readonly> 
+                <p>Chọn học kỳ :</p>
+                <input type="text" name='hk'></div> 
+                <input class='bt-main' type="submit" value='Tra cứu'>
+            </form>
+        </th>
+        <th>
+            <form action = "{% url 'home:tracuu_lophoc_sinhvien'%}"  method="POST">
+                {%csrf_token%}
+                <div>Danh sách lớp học đã đăng ký:  
+                <input name='mssv' value='{{sv.MSSV}}' readonly>
+                <p>Chọn học kỳ :</p>
+                <input type="text" name='hk'></div> 
+                <input class='bt-main' type="submit" value='Tra cứu'>
+            </form>
+        </th>
 	</tbody>
 </table>	
 </div>

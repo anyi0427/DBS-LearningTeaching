@@ -67,8 +67,8 @@
                     <div class="col-sm-12">
                         <div class="full text_align_center">
                             <div class="heading_main center_head_border heading_style_1">
-                                <h2>Tra cứu lớp học HK {{hk}}</h2>
-                                <p>{{mssv}}|Tổng số lớp học đăng ký: {{tk.tong_lop}} | Tổng số tín chỉ đăng ký: {{tongtc.tong}}</p>
+                                <h2>Tra cứu môn học HK {{hk}}</h2>
+                                <p>{{mssv}}|Tổng số môn học đăng ký: {{tk.tong}} | Tổng số tín chỉ đăng ký: {{tongtc.tong}}</p>
                                 <div class="col-md-3 col-lg-2">
                                 </div>
                             </div>
@@ -81,25 +81,19 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Mã lớp học</th>
             <th>Mã môn học</th>
             <th>Tên môn học</th>
+            <th>Giáo trình</th>
             <th>Giáo viên phụ trách</th>
-            <th>Tổng sinh viên đăng ký</th>
         </tr>
     </thead>
     <tbody>
-        {% for c in dslophoc %}
+        {% for c in dsmonhoc %}
         <tr>
-            <td>{{c.ma_lop_hoc}}</td>
             <td>{{c.ma_mon_hoc}}</td>
             <td>{{c.ten_mon_hoc}}</td>
+            <td>{{c.ten_giao_trinh}}</td>
             <td>{{c.Ho}} {{c.Ten}}</td>
-            <td>{% for dk in tongdk %}
-                {% if dk.idlop == c.idlop%}
-                    {{dk.tong}}
-                {% endif%}
-            {% endfor %}</td>
         </tr>
         {% endfor %}
 	</tbody>

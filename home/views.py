@@ -532,7 +532,7 @@ def tracuupdt(request):
     return render(request,'home/tracuuthongtinpdt.html',context)
 
 @login_required
-@allowed_users(['pdt','khoa'])
+@allowed_users(['pdt','khoa','sinhvien'])
 def tracuu_monhoc_khoa(request):
     db = MySQLdb.connect(user='root', db='courses_enrollment', passwd='', host='localhost')
     dsmonhoc=[]
@@ -564,7 +564,7 @@ def tracuu_monhoc_khoa(request):
     return render(request,'home/tracuu_monhoc_khoa.html',context)
 
 @login_required
-@allowed_users(['pdt','khoa'])
+@allowed_users(['pdt','khoa','sinhvien'])
 def tracuu_lophoc_khoa(request):
     db = MySQLdb.connect(user='root', db='courses_enrollment', passwd='', host='localhost')
     dslophoc=[]
@@ -573,12 +573,12 @@ def tracuu_lophoc_khoa(request):
         hk=request.POST.get('hk','')
         
         cursor = db.cursor()
-        cursor.execute('SELECT * FROM  lop natural join mon_hoc left join ghi_diem on idlop=id_lop natural left join nhan_vien natural left join nguoi_dung where ma_khoa=\''+str(makhoa)+'\' and hoc_ky='+hk)
+        cursor.execute('SELECT * FROM lop natural join mon_hoc left join ghi_diem on idlop=id_lop natural left join nhan_vien natural left join nguoi_dung where ma_khoa=\''+str(makhoa)+'\' and hoc_ky='+hk+' group by idlop')
         columns = [col[0] for col in cursor.description]
         dslophoc = [dict(zip(columns, row)) for row in cursor.fetchall()]
 
         cursor = db.cursor()
-        cursor.execute('SELECT ma_khoa,count(*)tong_lop FROM  lop natural join mon_hoc left join ghi_diem on idlop=id_lop where ma_khoa=\''+str(makhoa)+'\' and hoc_ky='+hk)        
+        cursor.execute('SELECT count(idlop)tong_lop from(SELECT idlop FROM  lop natural join mon_hoc left join ghi_diem on idlop=id_lop where ma_khoa=\''+str(makhoa)+'\' and hoc_ky='+hk+' group by idlop)ta')        
         columns = [col[0] for col in cursor.description]
         tk = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
 
@@ -616,6 +616,11 @@ def tracuu_lophoc_sinhvien(request):
         tk = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
 
         cursor = db.cursor()
+        cursor.execute('SELECT sum(so_tin_chi)tong FROM  dang_ky join lop on idlop = id_lop natural join mon_hoc where mssv=\''+str(mssv)+'\' and hoc_ky='+hk)
+        columns = [col[0] for col in cursor.description]
+        tongtc = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
+
+        cursor = db.cursor()
         cursor.execute('SELECT idlop,count(*)tong FROM  dang_ky join lop on idlop = id_lop natural join mon_hoc where mssv=\''+str(mssv)+'\' group by id_lop')
         columns = [col[0] for col in cursor.description]
         tongdk = [dict(zip(columns, row)) for row in cursor.fetchall()]
@@ -626,6 +631,7 @@ def tracuu_lophoc_sinhvien(request):
         'dslophoc':dslophoc,
         'tk':tk,
         'tongdk':tongdk,
+        'tongtc':tongtc,
     }
     return render(request,'home/tracuu_lophoc_sinhvien.html',context)
 
@@ -838,3 +844,59 @@ def tracuu_monhoc_giangvien(request):
         # 'tongdk':tongdk,
     }
     return render(request,'home/tracuu_monhoc_giangvien.html',context)
+
+
+@login_required
+@allowed_users(['sinhvien'])
+def tracuusinhvien(request,sv):
+    db = MySQLdb.connect(user='root', db='courses_enrollment', passwd='', host='localhost')
+    
+    cursor = db.cursor()
+    cursor.execute('SELECT * FROM sinh_vien natural join nguoi_dung n where n.username=\''+str(sv)+'\'')
+    columns = [col[0] for col in cursor.description]
+    dsv = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
+    
+    # cursor = db.cursor()
+    # cursor.execute('SELECT * FROM lop left join ghi_diem on idlop=id_lop natural join mon_hoc where MSNV=\''+str(dgv["MSNV"])+'\'')
+    # columns = [col[0] for col in cursor.description]
+    # dslop = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+    context = {
+        'term':current_term,
+        'sv':dsv,
+        # 'dslop':dslop,
+    }
+    return render(request,'home/tracuusinhvien.html',context)
+
+@login_required
+@allowed_users(['pdt','sinhvien'])
+def tracuu_monhoc_sinhvien(request):
+    db = MySQLdb.connect(user='root', db='courses_enrollment', passwd='', host='localhost')
+    dslophoc=[]
+    if request.method=="POST":
+        mssv=request.POST.get('mssv','')
+        hk=request.POST.get('hk','')
+        
+        cursor = db.cursor()
+        cursor.execute('SELECT * FROM dang_ky join lop on idlop=id_lop natural join mon_hoc left join chi_dinh on chi_dinh.id_lop=idlop left join giao_trinh g on chi_dinh.ISBN=g.ISBN natural left join nhan_vien natural left join nguoi_dung where mssv=\''+str(mssv)+'\' and hoc_ky='+hk +' group by lop.ma_mon_hoc')
+        columns = [col[0] for col in cursor.description]
+        dsmonhoc = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+        cursor = db.cursor()
+        cursor.execute('SELECT count(*)tong FROM dang_ky join lop on idlop=id_lop natural join mon_hoc left join chi_dinh on chi_dinh.id_lop=idlop left join giao_trinh g on chi_dinh.ISBN=g.ISBN natural left join nhan_vien natural left join nguoi_dung where mssv=\''+str(mssv)+'\' and hoc_ky='+hk)
+        columns = [col[0] for col in cursor.description]
+        tk = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
+
+        cursor = db.cursor()
+        cursor.execute('SELECT sum(so_tin_chi)tong FROM  dang_ky join lop on idlop = id_lop natural join mon_hoc where mssv=\''+str(mssv)+'\' and hoc_ky='+hk)
+        columns = [col[0] for col in cursor.description]
+        tongtc = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
+
+    context = {
+        'mssv':mssv,
+        'hk':hk,
+        'dsmonhoc':dsmonhoc,
+        'tk':tk,
+        'tongtc':tongtc,
+    }
+    return render(request,'home/tracuu_monhoc_sinhvien.html',context)
