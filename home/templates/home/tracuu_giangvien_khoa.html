@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Tra cứu môn học </title>
+  <title>Tra cứu giảng viên </title>
     {% load static %}
     <!-- basic -->
     <meta charset="utf-8">
@@ -66,8 +66,8 @@
                     <div class="col-sm-12">
                         <div class="full text_align_center">
                             <div class="heading_main center_head_border heading_style_1">
-                                <h2>Tra cứu môn học HK {{hk}}</h2>
-                                <p>{{tk.ma_khoa}}|Tổng số môn học được mở: {{tk.tong_mon}}</p>
+                                <h2>Tra cứu giảng viên HK {{hk}}</h2>
+                                <p>{{makhoa}}|Tổng số giảng viên: {{tk.tong}}</p>
                                 <div class="col-md-3 col-lg-2">
                                 </div>
                             </div>
@@ -80,27 +80,20 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Mã môn học</th>
-            <th>Tên môn học</th>
-            <th>Số tín chỉ</th>
-            <th>Giáo viên phụ trách</th>
-            <th>Tổng sinh viên đăng ký</th>
-            <th>Giáo trình</th>
+            <th>Mã nhân viên</th>
+            <th>Họ</th>
+            <th>Tên</th>
+            <th>Email</th>
         </tr>
     </thead>
+    
     <tbody>
-        {% for c in dsmonhoc %}
+        {% for c in dslophoc %}
         <tr>
-            <td>{{c.ma_mon_hoc}}</td>
-            <td>{{c.ten_mon_hoc}}</td>
-            <td>{{c.so_tin_chi}}</td>
-            <td>{{c.Ho}} {{c.Ten}}</td>
-            <td>{% for dk in tongdk %}
-                {% if dk.ma_mon_hoc == c.ma_mon_hoc%}
-                    {{dk.tong}}
-                {% endif%}
-            {% endfor %}</td>
-            <td>{{c.ten_giao_trinh}}</td>
+            <td>{{c.MSNV}}</td>
+            <td>{{c.Ho}}</td>
+            <td> {{c.Ten}}</td>
+            <td> {{c.Email}}</td>
         </tr>
         {% endfor %}
 	</tbody>
