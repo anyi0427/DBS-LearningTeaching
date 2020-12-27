@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Tra cứu thông tin</title>
+  <title>Tra cứu sinh viên </title>
     {% load static %}
     <!-- basic -->
     <meta charset="utf-8">
@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Tra cứu thông tin</title>
+    <title>Tra cứu sinh viên</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -59,7 +59,6 @@
            </div>
         </div>
      </header>
-
     <div class="container">
         <div class="row">
             <div class="full">
@@ -67,7 +66,8 @@
                     <div class="col-sm-12">
                         <div class="full text_align_center">
                             <div class="heading_main center_head_border heading_style_1">
-                                <h2>TRA CỨU THÔNG TIN KHOA {{khoa.ten_khoa}}</h2>
+                                <h2>Tra cứu sinh viên HK {{hk}}</h2>
+                                <p>{{khoa.ten_khoa}} | Tổng số sinh viên: {{tk.tong}}</p>
                                 <div class="col-md-3 col-lg-2">
                                 </div>
                             </div>
@@ -78,63 +78,25 @@
         </div>
 <div class="container">
 <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>MSSV</th>
+            <th>Họ</th>
+            <th>Tên</th>
+            <th>Email</th>
+            <th>Năm nhập học</th>
+        </tr>
+    </thead>
     <tbody>
-        <th>
-            <form action = "{% url 'home:tracuu_monhoc_khoa'%}"  method="POST">
-                {%csrf_token%}
-                <div>Danh sách môn học của Khoa:  
-                <input name='makhoa' value='{{khoa.ma_khoa}}' readonly>
-                <p>Nhập học kỳ muốn xem:</p>
-                <input type="text" name='hk'></div>
-                </div> 
-                <input class='bt-main' type="submit" value='Tra cứu'>
-            </form>
-        </th>
-        <th>
-            <form action = "{% url 'home:tracuu_lophoc_khoa'%}"  method="POST">
-                {%csrf_token%}
-                <div>Danh sách lớp học của Khoa:  
-                <input name='khoa' value='{{khoa.ma_khoa}}' readonly>
-                <p>Nhập học kỳ muốn xem:</p>
-                <input type="text" name='hk'></div> 
-                <input class='bt-main' type="submit" value='Tra cứu'>
-            </form>
-        </th>
-        <th>
-            <form action = "{% url 'home:tracuu_sinhvien_khoa'%}"  method="POST">
-                {%csrf_token%}
-                <div>Danh sách Sinh viên của Khoa:  
-                <input name='makhoasv' value='{{khoa.ma_khoa}}' readonly>
-                <p>Nhập học kỳ muốn xem:</p>
-                <input type="text" name='hk'></div> 
-                <input class='bt-main' type="submit" value='Tra cứu'>
-            </form>
-        </th>
-        <th>
-            <form action = "{% url 'home:tracuu_giangvien_khoa'%}"  method="POST">
-                {%csrf_token%}
-                <div>Danh sách Giảng viên của Khoa:  
-                <input name='makhoa' value='{{khoa.ma_khoa}}' readonly>
-                <p>Nhập học kỳ muốn xem:</p>
-                <input type="text" name='hk'></div>
-                </div> 
-                <input class='bt-main' type="submit" value='Tra cứu'>
-            </form>
-        </th>
-        <th>
-            <form action = "{% url 'home:tracuu_sinhvien_lop'%}"  method="POST">
-                {%csrf_token%}
-                <div>Danh sách Sinh viên của lớp của Khoa::  
-                <input name='makhoa' value='{{khoa.ma_khoa}}' readonly>
-                <p>Chọn lớp muốn xem:</p>
-                <div> <select name='malop'>
-                    {% for x in dslop %}
-                        <option value="{{x.idlop}}">{{x.ma_lop_hoc }}-{{x.hoc_ky}}-{{x.ten_mon_hoc}}</option>
-                    {% endfor%}
-                </select></div> </div> 
-                <input class='bt-main' type="submit" value='Tra cứu'>
-            </form>
-        </th>
+        {% for c in dssv %}
+        <tr>
+            <td>{{c.MSSV}}</td>
+            <td>{{c.Ho}}</td>
+            <td> {{c.Ten}}</td>
+            <td> {{c.Email}}</td>
+            <td> {{c.nam_nhap_hoc}}</td>
+        </tr>
+        {% endfor %}
 	</tbody>
 </table>	
 </div>

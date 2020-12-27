@@ -694,7 +694,7 @@ def tracuu_giangvien_khoa(request):
         hk=request.POST.get('hk','')
 
         cursor = db.cursor()
-        cursor.execute('SELECT * FROM ghi_diem join lop on idlop = id_lop natural join mon_hoc natural left join nhan_vien natural left join nguoi_dung where ma_khoa=\''+str(makhoa)+'\' and hoc_ky='+hk+' group by idlop')
+        cursor.execute('SELECT * FROM ghi_diem join lop on idlop = id_lop natural join mon_hoc natural left join nhan_vien natural left join nguoi_dung where ma_khoa=\''+str(makhoa)+'\' and hoc_ky='+hk)
         columns = [col[0] for col in cursor.description]
         dslophoc = [dict(zip(columns, row)) for row in cursor.fetchall()]
 
@@ -717,7 +717,6 @@ def tracuu_giangvien_khoa(request):
         # 'tongdk':tongdk,
     }
     return render(request,'home/tracuu_giangvien_khoa.html',context)
-
 
 @login_required
 @allowed_users(['pdt','khoa','giangvien'])
@@ -752,3 +751,57 @@ def tracuu_sinhvien_lop(request):
         # 'tongdk':tongdk,
     }
     return render(request,'home/tracuu_sinhvien_lop.html',context)
+
+@login_required
+@allowed_users(['pdt','khoa'])
+def tracuu_sinhvien_khoa(request):
+    db = MySQLdb.connect(user='root', db='courses_enrollment', passwd='', host='localhost')
+    dslophoc=[]
+    if request.method=="POST":
+        makhoa=request.POST.get('makhoasv','')
+        hk=request.POST.get('hk','')
+       
+        cursor = db.cursor()
+        cursor.execute('SELECT * FROM dang_ky join lop on id_lop=idlop natural join mon_hoc natural join sinh_vien natural left join nguoi_dung where ma_khoa=\''+str(makhoa)+'\' and hoc_ky='+str(hk)+' group by MSSV')
+        columns = [col[0] for col in cursor.description]
+        dssv = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+        cursor = db.cursor()
+        cursor.execute('select count(*)tong from (SELECT MSSV FROM dang_ky join lop on idlop=id_lop natural join mon_hoc where ma_khoa=\''+ str(makhoa)+'\' and hoc_ky='+str(hk) +' group by mssv)sv')
+        columns = [col[0] for col in cursor.description]
+        tk = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
+        
+        cursor = db.cursor()
+        cursor.execute('SELECT * FROM khoa where ma_khoa=\''+str(makhoa)+'\' ' )
+        columns = [col[0] for col in cursor.description]
+        dkhoa = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
+
+    context = {
+        'khoa':dkhoa,
+        'dssv':dssv,
+        'hk':hk,
+        'tk':tk,
+        # 'tongdk':tongdk,
+    }
+    return render(request,'home/tracuu_sinhvien_khoa.html',context)
+
+@login_required
+@allowed_users(['giangvien'])
+def tracuugiangvien(request,gv):
+    db = MySQLdb.connect(user='root', db='courses_enrollment', passwd='', host='localhost')
+    
+    # cursor = db.cursor()
+    # cursor.execute('SELECT * FROM ns_khoa_quan_ly natural join khoa natural join nhan_vien n natural join nguoi_dung where n.username=\''+str(khoa)+'\'')
+    # columns = [col[0] for col in cursor.description]
+    # dkhoa = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
+    
+    # cursor = db.cursor()
+    # cursor.execute('SELECT * FROM lop natural join mon_hoc where ma_khoa=\''+str(dkhoa["ma_khoa"])+'\'')
+    # columns = [col[0] for col in cursor.description]
+    # dslop = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+    context = {
+        # 'khoa':dkhoa,
+        # 'dslop':dslop,
+    }
+    return render(request,'home/tracuugiangvien.html',context)

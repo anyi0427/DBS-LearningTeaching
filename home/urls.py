@@ -29,5 +29,6 @@ urlpatterns = [
    path('tracuukhoa/<str:khoa>/', views.tracuukhoa, name = "tracuukhoa"),
    path('tracuu_giangvien_khoa/', views.tracuu_giangvien_khoa, name = "tracuu_giangvien_khoa"),
    path('tracuu_sinhvien_lop/', views.tracuu_sinhvien_lop, name = "tracuu_sinhvien_lop"),
-
+   path('tracuu_sinhvien_khoa/', views.tracuu_sinhvien_khoa, name = "tracuu_sinhvien_khoa"),
+   path('tracuugiangvien/<str:gv>/', views.tracuugiangvien, name = "tracuugiangvien"),
 ]
