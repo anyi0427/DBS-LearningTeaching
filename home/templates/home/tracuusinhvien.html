@@ -83,7 +83,12 @@
             <form action = "{% url 'home:tracuu_monhoc_khoa'%}"  method="POST">
                 {%csrf_token%}
                 <div>Danh sách các môn học:  
-                <input name='makhoa' value='{{sv.ma_khoa}}' readonly>
+                <p>Chọn khoa</p> 
+                <select name='makhoa'>
+                    {% for x in dskhoa%}
+                        <option value="{{x.ma_khoa}}" >{{x.ten_khoa }}</option>
+                    {% endfor%}
+                </select>
                 <p>Học kỳ:</p>
                 <input type="text" name='hk' value="{{term}}" readonly></div>
                 </div> 
@@ -94,7 +99,12 @@
             <form action = "{% url 'home:tracuu_lophoc_khoa'%}"  method="POST">
                 {%csrf_token%}
                 <div>Danh sách các lớp học:  
-                <input name='khoa' value='{{sv.ma_khoa}}' readonly>
+                <p>Chọn khoa</p> 
+                <select name='khoa'>
+                    {% for x in dskhoa%}
+                        <option value="{{x.ma_khoa}}" >{{x.ten_khoa }}</option>
+                    {% endfor%}
+                </select>
                 <p>Học kỳ:</p>
                 <input type="text" name='hk' value="{{term}}" readonly></div> 
                 <input class='bt-main' type="submit" value='Tra cứu'>

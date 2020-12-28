@@ -118,6 +118,7 @@ def dangky(request, mamh):
         columns = [col[0] for col in cursor6.description]
         trangthai = [dict(zip(columns, row)) for row in cursor6.fetchall()]
 
+        tt='Dang hoc'
         for x in trangthai:
             if x["MSSV"] == ss and x["hoc_ky"] == int(current_term):
                 tt = x["trang_thai"]
@@ -578,7 +579,7 @@ def tracuu_lophoc_khoa(request):
         dslophoc = [dict(zip(columns, row)) for row in cursor.fetchall()]
 
         cursor = db.cursor()
-        cursor.execute('SELECT count(idlop)tong_lop from(SELECT idlop FROM  lop natural join mon_hoc left join ghi_diem on idlop=id_lop where ma_khoa=\''+str(makhoa)+'\' and hoc_ky='+hk+' group by idlop)ta')        
+        cursor.execute('SELECT ma_khoa,count(idlop) tong_lop from(SELECT ma_khoa, idlop FROM  lop natural join mon_hoc left join ghi_diem on idlop=id_lop where ma_khoa=\''+str(makhoa)+'\' and hoc_ky='+hk+' group by idlop)ta')        
         columns = [col[0] for col in cursor.description]
         tk = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
 
@@ -827,7 +828,7 @@ def tracuu_monhoc_giangvien(request):
         dsmonhoc = [dict(zip(columns, row)) for row in cursor.fetchall()]
 
         cursor = db.cursor()
-        cursor.execute('SELECT count(*)tong FROM chi_dinh join lop on idlop=id_lop natural join mon_hoc left join giao_trinh g on chi_dinh.ISBN=g.ISBN where chi_dinh.msnv=\''+str(msnv)+'\' and hoc_ky='+hk +' group by lop.ma_mon_hoc')
+        cursor.execute('SELECT count(*)tong FROM (SELECT * FROM chi_dinh join lop on idlop=id_lop natural join mon_hoc where chi_dinh.msnv=\''+str(msnv)+'\' and hoc_ky='+hk +' group by lop.ma_mon_hoc)ss')
         columns = [col[0] for col in cursor.description]
         tk = [dict(zip(columns, row)) for row in cursor.fetchall()]
         if tk:
@@ -857,6 +858,11 @@ def tracuusinhvien(request,sv):
     columns = [col[0] for col in cursor.description]
     dsv = [dict(zip(columns, row)) for row in cursor.fetchall()][0]
     
+    cursor = db.cursor()
+    cursor.execute('SELECT * FROM khoa')
+    columns = [col[0] for col in cursor.description]
+    dskhoa = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
     # cursor = db.cursor()
     # cursor.execute('SELECT * FROM lop left join ghi_diem on idlop=id_lop natural join mon_hoc where MSNV=\''+str(dgv["MSNV"])+'\'')
     # columns = [col[0] for col in cursor.description]
@@ -865,6 +871,7 @@ def tracuusinhvien(request,sv):
     context = {
         'term':current_term,
         'sv':dsv,
+        'dskhoa':dskhoa,
         # 'dslop':dslop,
     }
     return render(request,'home/tracuusinhvien.html',context)
