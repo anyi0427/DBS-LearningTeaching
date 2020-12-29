@@ -34,4 +34,6 @@ urlpatterns = [
    path('tracuu_monhoc_giangvien/', views.tracuu_monhoc_giangvien, name = "tracuu_monhoc_giangvien"),
    path('tracuusinhvien/<str:sv>/', views.tracuusinhvien, name = "tracuusinhvien"),
    path('tracuu_monhoc_sinhvien/', views.tracuu_monhoc_sinhvien, name = "tracuu_monhoc_sinhvien"),
+   path('tracuu_lophoc_giangvien7', views.tracuu_lophoc_giangvien7, name = "tracuu_lophoc_giangvien7"),
+   path('tracuu_hocky_sinhvien6', views.tracuu_hocky_sinhvien6, name = "tracuu_hocky_sinhvien6"),
 ]

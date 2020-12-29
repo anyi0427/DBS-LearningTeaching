@@ -908,3 +908,48 @@ def tracuu_monhoc_sinhvien(request):
         'tongtc':tongtc,
     }
     return render(request,'home/tracuu_monhoc_sinhvien.html',context)
+
+@login_required
+@allowed_users(['pdt','giangvien'])
+def tracuu_lophoc_giangvien7(request):
+    db = MySQLdb.connect(user='root', db='courses_enrollment', passwd='', host='localhost')
+    dslophoc=[]
+    if request.method=="POST":
+        msnv=request.POST.get('msgv','')
+        
+        cursor = db.cursor()
+        cursor.execute('select id_lop, ma_lop_hoc,ma_mon_hoc, ten_mon_hoc,count(*) si_so from dang_ky join lop on idlop=id_lop natural join mon_hoc where idlop in (select id_lop from ghi_diem where msnv=\''+msnv+ '\') group by idlop order by si_so limit 5')
+        columns = [col[0] for col in cursor.description]
+        dslophoc = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+        cursor = db.cursor()
+        cursor.execute('SELECT id_lop,count(*)tong FROM dang_ky group by id_lop')
+        columns = [col[0] for col in cursor.description]
+        tongdk = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+    context = {
+        'msnv':msnv,
+        'dslophoc':dslophoc,
+        'tongdk':tongdk,
+    }
+    return render(request,'home/tracuu_lophoc7.html',context)
+
+
+@login_required
+@allowed_users(['pdt','sinhvien'])
+def tracuu_hocky_sinhvien6(request):
+    db = MySQLdb.connect(user='root', db='courses_enrollment', passwd='', host='localhost')
+    dshocky=[]
+    if request.method=="POST":
+        mssv=request.POST.get('mssv','')
+        
+        cursor = db.cursor()
+        cursor.execute('select MSSV,hoc_ky, sum(so_tin_chi) tong_tin_chi from dang_ky join lop on id_lop=idlop natural join mon_hoc where mssv=\''+ mssv+'\' group by hoc_ky order by tong_tin_chi limit 3')
+        columns = [col[0] for col in cursor.description]
+        dshocky = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+    context = {
+        'mssv':mssv,
+        'dshocky':dshocky,
+    }
+    return render(request,'home/tracuu_hocky_sinhvien6.html',context)

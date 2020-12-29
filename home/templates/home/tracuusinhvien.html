@@ -79,7 +79,7 @@
             <th style="text-align: center;">DS các lớp học mở:</th>
             <th style="text-align: center;">DS môn học đã đăng ký:</th>
             <th style="text-align: center;">DS lớp học đã đăng ký:</th>
-
+            <th style="text-align: center;">3 học kỳ đăng ký nhiều tín chỉ nhất:</th>
         <tr>
     </thead>
     <tbody> 
@@ -183,6 +183,24 @@
                 </div>
                 <br>
                 <input class='btn btn-primary' type="submit" value='Tra cứu' style="float: right;"> 
+            </form>
+        </th>
+        <th>
+            <form class="was-validated" action = "{% url 'home:tracuu_hocky_sinhvien6'%}"  method="POST">
+                {%csrf_token%}
+                <!-- <div>Danh sách lớp học đã đăng ký:  
+                <input name='mssv' value='{{sv.MSSV}}' readonly>
+                <p>Chọn học kỳ :</p>
+                <input type="text" name='hk'></div> 
+                <input class='bt-main' type="submit" value='Tra cứu'> -->
+
+                <div class="form-group">
+                    <a style="text-align: center;">MSSV: </a>
+                    <input name='mssv' value="{{sv.MSSV}}" readonly style="align-items: center; width: 100px; height: 35px; text-align: center;">
+                </div>
+                
+                <br>
+                <input class='btn btn-primary' type="submit" value='Tra cứu' style="float: left;"> 
             </form>
         </th>
 	</tbody>

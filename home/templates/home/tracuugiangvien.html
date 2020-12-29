@@ -78,6 +78,7 @@
             <th style="text-align: center;">DS môn học phụ trách:</th>
             <th style="text-align: center;">DS lớp học phụ trách:</th>
             <th style="text-align: center;">DS sinh viên của lớp:</th>
+            <th style="text-align: center;">5 lớp học có số sinh viên cao nhất:</th>
         <tr>
     </thead>
     <tbody>
@@ -156,8 +157,29 @@
                     <input type="text" name='hk' style="align-items: center; width: 100px; height: 35px; text-align: center;">
                     <input class='btn btn-primary' type="submit" value='Tra cứu' style="float: right;">
                 </div>
-
-                
+            </form>
+        </th>
+        <th>
+            <form class="was-validated" action = "{% url 'home:tracuu_lophoc_giangvien7'%}"  method="POST">
+                {%csrf_token%}
+                <!-- <div>Danh sách Sinh viên của lớp:  
+                <input name='magv' value='{{gv.MSNV}}' readonly>
+                <p>Chọn lớp muốn xem:</p>
+                <div> <select name='malop'>
+                    {% for x in dslop %}
+                        <option value="{{x.idlop}}">{{x.ma_lop_hoc }}-{{x.hoc_ky}}-{{x.ten_mon_hoc}}</option>
+                    {% endfor%}
+                </select></div> 
+                <p>Nhập học kỳ muốn xem:</p>
+                <input type="text" name='hk'>
+                </div>  -->
+                <div class="form-group">
+                    <a style="text-align: center;">MSGV: </a>
+                    <input name='msgv' value="{{gv.MSNV}}" readonly style="align-items: center; width: 100px; height: 35px; text-align: center;">
+                </div>
+                <div>
+                    <input class='btn btn-primary' type="submit" value='Tra cứu' style="float: left;">
+                </div>
             </form>
         </th>
 	</tbody>
