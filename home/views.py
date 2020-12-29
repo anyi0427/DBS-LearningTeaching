@@ -918,7 +918,7 @@ def tracuu_lophoc_giangvien7(request):
         msnv=request.POST.get('msgv','')
         
         cursor = db.cursor()
-        cursor.execute('select id_lop, ma_lop_hoc,ma_mon_hoc, ten_mon_hoc,count(*) si_so from dang_ky join lop on idlop=id_lop natural join mon_hoc where idlop in (select id_lop from ghi_diem where msnv=\''+msnv+ '\') group by idlop order by si_so limit 5')
+        cursor.execute('select id_lop, ma_lop_hoc,ma_mon_hoc, ten_mon_hoc,count(*) si_so from dang_ky join lop on idlop=id_lop natural join mon_hoc where idlop in (select id_lop from ghi_diem where msnv=\''+msnv+ '\') group by idlop order by si_so desc limit 5')
         columns = [col[0] for col in cursor.description]
         dslophoc = [dict(zip(columns, row)) for row in cursor.fetchall()]
 
@@ -944,7 +944,7 @@ def tracuu_hocky_sinhvien6(request):
         mssv=request.POST.get('mssv','')
         
         cursor = db.cursor()
-        cursor.execute('select MSSV,hoc_ky, sum(so_tin_chi) tong_tin_chi from dang_ky join lop on id_lop=idlop natural join mon_hoc where mssv=\''+ mssv+'\' group by hoc_ky order by tong_tin_chi limit 3')
+        cursor.execute('select MSSV,hoc_ky, sum(so_tin_chi) tong_tin_chi from dang_ky join lop on id_lop=idlop natural join mon_hoc where mssv=\''+ mssv+'\' group by hoc_ky order by tong_tin_chi desc limit 3')
         columns = [col[0] for col in cursor.description]
         dshocky = [dict(zip(columns, row)) for row in cursor.fetchall()]
 
