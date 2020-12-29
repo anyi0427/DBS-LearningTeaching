@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{% static 'home/css/colors.css' %}" />
     <!-- wow animation css -->
     <link rel="stylesheet" href="{% static 'home/css/animate.css' %}" />
+    
   
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -40,17 +41,17 @@
               <div class="col-md-9 col-lg-10">
                  <div class="logo"><a href=""><img src="{% static 'home/images/logo.png' %}" alt="#" style="width:60%;height:60%;"/></a></div>
                  <div class="main_menu float-right">
-                    <!-- <div class="menu">
+                    <div class="menu">
                        <ul class="clearfix">
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                          <li class="active"><a href="{% url 'home:total' %}"></a></li>
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
+                           <!-- <li><a href=""></a></li>
+                           <li><a href=""></a></li> -->
+                           <li><a href="">Xin chào, {{ user.username }}!  </a></li>
+                           <!-- <li><a href=""></a></li>
+                           {% comment %} <li class="active"><a href="{% url 'SinhVien:SinhVien' %}">Danh sách sinh viên</a></li> {% endcomment %}
+                           <li><a href=""></a></li>
+                           <li><a href=""></a></li> -->
                        </ul>
-                    </div> -->
+                    </div>
                  </div>
               </div>
               <div class="col-md-3 col-lg-2">
@@ -87,20 +88,40 @@
                                  {% endif %}
                               {% endfor %}   
                            {% endif %} 
-                        <form action = "{%url 'home:dangky' courses.ma_mon_hoc%}"  method="post">
+                        <form class="was-validated" action = "{%url 'home:dangky' courses.ma_mon_hoc%}"  method="post">
                             {%csrf_token%}
                             <div class="container">
                             <table class="table table-striped">
                                 <br><br><br>
-                                <h3 style="text-transform: uppercase;font-family: ROBOTO;">Học kỳ: {{courses.hoc_ky}}</h3>
-                                <h3 style="text-transform: uppercase;font-family: ROBOTO;">Mã môn học: {{courses.ma_mon_hoc}}</h3>
-                                <h3 style="text-transform: uppercase;font-family: ROBOTO;">Số tín chỉ: {{courses.so_tin_chi}}</h3>
-                                <h3 style="text-transform: uppercase;font-family: ROBOTO;">Mã lớp học:</h3>
-                                    <div class="form-group"><select name='malop'>
-                                        {% for x in classes%}
-                                            <option class="dropdown" value="{{ x.idlop }}"> {{ x.ma_lop_hoc }}</option>
-                                        {% endfor%}
-                                    </select></div>
+                                <h3 style="text-transform: uppercase;font-family: ROBOTO;">Học kỳ: <strong>{{courses.hoc_ky}}</strong></h3>
+                                <h3 style="text-transform: uppercase;font-family: ROBOTO;">Mã môn học: <strong>{{courses.ma_mon_hoc}}</strong></h3>
+                                <h3 style="text-transform: uppercase;font-family: ROBOTO;">Số tín chỉ: <strong>{{courses.so_tin_chi}}</strong></h3>
+                                <!-- <h3 style="text-transform: uppercase;font-family: ROBOTO;">Mã lớp học:</h3> -->
+                                    <div class="form-group" style="align-items: center;">
+                                       <select class="custom-select" required style="width: 150px; height: 50px" name='malop'>
+                                          <option value="" style="font-family: ROBOTO; font-weight: bold;">MÃ LỚP HỌC</option>
+                                          {% for x in classes%}  
+                                             <option value="{{ x.idlop }}">{{ x.ma_lop_hoc }}</option>
+                                          {% endfor%}
+                                       </select>
+                                       <div class="invalid-feedback">Vui lòng chọn một lớp học</div>
+                                    </div>
+                                    <!-- <div class="container00">
+                                       <div class="dropdown00">
+                                          <div class="select00">
+                                             <span>Chọn lớp học</span>
+                                          </div>
+                                          <input type="hidden" name='malop'>
+                                          <ul class="dropdown-menu" name='malop'>
+                                             {% for x in classes%}  
+                                             <option value="{{ x.idlop }}">{{ x.ma_lop_hoc }}</option>
+                                             <li value="{{ x.idlop }}">{{ x.ma_lop_hoc }}</li>
+                                             {% endfor%}
+                                          </ul>
+                                       </div>
+                                    </div> -->
+
+                                    
                                     <!-- <div class="custom-select" style="width:200px;">
                                        <select>
                                           {% for x in classes%}

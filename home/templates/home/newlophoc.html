@@ -40,14 +40,14 @@
                   <div class="main_menu float-right">
                      <div class="menu">
                         <ul class="clearfix">
-                           <li><a href=""></a></li>
-                           <li><a href=""></a></li>
-                           <li><a href=""></a></li>
-                           <li><a href=""></a></li>
+                           <!-- <li><a href=""></a></li>
+                           <li><a href=""></a></li> -->
+                           <li><a href="">Xin chào, {{ user.username }}!  </a></li>
+                           <!-- <li><a href=""></a></li>
                            {% comment %} <li class="active"><a href="{% url 'SinhVien:SinhVien' %}">Danh sách sinh viên</a></li> {% endcomment %}
                            <li><a href=""></a></li>
-                           <li><a href=""></a></li>
-                        </ul>
+                           <li><a href=""></a></li> -->
+                       </ul>
                      </div>
                   </div>
                </div>
@@ -65,23 +65,24 @@
                      <div class="col-sm-12">
                         <div class="full text_align_center">
                            <div class="heading_main center_head_border heading_style_1">
-                                <h2>THÔNG TIN LỚP HỌC </h2>
+                                <h2>THÊM LỚP HỌC </h2>
                                 <form action = "{% url 'home:newLophoc' ma_khoa%}"  method="POST">
                                     {%csrf_token%}
-                                        <div>Mã lớp học<input type="text" name='ma_lop_hoc'></div>
-                                        <div>Môn học <select name='ma_mh'>
+                                        <div>Mã lớp học: <input type="text" name='ma_lop_hoc' required style="width: auto; height: 40px; float: inline-start;"></div><br>
+                                        <div class="form-group">Môn học: <select name='ma_mh' class="custom-select" required style="width: auto; height: 40px">
                                             <table class="table table-striped">
                                                 <tbody>
                                                     <th>
                                                         {% for x in monhoc%}
-                                                            <option value="{{ x.ma_mon_hoc}}">{{x.ten_mon_hoc }}</option>
+                                                            <option value="{{ x.ma_mon_hoc }}">{{x.ten_mon_hoc }}</option>
                                                         {% endfor%}
                                                     </th>
                                                     <th>  </th>
                                                 </tbody>
                                             </table>
                                         </select></div> 
-                                    <input class='bt-main' type="submit" value='Thêm lớp học'>
+                                    <br>
+                                    <input class='btn btn-primary' type="submit" value='Thêm lớp học'>
                                 </form>
                             </div>
                         </div>
@@ -89,7 +90,7 @@
                   </div>
                </div>
             </div>
-            >
+            
             
             {% comment %} <div class="row">
                <div class="col-sm-12">

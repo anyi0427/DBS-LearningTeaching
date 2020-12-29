@@ -40,13 +40,7 @@
                   <div class="main_menu float-right">
                      <div class="menu">
                         <ul class="clearfix">
-                           <li><a href=""></a></li>
-                           <li><a href=""></a></li>
-                           <li><a href=""></a></li>
-                           <li><a href=""></a></li>
-                           {% comment %} <li class="active"><a href="{% url 'SinhVien:SinhVien' %}">Danh sách sinh viên</a></li> {% endcomment %}
-                           <li><a href=""></a></li>
-                           <li><a href=""></a></li>
+                           <li><a href="">Xin chào, {{ user.username }}!</a></li>
                         </ul>
                      </div>
                   </div>
@@ -65,22 +59,45 @@
                      <div class="col-sm-12">
                         <div class="full text_align_center">
                            <div class="heading_main center_head_border heading_style_1">
-                                <h2>CHỈNH SỬA MÔN HỌC</h2>
-                                <h3>Cập nhật thông tin môn học</h3>
+                                <h2 style="font-weight: bold;">CHỈNH SỬA MÔN HỌC</h2>
+                                <!-- <h3>Cập nhật thông tin môn học</h3> -->
                                 <form action = "{% url 'home:updateMonhoc' monhoc.ma_khoa monhoc.ma_mon_hoc%}"  method="POST">
                                     {%csrf_token%}
-                                    <table class="table table-striped">
+                                    <table class="table table-hover">
+                                          <thead style="background-color: #1E72BC; color: #FFFFFF;">
+                                             <tr>
+                                                <th style="text-align: center;">Mã môn học:</th>
+                                                <th style="text-align: center;">Tên môn học:</th>
+                                                <th style="text-align: center;">Số tín chỉ:</th>
+                                                <th style="text-align: center;">Giáo viên phụ trách:</th>
+                                             <tr>
+                                          </thead>
                                         <tbody>
-                                            <th>
+                                            <!-- <th>
                                                 <th>Mã môn học {{monhoc.ma_mon_hoc}}</th>
                                                 <th>
                                                     <label for="ten_mon_hoc">Tên môn học </label>
                                                     <textarea id="ten_mon_hoc" name="ten_mon_hoc" rows="1" cols="50">{{monhoc.ten_mon_hoc}}</textarea></th>
                                                 <th>Số tín chỉ <input type="text" name='so_tin_chi' value={{monhoc.so_tin_chi}}></th>
-                                            </th>
+                                            </th> -->
+                                            <tr>
+                                                <th>{{monhoc.ma_mon_hoc}}</th>
+                                                <th>
+                                                   <!-- <label for="ten_mon_hoc">Tên môn học </label> -->
+                                                   <input id="ten_mon_hoc" name="ten_mon_hoc" rows="2" cols="30" style="height: 35px; width: 300px; text-align: center;" value="{{monhoc.ten_mon_hoc}}"></input>
+                                                </th>
+                                                <th><input type="text" name='so_tin_chi' value={{monhoc.so_tin_chi}} style="height: 35px; width: 300px; text-align: center;"></th>
+                                                <th>
+                                                   <select name='gvphutrach' style="height: 35px; width: 300px;">
+                                                      {% for x in gv%}
+                                                         <option style="text-align: center;" value="{{ x.MSNV}}">{{x.Ho }} {{x.Ten}}</option>
+                                                      {% endfor%}
+                                                </select>
+                                               </th>
+                                            </tr>
                                         </tbody>
                                     </table>	
-                                    <h3>Cập nhật giáo viên phụ trách</h3>
+                                    <!-- <h3>Cập nhật giáo viên phụ trách</h3>
                                         <div> <select name='gvphutrach'>
                                             <table class="table table-striped">
                                                 <tbody>
@@ -93,8 +110,8 @@
                                                 </tbody>
                                             </table>
                                             
-                                        </select></div> 
-                                    <input class='bt-main' type="submit" value='Hoàn tất'>
+                                        </select></div>  -->
+                                        <input class='btn btn-primary' type="submit" value='Hoàn tất' style="float: right;">
                                 </form>
                             </div>
                         </div>

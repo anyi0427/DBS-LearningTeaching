@@ -41,15 +41,9 @@
                  <div class="logo"><a href=""><img src="{% static 'home/images/logo.png' %}" alt="#" style="width:60%;height:60%;"/></a></div>
                  <div class="main_menu float-right">
                     <div class="menu">
-                       <ul class="clearfix">
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                          <li class="active"><a href="{% url 'home:total' %}"></a></li>
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                       </ul>
+                        <ul class="clearfix">
+                            <li><a href="">Xin chào, {{ user.username }}!</a></li>
+                        </ul>
                     </div>
                  </div>
               </div>
@@ -66,8 +60,8 @@
                     <div class="col-sm-12">
                         <div class="full text_align_center">
                             <div class="heading_main center_head_border heading_style_1">
-                                <h2>Tra cứu giảng viên HK {{hk}}</h2>
-                                <p>{{makhoa}}|Tổng số giảng viên: {{tk.tong}}</p>
+                                <h1><strong> TRA CỨU GIẢNG VIÊN KHOA HK {{hk}} </strong></h2>
+                                <p>Mã khoa: {{makhoa}} | Tổng số giảng viên: {{tk.tong}}</p>
                                 <div class="col-md-3 col-lg-2">
                                 </div>
                             </div>
@@ -78,7 +72,7 @@
         </div>
 <div class="container">
 <table class="table table-striped">
-    <thead>
+    <thead style="background-color: #1E72BC; color: #FFFFFF;">
         <tr>
             <th>Mã nhân viên</th>
             <th>Họ</th>

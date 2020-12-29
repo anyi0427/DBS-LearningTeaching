@@ -42,13 +42,13 @@
                  <div class="main_menu float-right">
                     <div class="menu">
                        <ul class="clearfix">
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                          <li class="active"><a href="{% url 'home:total' %}"></a></li>
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
+                          <!-- <li><a href=""></a></li>
+                           <li><a href=""></a></li> -->
+                           <li><a href="">Xin chào, {{ user.username }}!  </a></li>
+                           <!-- <li><a href=""></a></li>
+                           {% comment %} <li class="active"><a href="{% url 'SinhVien:SinhVien' %}">Danh sách sinh viên</a></li> {% endcomment %}
+                           <li><a href=""></a></li>
+                           <li><a href=""></a></li> -->
                        </ul>
                     </div>
                  </div>
@@ -67,12 +67,16 @@
                  <div class="col-sm-12">
                     <div class="full text_align_center">
                        <div class="heading_main center_head_border heading_style_1">
-                           <h2>Bạn có chắc muốn xóa lớp học này không?</a></h2>
-                           <a class="bt_main" href="{% url 'home:qllophoc' ma_khoa %}">Quay lại</a></h3>
+                           <div style="height: 450px; text-align: center; display: table-cell; vertical-align: middle;">
+                              <h1 style="text-transform: uppercase;"><strong>Bạn có chắc muốn xóa lớp học này không?</strong></h1>
+                              <br></br>
                            <form action="{% url 'home:deleteLophoc' lop.ma_khoa lop.idlop %}" method="POST">
                               {%csrf_token%}
-                              <input type = "submit" value="Xóa">
+                              <input class="btn btn-danger btn-ln" type="submit" value="Xóa" style="float: right;">
                            </form>
+                           </div>
+                           <br></br>
+                           <a class="bt_main" href="{% url 'home:qllophoc' ma_khoa %}">Quay lại</a></h3>
                        </div>
                     </div>
                  </div>

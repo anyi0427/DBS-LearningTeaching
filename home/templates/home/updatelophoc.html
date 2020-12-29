@@ -40,13 +40,7 @@
                   <div class="main_menu float-right">
                      <div class="menu">
                         <ul class="clearfix">
-                           <li><a href=""></a></li>
-                           <li><a href=""></a></li>
-                           <li><a href=""></a></li>
-                           <li><a href=""></a></li>
-                           {% comment %} <li class="active"><a href="{% url 'SinhVien:SinhVien' %}">Danh sách sinh viên</a></li> {% endcomment %}
-                           <li><a href=""></a></li>
-                           <li><a href=""></a></li>
+                           <li><a href="">Xin chào, {{ user.username }}!</a></li>
                         </ul>
                      </div>
                   </div>
@@ -65,12 +59,13 @@
                      <div class="col-sm-12">
                         <div class="full text_align_center">
                            <div class="heading_main center_head_border heading_style_1">
-                                <h2>CHỈNH SỬA LỚP HỌC </h2>
+                                <h2>CHỈNH SỬA LỚP HỌC</h2>
+                                <br>
                                 <h4>{{lop.ma_lop_hoc}} - {{lop.ten_mon_hoc}} - {{lop.hoc_ky}}</h4>
                                 <form action = ""  method="POST">
                                     {%csrf_token%}
-                                    <h3>Cập nhật giáo viên phụ trách</h3>
-                                        <div> <select name='gvphutrach'>
+                                    <p>Cập nhật giáo viên phụ trách</p>
+                                        <div class="form-group"> <select name='gvphutrach' class="custom-select" required style="width: auto; height: 40px"> 
                                             <table class="table table-striped">
                                                 <tbody>
                                                     <th>
@@ -83,7 +78,8 @@
                                             </table>
                                             
                                         </select></div> 
-                                    <input class='bt-main' type="submit" value='Hoàn tất'>
+                                    <br>
+                                    <input class='btn btn-primary' type="submit" value='Hoàn tất'>
                                 </form>
                             </div>
                         </div>

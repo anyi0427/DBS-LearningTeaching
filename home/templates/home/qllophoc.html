@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="{% static 'home/colors.css' %}" />
     <!-- wow animation css -->
     <link rel="stylesheet" href="{% static 'home/animate.css' %}" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -41,15 +43,15 @@
                  <div class="logo"><a href=""><img src="{% static 'home/images/logo.png' %}" alt="#" style="width:60%;height:60%;"/></a></div>
                  <div class="main_menu float-right">
                     <div class="menu">
-                       <ul class="clearfix">
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                          <li class="active"><a href="{% url 'home:total' %}"></a></li>
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                       </ul>
+                        <ul class="clearfix">
+                            <!-- <li><a href=""></a></li>
+                            <li><a href=""></a></li> -->
+                            <li><a href="">Xin chào, {{ user.username }}!  </a></li>
+                            <!-- <li><a href=""></a></li>
+                            {% comment %} <li class="active"><a href="{% url 'SinhVien:SinhVien' %}">Danh sách sinh viên</a></li> {% endcomment %}
+                            <li><a href=""></a></li>
+                            <li><a href=""></a></li> -->
+                        </ul>
                     </div>
                  </div>
               </div>
@@ -67,15 +69,9 @@
                     <div class="col-sm-12">
                         <div class="full text_align_center">
                             <div class="heading_main center_head_border heading_style_1">
-                                <h2>QUẢN LÝ LỚP HỌC HK {{term}} {{khoa.ten_khoa}}</h2>
+                                <h1 style="text-transform: uppercase;"><strong>QUẢN LÝ LỚP HỌC HK {{term}} {{khoa.ten_khoa}}</strong></h1>   
                                 <div class="col-md-3 col-lg-2">
-                                    {% if user.is_authenticated %}
-                                    {% for group in request.user.groups.all %}
-                                        {% if group.name == 'khoa'%}
-                                            <div class="table_price_bottm"> <a class="bt_main" href="{% url 'home:newLophoc' khoa.ma_khoa%}">Thêm lớp học</a> </div>
-                                        {% endif %}
-                                    {% endfor %}   
-                                    {% endif %} 
+                                        
                                 </div>
                             </div>
                         </div>
@@ -83,14 +79,21 @@
                 </div>
             </div>
         </div>
+        {% if user.is_authenticated %}
+        {% for group in request.user.groups.all %}
+            {% if group.name == 'khoa'%}
+                <div class="table_price_left" style="text-align: right;"> <a href="{% url 'home:newLophoc' khoa.ma_khoa%}" style="font-weight: bold;"><i class="fas fa-plus-square" style="font-size: large;"></i> Thêm môn học</a></div>
+            {% endif %}
+        {% endfor %}   
+        {% endif %}
 <div class="container">
 <table class="table table-striped">
-    <thead>
+    <thead style="background-color: #1E72BC; color: #FFFFFF;">
         <tr>
             <th>Mã môn học</th>
             <th>Tên môn học</th>
             <th>Mã lớp học</th>
-            <th> Sĩ số </th>
+            <th colspan="3"> Sĩ số </th>
         </tr>
     </thead>
     <tbody>
@@ -108,10 +111,10 @@
             </td>
             {% for group in request.user.groups.all %}
                 {% if group.name == 'khoa'%}
-                    <th><a class='bt-main' href="{% url 'home:updateLophoc' c.ma_khoa c.idlop %}">Phân công </a></th>
+                    <th style="text-align: right;"><a class='bt-main' href="{% url 'home:updateLophoc' c.ma_khoa c.idlop %}">Phân công </a></th>
                 {% endif %}
             {% endfor %}
-            <th><a class='bt-main' href="{% url 'home:deleteLophoc' c.ma_khoa c.idlop %}">Xóa</a></th>
+            <th style="text-align: right;"><a class='bt-main' href="{% url 'home:deleteLophoc' c.ma_khoa c.idlop %}" style="color: red;"><i class="fas fa-trash-alt"></i></a></th>
         </tr>
         {% endfor %}
 	</tbody>

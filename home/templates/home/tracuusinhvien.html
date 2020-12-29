@@ -41,15 +41,9 @@
                  <div class="logo"><a href=""><img src="{% static 'home/images/logo.png' %}" alt="#" style="width:60%;height:60%;"/></a></div>
                  <div class="main_menu float-right">
                     <div class="menu">
-                       <ul class="clearfix">
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                          <li class="active"><a href="{% url 'home:total' %}"></a></li>
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                       </ul>
+                        <ul class="clearfix">
+                            <li><a href="">Xin chào, {{ user.username }}!</a></li>
+                        </ul>
                     </div>
                  </div>
               </div>
@@ -68,6 +62,7 @@
                         <div class="full text_align_center">
                             <div class="heading_main center_head_border heading_style_1">
                                 <h3 style="text-transform: uppercase; font-family: ROBOTO;">TRA CỨU THÔNG TIN SINH VIÊN <strong>{{sv.Ho}} {{sv.Ten}}</strong></h3>
+                                <p>MSSV: {{ sv.MSSV }}</p>
                                 <div class="col-md-3 col-lg-2">
                                 </div>
                             </div>
@@ -77,12 +72,21 @@
             </div>
         </div>
 <div class="container">
-<table class="table table-light">
+<table class="table table-bordered">
+    <thead style="background-color: #1E72BC; color: #FFFFFF;">
+        <tr>
+            <th style="text-align: center;">DS các môn học mở:</th>
+            <th style="text-align: center;">DS các lớp học mở:</th>
+            <th style="text-align: center;">DS môn học đã đăng ký:</th>
+            <th style="text-align: center;">DS lớp học đã đăng ký:</th>
+
+        <tr>
+    </thead>
     <tbody> 
         <th>
-            <form action = "{% url 'home:tracuu_monhoc_khoa'%}"  method="POST">
+            <form class="was-validated" action = "{% url 'home:tracuu_monhoc_khoa'%}"  method="POST">
                 {%csrf_token%}
-                <div>Danh sách các môn học:  
+                <!-- <div>Danh sách các môn học:  
                 <p>Chọn khoa</p> 
                 <select name='makhoa'>
                     {% for x in dskhoa%}
@@ -91,14 +95,29 @@
                 </select>
                 <p>Học kỳ:</p>
                 <input type="text" name='hk' value="{{term}}" readonly></div>
-                </div> 
-                <input class='bt-main' type="submit" value='Tra cứu'>
+                </div>  -->
+                
+                
+                <div class="form-group" style="align-items: center;">
+                    <select name='makhoa' class="custom-select" required style="width: auto; height: 40px">
+                       <option value="" style="font-family: ROBOTO; font-weight: bold;">Chọn khoa:</option>
+                       {% for x in dskhoa%}  
+                            <option value="{{x.ma_khoa}}" >{{x.ten_khoa }}</option>
+                       {% endfor%}
+                    </select>
+                    <div class="invalid-feedback">Vui lòng chọn khoa</div>
+                </div>
+                <div>
+                    <input type="text" name='hk' value="{{term}}" readonly style="align-items: center; width: 100px; height: 35px; text-align: center;">
+                    <input class='btn btn-primary' type="submit" value='Tra cứu' style="float: right;">
+                </div>
             </form>
         </th>
+
         <th>
-            <form action = "{% url 'home:tracuu_lophoc_khoa'%}"  method="POST">
+            <form class="was-validated" action = "{% url 'home:tracuu_lophoc_khoa'%}"  method="POST">
                 {%csrf_token%}
-                <div>Danh sách các lớp học:  
+                <!-- <div>Danh sách các lớp học:  
                 <p>Chọn khoa</p> 
                 <select name='khoa'>
                     {% for x in dskhoa%}
@@ -107,27 +126,63 @@
                 </select>
                 <p>Học kỳ:</p>
                 <input type="text" name='hk' value="{{term}}" readonly></div> 
-                <input class='bt-main' type="submit" value='Tra cứu'>
+                <input class='bt-main' type="submit" value='Tra cứu'> -->
+
+                <div class="form-group" style="align-items: center;">
+                    <select name='khoa' class="custom-select" required style="width: auto; height: 40px">
+                       <option value="" style="font-family: ROBOTO; font-weight: bold;">Chọn khoa:</option>
+                       {% for x in dskhoa%}  
+                            <option value="{{x.ma_khoa}}" >{{ x.ten_khoa }}</option>
+                       {% endfor%}
+                    </select>
+                    <div class="invalid-feedback">Vui lòng chọn khoa</div>
+                </div>
+                <div>
+                    <input type="text" name='hk' value="{{term}}" readonly style="align-items: center; width: 100px; height: 35px; text-align: center;">
+                    <input class='btn btn-primary' type="submit" value='Tra cứu' style="float: right;">
+                </div>
             </form>
         </th>
         <th>
-            <form action = "{% url 'home:tracuu_monhoc_sinhvien'%}"  method="POST">
+            <form class="was-validated" action = "{% url 'home:tracuu_monhoc_sinhvien'%}"  method="POST">
                 {%csrf_token%}
-                <div>Danh sách môn học đã đăng ký: 
+                <!-- <div>Danh sách môn học đã đăng ký: 
                 <input name='mssv' value='{{sv.MSSV}}' readonly> 
                 <p>Chọn học kỳ :</p>
                 <input type="text" name='hk'></div> 
-                <input class='bt-main' type="submit" value='Tra cứu'>
+                <input class='bt-main' type="submit" value='Tra cứu'> -->
+
+                <div class="form-group">
+                    <a style="text-align: center;">MSSV: </a>
+                    <input name='mssv' value="{{sv.MSSV}}" readonly style="align-items: center; width: 100px; height: 35px; text-align: center;">
+                </div>
+                <div>
+                    <a>Học kỳ:</a>
+                    <input type="text" name='hk' style="align-items: center; width: 100px; height: 35px; text-align: center;">
+                </div>
+                <br>
+                <input class='btn btn-primary' type="submit" value='Tra cứu' style="float: right;"> 
             </form>
         </th>
         <th>
-            <form action = "{% url 'home:tracuu_lophoc_sinhvien'%}"  method="POST">
+            <form class="was-validated" action = "{% url 'home:tracuu_lophoc_sinhvien'%}"  method="POST">
                 {%csrf_token%}
-                <div>Danh sách lớp học đã đăng ký:  
+                <!-- <div>Danh sách lớp học đã đăng ký:  
                 <input name='mssv' value='{{sv.MSSV}}' readonly>
                 <p>Chọn học kỳ :</p>
                 <input type="text" name='hk'></div> 
-                <input class='bt-main' type="submit" value='Tra cứu'>
+                <input class='bt-main' type="submit" value='Tra cứu'> -->
+
+                <div class="form-group">
+                    <a style="text-align: center;">MSSV: </a>
+                    <input name='mssv' value="{{sv.MSSV}}" readonly style="align-items: center; width: 100px; height: 35px; text-align: center;">
+                </div>
+                <div>
+                    <a>Học kỳ:</a>
+                    <input type="text" name='hk' style="align-items: center; width: 100px; height: 35px; text-align: center;">
+                </div>
+                <br>
+                <input class='btn btn-primary' type="submit" value='Tra cứu' style="float: right;"> 
             </form>
         </th>
 	</tbody>

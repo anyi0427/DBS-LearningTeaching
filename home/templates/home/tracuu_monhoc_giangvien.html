@@ -41,15 +41,15 @@
                  <div class="logo"><a href=""><img src="{% static 'home/images/logo.png' %}" alt="#" style="width:60%;height:60%;"/></a></div>
                  <div class="main_menu float-right">
                     <div class="menu">
-                       <ul class="clearfix">
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                          <li class="active"><a href="{% url 'home:total' %}"></a></li>
-                          <li><a href=""></a></li>
-                          <li><a href=""></a></li>
-                       </ul>
+                        <ul class="clearfix">
+                            <!-- <li><a href=""></a></li>
+                            <li><a href=""></a></li> -->
+                            <li><a href="">Xin chào, {{ user.username }}!  </a></li>
+                            <!-- <li><a href=""></a></li>
+                            {% comment %} <li class="active"><a href="{% url 'SinhVien:SinhVien' %}">Danh sách sinh viên</a></li> {% endcomment %}
+                            <li><a href=""></a></li>
+                            <li><a href=""></a></li> -->
+                        </ul>
                     </div>
                  </div>
               </div>
@@ -67,8 +67,8 @@
                     <div class="col-sm-12">
                         <div class="full text_align_center">
                             <div class="heading_main center_head_border heading_style_1">
-                                <h2>Tra cứu lớp học HK {{hk}}</h2>
-                                <p>{{msnv}}|Tổng số môn học phụ trách: {{tk.tong}}</p>
+                                <h1><STRONG>DANH SÁCH MÔN HỌC PHỤ TRÁCH {{hk}}</STRONG></h1>
+                                <p>MSNV: {{msnv}} | Tổng số môn học phụ trách: {{tk.tong}}</p>
                                 <div class="col-md-3 col-lg-2">
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
         </div>
 <div class="container">
 <table class="table table-striped">
-    <thead>
+    <thead style="background-color: #1E72BC; color: #FFFFFF;">  
         <tr>
             <th>Mã môn học</th>
             <th>Tên môn học</th>

@@ -1,3 +1,5 @@
 Run cmd.exe
 1. netstat -ano | findstr :<PORT NUMBER 3306>
 2. taskkill /PID <PID NUMBER> /F
+
+Hello huhuhu

@@ -67,7 +67,7 @@
                     <div class="col-sm-12">
                         <div class="full text_align_center">
                             <div class="heading_main center_head_border heading_style_1">
-                                <h2>TRA CỨU THÔNG TIN KHOA {{khoa.ten_khoa}}</h2>
+                                <h1 style="text-transform: uppercase;"><strong>TRA CỨU THÔNG TIN KHOA - {{khoa.ten_khoa}}</strong></h1>
                                 <div class="col-md-3 col-lg-2">
                                 </div>
                             </div>
@@ -77,54 +77,104 @@
             </div>
         </div>
 <div class="container">
-<table class="table table-striped">
+<table class="table table-bordered">
+    <thead style="background-color: #1E72BC; color: #FFFFFF;">
+        <tr>
+            <th style="text-align: center;">DS môn học của Khoa:</th>
+            <th style="text-align: center;">DS lớp học của Khoa:</th>
+            <th style="text-align: center;">DS Sinh viên của Khoa:</th>
+            <th style="text-align: center;">DS Giảng viên của Khoa:</th>
+            <th style="text-align: center;">DS Sinh viên của lớp của Khoa:</th>
+        <tr>
+    </thead>
     <tbody>
         <th>
             <form action = "{% url 'home:tracuu_monhoc_khoa'%}"  method="POST">
                 {%csrf_token%}
-                <div>Danh sách môn học của Khoa:  
+                <!-- <div>Danh sách môn học của Khoa:  
                 <input name='makhoa' value='{{khoa.ma_khoa}}' readonly>
                 <p>Nhập học kỳ muốn xem:</p>
                 <input type="text" name='hk'></div>
                 </div> 
-                <input class='bt-main' type="submit" value='Tra cứu'>
+                <input class='bt-main' type="submit" value='Tra cứu'> -->
+
+                <div class="form-group">
+                    <a style="text-align: center;">Mã khoa: </a>
+                    <input name='makhoa' value="{{khoa.ma_khoa}}" readonly style="align-items: center; width: 100px; height: 35px; text-align: center;">
+                </div>
+                <div>
+                    <a>Học kỳ:</a>
+                    <input type="text" name='hk' style="align-items: center; width: 100px; height: 35px; text-align: center;">
+                </div>
+                <br>
+                <input class='btn btn-primary' type="submit" value='Tra cứu'>
             </form>
         </th>
         <th>
             <form action = "{% url 'home:tracuu_lophoc_khoa'%}"  method="POST">
                 {%csrf_token%}
-                <div>Danh sách lớp học của Khoa:  
+                <!-- <div>Danh sách lớp học của Khoa:  
                 <input name='khoa' value='{{khoa.ma_khoa}}' readonly>
                 <p>Nhập học kỳ muốn xem:</p>
                 <input type="text" name='hk'></div> 
-                <input class='bt-main' type="submit" value='Tra cứu'>
+                <input class='bt-main' type="submit" value='Tra cứu'> -->
+                <div class="form-group">
+                    <a style="text-align: center;">Mã khoa: </a>
+                    <input name='khoa' value="{{khoa.ma_khoa}}" readonly style="align-items: center; width: 100px; height: 35px; text-align: center;">
+                </div>
+                <div>
+                    <a>Học kỳ:</a>
+                    <input type="text" name='hk' style="align-items: center; width: 100px; height: 35px; text-align: center;">
+                </div>
+                <br>
+                <input class='btn btn-primary' type="submit" value='Tra cứu'>
             </form>
         </th>
         <th>
             <form action = "{% url 'home:tracuu_sinhvien_khoa'%}"  method="POST">
                 {%csrf_token%}
-                <div>Danh sách Sinh viên của Khoa:  
+                <!-- <div>Danh sách Sinh viên của Khoa:  
                 <input name='makhoasv' value='{{khoa.ma_khoa}}' readonly>
                 <p>Nhập học kỳ muốn xem:</p>
                 <input type="text" name='hk'></div> 
-                <input class='bt-main' type="submit" value='Tra cứu'>
+                <input class='bt-main' type="submit" value='Tra cứu'> -->
+                <div class="form-group">
+                    <a style="text-align: center;">Mã khoa: </a>
+                    <input name='makhoasv' value="{{khoa.ma_khoa}}" readonly style="align-items: center; width: 100px; height: 35px; text-align: center;">
+                </div>
+                <div>
+                    <a>Học kỳ:</a>
+                    <input type="text" name='hk' style="align-items: center; width: 100px; height: 35px; text-align: center;">
+                </div>
+                <br>
+                <input class='btn btn-primary' type="submit" value='Tra cứu'>
             </form>
         </th>
         <th>
             <form action = "{% url 'home:tracuu_giangvien_khoa'%}"  method="POST">
                 {%csrf_token%}
-                <div>Danh sách Giảng viên của Khoa:  
+                <!-- <div>Danh sách Giảng viên của Khoa:  
                 <input name='makhoa' value='{{khoa.ma_khoa}}' readonly>
                 <p>Nhập học kỳ muốn xem:</p>
                 <input type="text" name='hk'></div>
                 </div> 
-                <input class='bt-main' type="submit" value='Tra cứu'>
+                <input class='bt-main' type="submit" value='Tra cứu'> -->
+                <div class="form-group">
+                    <a style="text-align: center;">Mã khoa: </a>
+                    <input name='makhoa' value="{{khoa.ma_khoa}}" readonly style="align-items: center; width: 100px; height: 35px; text-align: center;">
+                </div>
+                <div>
+                    <a>Học kỳ:&nbsp;&nbsp;</a>
+                    <input type="text" name='hk' style="align-items: center; width: 100px; height: 35px; text-align: center;">
+                </div>
+                <br>
+                <input class='btn btn-primary' type="submit" value='Tra cứu'>
             </form>
         </th>
         <th>
-            <form action = "{% url 'home:tracuu_sinhvien_lop'%}"  method="POST">
+            <form class="was-validated" action = "{% url 'home:tracuu_sinhvien_lop'%}"  method="POST">
                 {%csrf_token%}
-                <div>Danh sách Sinh viên của lớp của Khoa::  
+                <!-- <div>Danh sách Sinh viên của lớp của Khoa::  
                 <input name='makhoa' value='{{khoa.ma_khoa}}' readonly>
                 <p>Chọn lớp muốn xem:</p>
                 <div> <select name='malop'>
@@ -132,7 +182,22 @@
                         <option value="{{x.idlop}}">{{x.ma_lop_hoc }}-{{x.hoc_ky}}-{{x.ten_mon_hoc}}</option>
                     {% endfor%}
                 </select></div> </div> 
-                <input class='bt-main' type="submit" value='Tra cứu'>
+                <input class='bt-main' type="submit" value='Tra cứu'> -->
+                <div class="form-group">
+                    <a style="text-align: center;">Mã khoa: </a>
+                    <input name='makhoa' value="{{khoa.ma_khoa}}" readonly style="align-items: center; width: 100px; height: 35px; text-align: center;">
+                </div>
+                <div class="form-group" style="align-items: center;">
+                    <a>Chọn lớp:</a>
+                    <select name='malop' class="custom-select" required style="width: auto; height: 40px">
+                    <option value="" style="font-family: ROBOTO; font-weight: bold;">Lớp:</option>
+                    {% for x in dslop%}  
+                        <option value="{{x.idlop}}">{{x.ma_lop_hoc }} - {{x.hoc_ky}} - {{x.ten_mon_hoc}}</option>
+                    {% endfor%}
+                    </select>
+                    <div class="invalid-feedback">Vui lòng chọn lớp</div>
+                </div>
+                <input class='btn btn-primary' type="submit" value='Tra cứu'>
             </form>
         </th>
 	</tbody>
